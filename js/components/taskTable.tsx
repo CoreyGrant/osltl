@@ -3,8 +3,21 @@ import { Filter } from './filterPanel';
 import { storage } from '../storage';
 import { UserDetails } from '../userDetailsService';
 import { FakeTableDatum, FakeTable } from './fakeTable';
-
-export type TaskTableProps = {filters: Filter, user: UserDetails, simple: boolean, taskList: any[]};
+export type Difficulty ="Easy"|"Medium"|"Hard"|"Elite"|"Master"; 
+export type Task = {
+    id: number;
+    name: string;
+    desc: string;
+    diff: Difficulty;
+    reqs: {
+        [key: string]: {
+            skills: {[key: string]: number};
+            quests: string[];
+        }
+    };
+    completed?: boolean;
+}
+export type TaskTableProps = {filters: Filter, user: UserDetails, simple: boolean, taskList: Task[]};
 export type TaskTableState = {currentTaskIndices: number[], personalTaskList: number[]};
 export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
     constructor(props: TaskTableProps){
@@ -80,7 +93,7 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
         storage.setPersonalTasks(personalTasks);
     }
     componentDidUpdate(prevProps){
-        if(prevProps.filters != this.props.filters || prevProps.order != this.props.order || prevProps.taskList != this.props.taskList){
+        if(prevProps.filters != this.props.filters || prevProps.taskList != this.props.taskList){
             this.updateFilters();
         }
     }

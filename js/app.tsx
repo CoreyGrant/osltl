@@ -1,18 +1,24 @@
 import React from 'react';
 import { Filter, FilterPanel } from './components/filterPanel';
-import { TaskTable } from './components/taskTable';
+import { Task, TaskTable } from './components/taskTable';
 import { storage } from './storage';
 import taskList from '../data/tasks.json';
-import { userDetailsService } from './userDetailsService';
+import { UserDetails, userDetailsService } from './userDetailsService';
 
 export type AppProps = {};
-export type AppState = {filters: Filter};
+export type AppState = {
+    filters: Filter;
+    userDetails: UserDetails;
+    username: string;
+    simple: boolean;
+    taskList: Task[];
+};
 export class App extends React.Component<AppProps, AppState>{
     constructor(props){
         super(props);
         this.state = {
             filters: storage.getFilters(),
-            userDetails: {},
+            userDetails: {} as any,
             username: storage.getUsername(),
             simple: false,
             taskList: taskList

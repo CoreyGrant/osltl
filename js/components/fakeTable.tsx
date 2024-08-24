@@ -1,8 +1,8 @@
 import React from 'react';
 
 export type FakeTableDatum = {
-    display: (t: any) => React.Node;
-    headerDisplay: () => React.Node;
+    display: (t: any) => React.ReactNode;
+    headerDisplay: () => React.ReactNode;
 }
 export type FakeTableProps = {
     schema: FakeTableDatum[];
