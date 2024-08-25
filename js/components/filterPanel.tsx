@@ -1,5 +1,7 @@
 import React from 'react';
 import { SkillFilter } from './skillFilter';
+import { DifficultyFilter } from './difficultyFilter';
+import { AreaFilter } from './areaFilter';
 export type Filter = {
     skills: string[];
     personal: boolean;
@@ -7,6 +9,10 @@ export type Filter = {
     showComplete: boolean;
     difficulty: string[];
     areas: string[];
+    order?: {
+        key?: string;
+        desc?: boolean;
+    }
 }
 export type FilterPanelProps = {
     filterUpdate: (filters: any) => void;
@@ -22,6 +28,15 @@ export class FilterPanel extends React.Component<FilterPanelProps, FilterPanelSt
     }
     render(){
         return <div className="filter-panel">
+            <FilterPanelSection title="Ordering">
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                <label style={{marginRight: "8px"}}><select onChange={(e) => this.filterKeyChange(e.target.value)} value={this.filterKeyValue()}>
+                    <option value="default">Default</option>
+                    <option value="diff">Difficulty</option>
+                </select></label>
+                <label><input type="checkbox" onChange={() => this.filterDescChange()} value={this.filterDescValue()}/> Descending</label>
+                </div>
+            </FilterPanelSection>
             <FilterPanelSection title="General">
                 <label><input type="checkbox" onChange={() => this.generalChange('personal')} checked={this.isChecked('gen', 'personal')}></input>Personal list</label>
                 <label><input type="checkbox" onChange={() => this.generalChange('canComplete')} checked={this.isChecked('gen', 'canComplete')}></input>Able to complete</label>
@@ -33,24 +48,14 @@ export class FilterPanel extends React.Component<FilterPanelProps, FilterPanelSt
                     onChange={(s) => this.skillChange(s)}></SkillFilter>
             </FilterPanelSection>
             <FilterPanelSection title="Difficulty">
-                <label><input type="checkbox" onChange={() => this.difficultyChange('Easy')} checked={this.isChecked('diff', 'Easy')}></input>Easy</label>
-                <label><input type="checkbox" onChange={() => this.difficultyChange('Medium')} checked={this.isChecked('diff', 'Medium')}></input>Medium</label>
-                <label><input type="checkbox" onChange={() => this.difficultyChange('Hard')} checked={this.isChecked('diff', 'Hard')}></input>Hard</label>
-                <label><input type="checkbox" onChange={() => this.difficultyChange('Elite')} checked={this.isChecked('diff', 'Elite')}></input>Elite</label>
-                <label><input type="checkbox" onChange={() => this.difficultyChange('Master')} checked={this.isChecked('diff', 'Master')}></input>Master</label>
+                <DifficultyFilter
+                    value={this.props.filters.difficulty}
+                    onChange={(d) => this.difficultyChange(d)}/>    
             </FilterPanelSection>
             <FilterPanelSection title="Area">
-                <label><input type="checkbox" onChange={() => this.areaChange('Any')} checked={this.isChecked('area', 'Any')}></input>Any</label>
-                <label><input type="checkbox" onChange={() => this.areaChange('Asgarnia')} checked={this.isChecked('area', 'Asgarnia')}></input>Asgarnia</label>
-                <label><input type="checkbox" onChange={() => this.areaChange('Desert')} checked={this.isChecked('area', 'Desert')}></input>Desert</label>
-                <label><input type="checkbox" onChange={() => this.areaChange('Fremennik')} checked={this.isChecked('area', 'Fremmenik')}></input>Fremmenik</label>
-                <label><input type="checkbox" onChange={() => this.areaChange('Kandarin')} checked={this.isChecked('area', 'Kandarin')}></input>Kandarin</label>
-                <label><input type="checkbox" onChange={() => this.areaChange('Karamja')} checked={this.isChecked('area', 'Karamja')}></input>Karamja</label>
-                <label><input type="checkbox" onChange={() => this.areaChange('Kourend')} checked={this.isChecked('area', 'Kourend')}></input>Kourend</label>
-                <label><input type="checkbox" onChange={() => this.areaChange('Misthalin')} checked={this.isChecked('area', 'Misthalin')}></input>Misthalin</label>
-                <label><input type="checkbox" onChange={() => this.areaChange('Morytania')} checked={this.isChecked('area', 'Morytania')}></input>Morytania</label>
-                <label><input type="checkbox" onChange={() => this.areaChange('Tirannwn')} checked={this.isChecked('area', 'Tirannwn')}></input>Tirannwn</label>
-                <label><input type="checkbox" onChange={() => this.areaChange('Wilderness')} checked={this.isChecked('area', 'Wilderness')}></input>Wilderness</label>
+                <AreaFilter
+                    value={this.props.filters.areas}
+                    onChange={(a) => this.areaChange(a)}/>
             </FilterPanelSection>
         </div>
     }
@@ -65,12 +70,6 @@ export class FilterPanel extends React.Component<FilterPanelProps, FilterPanelSt
             if(val == "showComplete"){
                 return this.props.filters.showComplete;
             }
-        }
-        if(key == 'diff'){
-            return this.props.filters.difficulty.indexOf(val) > -1;
-        }
-        if(key == 'area'){
-            return this.props.filters.areas.indexOf(val) > -1;
         }
     }
     skillChange(skillList){
@@ -90,25 +89,31 @@ export class FilterPanel extends React.Component<FilterPanelProps, FilterPanelSt
         }
         this.props.filterUpdate(newFilters);
     }
-    difficultyChange(diff){
-        var diffList = this.props.filters.difficulty;
-        if(diffList.indexOf(diff) > -1){
-            diffList = diffList.filter(x => x != diff);
-        } else {
-            diffList = [...diffList, diff];
-        }
+    difficultyChange(diffList){
         const newFilters = {...this.props.filters, difficulty: diffList};
         this.props.filterUpdate(newFilters);
     }
-    areaChange(area){
-        var areaList = this.props.filters.areas;
-        if(areaList.indexOf(area) > -1){
-            areaList = areaList.filter(x => x != area);
-        } else {
-            areaList = [...areaList, area];
-        }
+    areaChange(areaList){
         const newFilters = {...this.props.filters, areas: areaList};
         this.props.filterUpdate(newFilters);
+    }
+    filterKeyValue(){
+        var filters = this.props.filters;
+        return filters.order.key;
+    }
+    filterKeyChange(val){
+        var filters = {...this.props.filters};
+        filters.order.key = val;
+        this.props.filterUpdate(filters);
+    }
+    filterDescValue(){
+        var filters = this.props.filters;
+        return filters.order.desc;
+    }
+    filterDescChange(){
+        var filters = {...this.props.filters};
+        filters.order.desc = !filters.order.desc;
+        this.props.filterUpdate(filters);
     }
 }
 
@@ -128,7 +133,7 @@ export class FilterPanelSection extends React.Component<FilterPanelSectionProps,
     }
     render(){
         return <div className="filter-panel-section">
-            <div onClick={() => this.setState({collapsed: !this.state.collapsed})} style={{cursor: 'pointer'}}><h4>{this.props.title}</h4></div>
+            <div onClick={() => this.setState({collapsed: !this.state.collapsed})} className="filter-panel-section-header"><p className={"filter-panel-section-title"}>{this.props.title}</p></div>
             {this.state.collapsed ? null : <div className="filter-panel-section-contents">{this.props.children}</div>}
         </div>
     }

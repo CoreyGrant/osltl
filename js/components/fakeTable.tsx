@@ -7,7 +7,7 @@ export type FakeTableDatum = {
 export type FakeTableProps = {
     schema: FakeTableDatum[];
     data: any[];
-    rowClasses: {[key: string]: string}
+    rowClasses: {[key: string]: string};
 }
 export class FakeTable extends React.Component<FakeTableProps>{
     constructor(props){

@@ -17,6 +17,7 @@ export type Task = {
     };
     completed?: boolean;
 }
+const diffVals = {"Easy": 0, "Medium": 1, "Hard": 2, "Elite": 3, "Master": 4};
 export type TaskTableProps = {filters: Filter, user: UserDetails, simple: boolean, taskList: Task[]};
 export type TaskTableState = {currentTaskIndices: number[], personalTaskList: number[]};
 export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
@@ -164,12 +165,28 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
             return true;
         });
         // order the tasks
-        filteredTaskIndexPairs.sort((a, b) => {
-            var aTask = a.task;
-            var bTask = b.task;
-
-            return 0;
-        });
+        if(this.props.filters.order){
+            var key = this.props.filters.order.key;
+            var desc = this.props.filters.order.desc;
+            console.log(key, desc);
+            if(key != "default"){    
+                filteredTaskIndexPairs.sort((a, b) => {
+                    var aTask = a.task;
+                    var bTask = b.task;
+                    if(key == "diff"){
+                        var aVal = diffVals[aTask.diff];
+                        var bVal = diffVals[bTask.diff];
+                        if(aVal == bVal){ return 0 }
+                        if(aVal > bVal) { return desc ? -1 : 1 }
+                        if(aVal < bVal) { return desc ? 1 : -1 }
+                    }
+                });
+            } else {
+                if(desc){
+                    filteredTaskIndexPairs.reverse();
+                }
+            }
+        }
         var newIndicies = filteredTaskIndexPairs.map(x => x.i);
         this.setState({
             currentTaskIndices: newIndicies

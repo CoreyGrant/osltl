@@ -15,7 +15,7 @@ export class Storage{
         window.localStorage.setItem('filters', JSON.stringify(filters));
     }
     getFilters(){
-        return JSON.parse(window.localStorage.getItem('filters') || "{\"areas\":[],\"difficulty\":[],\"skills\":[]}");
+        return JSON.parse(window.localStorage.getItem('filters') || "{\"areas\":[],\"difficulty\":[],\"skills\":[], \"order\": {\"key\":\"default\", \"desc\": false}}");
     }
 }
 

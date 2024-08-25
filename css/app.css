@@ -21,12 +21,15 @@ body{
     height: 40px;
     position: fixed;
     top: 0;
-    width: calc(100% - 30px);
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-right: 20px;
     padding-left: 10px;
+    margin-left: -6px;
+    border-bottom: 3px solid rgb(79, 69, 47);
+    box-shadow: 2px solid rgb(79, 69, 47); 
 }
 .app-top-bar .app-top-bar-title{
     font-size: 24px;
@@ -46,15 +49,41 @@ body{
 
 .filter-panel{
     overflow-y: auto;
-    width: 200px;
+    width: 160px;
     height: calc(100vh - 50px);
+    scrollbar-width: thin;
 }
-.task-table table{
-    width: 100%;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    height: calc(100vh - 40px);
-    display: block;
+.filter-panel-section-header{
+    cursor: pointer;
+    width: calc(100% - 12px);
+    border-bottom: 3px solid black;
+}
+.filter-panel-section-contents{
+    border-bottom: 3px solid black;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    width: calc(100% - 12px);
+}
+.filter-panel-section-title{
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 0;
+}
+.filter-panel-section label{
+    font-size: 14px;
+}
+.filter-panel-section input[type="checkbox"]{
+    width: 24px;
+    height: 24px;
+}
+.filter-panel-section select{
+    height: 24px;
+    font-size: 14px;
+    width: 120px;
+}
+.filter-panel-section option{
+    height: 16px;
+    font-size: 14px;
 }
 /*fake table*/
 
@@ -67,7 +96,7 @@ body{
 }
 
 .fake-table-head{
-    width: calc(100% - 16px);
+    width: calc(100% - 8px);
     display: flex;
     flex-direction: row;
     border-bottom: 4px solid black;
@@ -79,6 +108,7 @@ body{
     flex-direction: column;
     scrollbar-gutter: stable;
     overflow-y: scroll;
+    scrollbar-width: thin;
     overflow-x: hidden;
 }
 
@@ -146,7 +176,7 @@ body{
 }
 
 .task-table{
-    width: calc(100% - 212px);
+    width: calc(100% - 172px);
     height: calc(100vh - 50px);
     overflow-x: hidden;
     position: relative;
@@ -161,21 +191,38 @@ body{
     width: 32px;
 }
 .skill-filter{
-    width: 120px;
-    height: 360px;
+    width: 84px;
+    height: 252px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
-.single-skill-filter{
-    width: 40px;
-    height: 40px;
+.diff-filter{
+    width: 140px;
+    height: 28px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.area-filter{
+    width: 140px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 84px;
+}
+.area-filter img{
+    height: 20px;
+}
+.single-skill-filter, .single-diff-filter, .single-area-filter{
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid red;
 }
-.single-skill-filter.selected{
+.single-skill-filter.selected, .single-diff-filter.selected, .single-area-filter.selected{
     border: 3px solid green;
 }
 .row-detail{
@@ -217,6 +264,11 @@ body{
     border: 1px solid grey;
     border-radius: 3px;
 }
+.app-top-bar-username-input{
+    width: 120px;
+    font-size: 12px;
+    height: 20px;
+}
 /*Tablet*/
 @media(max-width: 1024px){
     .personal-checkbox{
@@ -235,11 +287,11 @@ body{
     }
 
     .filter-panel{
-        width: 200px;
+        width: 160px;
         height: calc(100vh - 50px);
     }
     .task-table{
-        width: calc(100% - 212px);
+        width: calc(100% - 172px);
         height: calc(100vh - 50px);
     } 
     *{

@@ -23,7 +23,6 @@ export class SkillFilter extends React.Component<SkillFilterProps>{
     }
     skillClick(skill){
         var val = this.props.value;
-        console.log(val, skill, this.props);
         if(val.indexOf(skill) > -1){
             val = val.filter(x => x != skill);
         } else{

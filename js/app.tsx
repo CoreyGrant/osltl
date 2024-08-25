@@ -47,11 +47,12 @@ export class App extends React.Component<AppProps, AppState>{
             <div className="app-top-bar">
                 <span className="app-top-bar-title">Old School Leagues Task List</span>
                 <span>
-                    <button onClick={() => this.setState({simple: !this.state.simple})}>{this.state.simple ? 'Simple' : 'Detailed'}</button>
+                    <button onClick={() => this.setState({simple: !this.state.simple})}>{this.state.simple ? 'Switch to detailed' : 'Switch to simple'}</button>
                 </span>
                 <span>
-                    <input type="text" className="app-top-bar-username-input" value={this.state.username} onChange={(e) => this.usernameChange(e)}/>
-                    <img src="icon/refresh.png" onClick={() => this.updateUserDetails()} style={{height: "20px", width: "20px"}}/>
+                    <label>Username <input type="text" className="app-top-bar-username-input" value={this.state.username} onChange={(e) => this.usernameChange(e)}/></label>
+                    <img src="icon/refresh.png" onClick={() => this.updateUserDetails()} style={{height: "20px", width: "20px", marginLeft: "2px", marginRight: "10px"}}/>
+                    <a href="https://discord.gg/RwhEHT9qhW"><img src="icon/DiscordLogo.svg" style={{height: "20px"}}></img></a>
                 </span>
             </div>
             <FilterPanel filterUpdate={(f) => this.filterChange(f)} filters={this.state.filters}></FilterPanel>
