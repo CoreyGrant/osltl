@@ -45,14 +45,14 @@ export class App extends React.Component<AppProps, AppState>{
     render(){
         return <div className="app-container">
             <div className="app-top-bar">
-                <span className="app-top-bar-title">Old School Leagues Task List</span>
+                <span className="app-top-bar-title">OSRS TL</span>
                 <span>
-                    <button onClick={() => this.setState({simple: !this.state.simple})}>{this.state.simple ? 'Switch to detailed' : 'Switch to simple'}</button>
+                    <button onClick={() => this.setState({simple: !this.state.simple})}>{this.state.simple ? 'Detailed' : 'Simple'}</button>
                 </span>
                 <span>
                     <label>Username <input type="text" className="app-top-bar-username-input" value={this.state.username} onChange={(e) => this.usernameChange(e)}/></label>
-                    <img src="icon/refresh.png" onClick={() => this.updateUserDetails()} style={{height: "20px", width: "20px", marginLeft: "2px", marginRight: "10px", cursor: 'pointerS'}}/>
-                    <a href="https://discord.gg/RwhEHT9qhW"><img src="icon/DiscordLogo.svg" style={{height: "20px"}}></img></a>
+                    <img src="icon/refresh.png" onClick={() => this.updateUserDetails()} style={{height: "20px", width: "20px", marginLeft: "2px", marginRight: "10px", cursor: 'pointer'}}/>
+                    <a href="https://discord.gg/RwhEHT9qhW" target="_blank"><img src="icon/DiscordLogo.svg" style={{height: "20px"}}></img></a>
                 </span>
             </div>
             <FilterPanel filterUpdate={(f) => this.filterChange(f)} filters={this.state.filters}></FilterPanel>

@@ -27,6 +27,7 @@ body{
     justify-content: space-between;
     padding-right: 20px;
     padding-left: 10px;
+    padding-top: 4px;
     margin-left: -6px;
     border-bottom: 3px solid rgb(79, 69, 47);
     box-shadow: 2px solid rgb(79, 69, 47); 
@@ -35,6 +36,7 @@ body{
     font-size: 24px;
     color: rgb(109, 66, 17);
     font-weight: bolder;
+    margin-top:-4px;
 }
 
 /*Desktop*/
@@ -193,7 +195,7 @@ body{
 .filter-panel-clear{
     position: absolute;
     right: 10px;
-    top: 0;
+    top: -1px;
     cursor: pointer;
 }
 .filter-panel-clear > img{
@@ -208,11 +210,27 @@ body{
     height: 32px;
     width: 32px;
 }
+.general-filter{
+    display: flex;
+    flex-direction: column;
+}
+.ordering-filter{
+    display: flex;
+    flex-direction: column;
+}
 .skill-filter{
     width: 84px;
-    height: 252px;
+    height: 224px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+}
+.extra-skill-filter{
+    margin-left: 14px;
+    width: 28px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 .diff-filter{
@@ -239,6 +257,7 @@ body{
     align-items: center;
     justify-content: center;
     border: 1px solid black;
+    border-collapse: collapse;
 }
 .single-skill-filter.selected, .single-diff-filter.selected, .single-area-filter.selected{
     border: 3px solid green;
@@ -290,6 +309,9 @@ body{
 }
 /*Tablet*/
 @media(max-width: 1024px){
+    .fake-table-head{
+        width: 100%;
+    }
     .personal-checkbox{
         height: 24px;
         width: 24px;
@@ -327,18 +349,30 @@ body{
     *{
         font-size: 0.8rem;
     }
+    .filter-panel-clear{
+        position: absolute;
+        right: 10px;
+        top: 3px;
+        cursor: pointer;
+    }
+    .app-top-bar-username-input{
+        width: 100px;
+    }
     .personal-checkbox{
         height: 16px;
         width: 16px;
     }
-.app-top-bar .app-top-bar-title{
-    font-size: 16px;
-    color: rgb(109, 66, 17);
-    font-weight: bolder;
-}
+    .app-top-bar .app-top-bar-title{
+        font-size: 16px;
+        color: rgb(109, 66, 17);
+        font-weight: bolder;
+    }
     img{
-        height: 10px;
-        width: 10px;
+        height: 16px;
+        width: 16px;
+    }
+    .area-filter img{
+        height: 16px;
     }
     .app-container{
         margin-top: 40px;
@@ -350,9 +384,62 @@ body{
         height: 150px;
         width: 100%;
     }
-    
+    .filter-panel-section label{
+        font-size: 12px;
+    }
+    .filter-panel-section input[type="checkbox"]{
+        width: 18px;
+        height: 18px;
+    }
     .task-table{
         height: calc(100% - 150px);
+        width: 100%;
+    }
+    .general-filter{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .ordering-filter{
+        display: flex;
+        flex-direction: row;
+    }
+    .skill-filter{
+        width: 252px;
+        height: 84px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .extra-skill-filter{
+        margin-left: 14px;
+        width: 56px;
+        height: 84px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .diff-filter{
+        width: 140px;
+        height: 28px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .area-filter{
+        width: 308px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 28px;
+    }
+    .filter-panel-section-contents{
+        border-bottom: 3px solid black;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        width: 100%;
+    }
+    .filter-panel-section-header{
         width: 100%;
     }
 }

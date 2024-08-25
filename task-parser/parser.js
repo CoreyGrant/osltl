@@ -37,7 +37,11 @@
             x = $(x);
             if(x.is("span.scp")){
                 var skill = x.data('skill');
-                if(skill == "Skills"){skill = "Any"}
+                if(skill == "Skills"){
+                    skill = fourthCell.children()[1].innerHTML == 'Every skill'
+                        ? "Base"
+                        : "Any";
+                }
                 if(skill == "Total level"){skill = "Total"}
                 if(skill == "Combat level"){skill = "Combat"}
                 var level = +x.data('level');
@@ -80,7 +84,10 @@
     
 
     function trimTags(val){
-        return val.replace(/<[\w\d\n\r\t\s_\-="\/%'\(\)#?:\.]{0,}>/g, "");
+        return val.replace(/<[\w\d\n\r\t\s_\-="\/%'\(\)#?:;\.&]{0,}>/g, "")
+            .replace("&nbsp;", " ")
+            .replace("&amp;", "&")
+            .replace(/\.\n$/g, "");
     }
 
     window.jsonOutput = output;

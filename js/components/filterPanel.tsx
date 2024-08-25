@@ -29,7 +29,7 @@ export class FilterPanel extends React.Component<FilterPanelProps, FilterPanelSt
     render(){
         return <div className="filter-panel">
             <FilterPanelSection title="Ordering" clear={() => this.clearOrdering()}>
-                <div style={{display: 'flex', flexDirection: 'column'}}>
+                <div className="ordering-filter">
                 <label style={{marginRight: "8px"}}><select onChange={(e) => this.filterKeyChange(e.target.value)} value={this.filterKeyValue()}>
                     <option value="default">Default</option>
                     <option value="diff">Difficulty</option>
@@ -41,17 +41,19 @@ export class FilterPanel extends React.Component<FilterPanelProps, FilterPanelSt
                 </div>
             </FilterPanelSection>
             <FilterPanelSection title="General" clear={() => this.clearGeneral()}>
-                <div className="form-input">
-                    <input id="personal-list" type="checkbox" onChange={() => this.generalChange('personal')} checked={this.isChecked('gen', 'personal')}></input>
-                    <label htmlFor="personal-list">Personal list</label>
-                </div>
-                <div className="form-input">
-                    <input id="able-to-complete" type="checkbox" onChange={() => this.generalChange('canComplete')} checked={this.isChecked('gen', 'canComplete')}></input>
-                    <label htmlFor="able-to-complete">Able to complete</label>
-                </div>
-                <div className="form-input">
-                    <input id="show-complete" type="checkbox" onChange={() => this.generalChange('showComplete')} checked={this.isChecked('gen', 'showComplete')}></input>
-                    <label htmlFor="show-complete">Show complete</label>
+                <div className="general-filter">
+                    <div className="form-input">
+                        <input id="personal-list" type="checkbox" onChange={() => this.generalChange('personal')} checked={this.isChecked('gen', 'personal')}></input>
+                        <label htmlFor="personal-list">Personal list</label>
+                    </div>
+                    <div className="form-input">
+                        <input id="able-to-complete" type="checkbox" onChange={() => this.generalChange('canComplete')} checked={this.isChecked('gen', 'canComplete')}></input>
+                        <label htmlFor="able-to-complete">Able to complete</label>
+                    </div>
+                    <div className="form-input">
+                        <input id="show-complete" type="checkbox" onChange={() => this.generalChange('showComplete')} checked={this.isChecked('gen', 'showComplete')}></input>
+                        <label htmlFor="show-complete">Show complete</label>
+                    </div>
                 </div>
             </FilterPanelSection>
             <FilterPanelSection title="Skills" clear={() => this.clearSkills()}>
