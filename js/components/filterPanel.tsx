@@ -28,31 +28,43 @@ export class FilterPanel extends React.Component<FilterPanelProps, FilterPanelSt
     }
     render(){
         return <div className="filter-panel">
-            <FilterPanelSection title="Ordering">
+            <FilterPanelSection title="Ordering" clear={() => this.clearOrdering()}>
                 <div style={{display: 'flex', flexDirection: 'column'}}>
                 <label style={{marginRight: "8px"}}><select onChange={(e) => this.filterKeyChange(e.target.value)} value={this.filterKeyValue()}>
                     <option value="default">Default</option>
                     <option value="diff">Difficulty</option>
                 </select></label>
-                <label><input type="checkbox" onChange={() => this.filterDescChange()} value={this.filterDescValue()}/> Descending</label>
+                <div className="form-input">
+                    <input type="checkbox" onChange={() => this.filterDescChange()} checked={this.filterDescValue()}/>
+                    <label>Descending</label>
+                </div>
                 </div>
             </FilterPanelSection>
-            <FilterPanelSection title="General">
-                <label><input type="checkbox" onChange={() => this.generalChange('personal')} checked={this.isChecked('gen', 'personal')}></input>Personal list</label>
-                <label><input type="checkbox" onChange={() => this.generalChange('canComplete')} checked={this.isChecked('gen', 'canComplete')}></input>Able to complete</label>
-                <label><input type="checkbox" onChange={() => this.generalChange('showComplete')} checked={this.isChecked('gen', 'showComplete')}></input>Show complete</label>
+            <FilterPanelSection title="General" clear={() => this.clearGeneral()}>
+                <div className="form-input">
+                    <input id="personal-list" type="checkbox" onChange={() => this.generalChange('personal')} checked={this.isChecked('gen', 'personal')}></input>
+                    <label htmlFor="personal-list">Personal list</label>
+                </div>
+                <div className="form-input">
+                    <input id="able-to-complete" type="checkbox" onChange={() => this.generalChange('canComplete')} checked={this.isChecked('gen', 'canComplete')}></input>
+                    <label htmlFor="able-to-complete">Able to complete</label>
+                </div>
+                <div className="form-input">
+                    <input id="show-complete" type="checkbox" onChange={() => this.generalChange('showComplete')} checked={this.isChecked('gen', 'showComplete')}></input>
+                    <label htmlFor="show-complete">Show complete</label>
+                </div>
             </FilterPanelSection>
-            <FilterPanelSection title="Skills">
+            <FilterPanelSection title="Skills" clear={() => this.clearSkills()}>
                 <SkillFilter
                     value={this.props.filters.skills}
                     onChange={(s) => this.skillChange(s)}></SkillFilter>
             </FilterPanelSection>
-            <FilterPanelSection title="Difficulty">
+            <FilterPanelSection title="Difficulty" clear={() => this.clearDiff()}>
                 <DifficultyFilter
                     value={this.props.filters.difficulty}
                     onChange={(d) => this.difficultyChange(d)}/>    
             </FilterPanelSection>
-            <FilterPanelSection title="Area">
+            <FilterPanelSection title="Area" clear={() => this.clearArea()}>
                 <AreaFilter
                     value={this.props.filters.areas}
                     onChange={(a) => this.areaChange(a)}/>
@@ -115,11 +127,36 @@ export class FilterPanel extends React.Component<FilterPanelProps, FilterPanelSt
         filters.order.desc = !filters.order.desc;
         this.props.filterUpdate(filters);
     }
+    clearOrdering(){
+        var filters = {...this.props.filters};
+        filters.order = {key: 'default', desc: false};
+        this.props.filterUpdate(filters);
+    }
+    clearArea(){
+        var filters = {...this.props.filters};
+        filters.areas = [];
+        this.props.filterUpdate(filters);
+    }
+    clearDiff(){
+        var filters = {...this.props.filters};
+        filters.difficulty = [];
+        this.props.filterUpdate(filters);
+    }
+    clearSkills(){
+        var filters = {...this.props.filters};
+        filters.skills = [];
+        this.props.filterUpdate(filters);
+    }
+    clearGeneral(){
+        var filters = {...this.props.filters, canComplete: false, personal: false, showComplete: false};
+        this.props.filterUpdate(filters);
+    }
 }
 
 export type FilterPanelSectionProps = {
     children: any;
     title: string; 
+    clear?: () => void;
 };
 export type FilterPanelSectionState = {
     collapsed: boolean;
@@ -135,6 +172,7 @@ export class FilterPanelSection extends React.Component<FilterPanelSectionProps,
         return <div className="filter-panel-section">
             <div onClick={() => this.setState({collapsed: !this.state.collapsed})} className="filter-panel-section-header"><p className={"filter-panel-section-title"}>{this.props.title}</p></div>
             {this.state.collapsed ? null : <div className="filter-panel-section-contents">{this.props.children}</div>}
+            {this.props.clear && <div className="filter-panel-clear" onClick={() => this.props.clear()} title="Reset to default"><img src={"icon/reset.png"}></img></div>}
         </div>
     }
 }

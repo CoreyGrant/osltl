@@ -53,6 +53,7 @@ body{
     height: calc(100vh - 50px);
     scrollbar-width: thin;
 }
+.filter-panel-section{position: relative;}
 .filter-panel-section-header{
     cursor: pointer;
     width: calc(100% - 12px);
@@ -174,13 +175,30 @@ body{
 .fake-table-row.completed{
     background-color: green;
 }
-
+.form-input{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.form-input>input{
+    margin-right: 4px;
+}
 .task-table{
     width: calc(100% - 172px);
     height: calc(100vh - 50px);
     overflow-x: hidden;
     position: relative;
     overflow-y: hidden;
+}
+.filter-panel-clear{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    cursor: pointer;
+}
+.filter-panel-clear > img{
+    height: 16px;
+    width: 16px;
 }
 .filter-panel-section h4{
     margin-bottom: 2px;
@@ -220,10 +238,11 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid red;
+    border: 1px solid black;
 }
 .single-skill-filter.selected, .single-diff-filter.selected, .single-area-filter.selected{
     border: 3px solid green;
+    background-color: rgba(0,128,0,0.5)
 }
 .row-detail{
     display: flex;
@@ -244,7 +263,7 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 1px solid grey;
+    /*border: 1px solid grey; */
     border-radius: 3px;
 }
 .row-detail-area{
@@ -252,7 +271,7 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     border-radius: 3px;
 }
 .row-detail-quest{
@@ -261,7 +280,7 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     border-radius: 3px;
 }
 .app-top-bar-username-input{

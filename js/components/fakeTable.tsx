@@ -8,6 +8,7 @@ export type FakeTableProps = {
     schema: FakeTableDatum[];
     data: any[];
     rowClasses: {[key: string]: string};
+    rowClick?: (item) => void;
 }
 export class FakeTable extends React.Component<FakeTableProps>{
     constructor(props){
@@ -23,7 +24,7 @@ export class FakeTable extends React.Component<FakeTableProps>{
             <div className="fake-table-body">
                 {data.map(x => {
                     var rowClass = Object.keys(this.props.rowClasses).filter(rc => x[rc]).map(rc => this.props.rowClasses[rc]).join(" ");
-                    return <div className={"fake-table-row " + rowClass}>
+                    return <div className={"fake-table-row " + rowClass} onClick={() => this.props.rowClick(x)}>
                         {schema.map((s, i) => <div className={"fake-table-td fake-table-td-" + i}>{s.display(x)}</div>)}
                     </div>
                 })}

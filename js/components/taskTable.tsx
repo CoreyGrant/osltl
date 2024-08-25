@@ -57,7 +57,10 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
         const data = this.state.currentTaskIndices.map(x => this.props.taskList[x]);
         const rowClasses = {completed: 'completed'};
         return <div className={"task-table" + (this.props.simple ? " simple" : "")}>
-            <FakeTable data={data} schema={schema} rowClasses={rowClasses}></FakeTable>
+            <FakeTable 
+                data={data} 
+                schema={schema} 
+                rowClasses={rowClasses}></FakeTable>
         </div>
     }
     getAreaFromReq(reqs){

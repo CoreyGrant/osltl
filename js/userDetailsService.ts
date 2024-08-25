@@ -3,7 +3,7 @@ export class UserDetailsService{
         return fetch("https://sync.runescape.wiki/runelite/player/" + username + "/STANDARD")
             .then(x => x.json())
             .then(x => ({
-                leagueTasks: [435, 442],//x.league_tasks,
+                leagueTasks: x.league_tasks,
                 skills: x.levels,
                 quests: x.quests
             }));
