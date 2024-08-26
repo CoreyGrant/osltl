@@ -267,7 +267,7 @@ body{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    border: 1px solid rgb(99, 99, 99);
+    border: 3px solid rgb(99, 99, 99);
     border-radius: 3px;
     align-items: center;
 }
@@ -292,6 +292,18 @@ body{
     align-items: center;
     /* border: 1px solid grey; */
     border-radius: 3px;
+}
+.row-detail-area-and{
+}
+.row-detail-area-divider{
+    margin-left: 4px;
+    margin-right: 4px;
+    color:rgb(109, 66, 17);
+    font-size: 32px;
+    font-weight: bolder;
+    line-height: 1;
+    height: 32px;
+    margin-top: -7px;
 }
 .row-detail-quest, .row-detail-diary, .row-detail-kourend{
     margin-left: 4px;

@@ -10,13 +10,12 @@ export type Task = {
     desc: string;
     diff: Difficulty;
     reqs: {
-        [key: string]: {
-            skills: {[key: string]: number};
-            quests: string[];
-            diary: string[];
-            kourend: {[key: string]: number};
-        }
-    };
+        skills: {[key: string]: number};
+        quests: string[];
+        diary: string[];
+        kourend: {[key: string]: number};
+        areas: (string|string[])[]
+    }[];
     completed?: boolean;
 }
 const diffVals = {"Easy": 0, "Medium": 1, "Hard": 2, "Elite": 3, "Master": 4};
@@ -45,7 +44,7 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
             },
             {
                 headerDisplay: () => <b>Details</b>,
-                display: (t) => <span>{this.renderDetails(t.reqs)}</span>
+                display: (t) => <span>{this.renderDetails(t)}</span>
             },
             {
                 headerDisplay: () => <b>Difficulty</b>,
@@ -65,27 +64,43 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 rowClasses={rowClasses}></FakeTable>
         </div>
     }
-    getAreaFromReq(reqs){
-        return Object.keys(reqs).join("/");
-    }
-    renderDetails(reqs){
+    renderDetails(t){
+        const reqs = t.reqs;
         // show the area with its skill/quest reqs
-        const areas = Object.keys(reqs).map(x => ({area: x, req: reqs[x]}));
-        const output = areas.map(a => {
+        const output = reqs.map(a => {
             return <div className="row-detail">
-                <div className="row-detail-area"><img className="row-detail-area-img" src={"icon/" + a.area + "Area.webp"} style={{marginRight: "4px"}} title={a.area}></img>{a.area}</div>
+                <div className="row-detail-area">
+                {a?.areas.map((ar, ari) => 
+                    {
+                        if(!Array.isArray(ar)){
+                            var showDivider = !(ari + 1 === a.areas.length);
+                            return <div className="row-detail-area">
+                                <img className="row-detail-area-img" src={"icon/" + ar + "Area.webp"} style={{marginRight: "4px"}} title={ar}></img>{ar}
+                                {showDivider && <p className="row-detail-area-divider">/</p>}
+                            </div>    
+                        } else {
+                            return ar.map((subAr, subAri) => {
+                                var showSummer = !(subAri + 1 === ar.length);
+                                return <div style={{display: "flex", flexDirection: 'row'}} className="row-detail-area-and">
+                                <img className="row-detail-area-img" src={"icon/" + subAr + "Area.webp"} style={{marginRight: "4px"}} title={subAr}></img>{subAr}
+                                {showSummer && <p className="row-detail-area-divider">+</p>}
+                            </div>
+                            })
+                        }
+                    })}
+                </div>
                 <div className="row-detail-reqs">
-                {Object.keys(a?.req?.skills || {}).map(x => <span className="row-detail-skills">
-                    <img src={"icon/" + x.replace(" ", "") + ".webp"} title={x} style={{marginRight: "4px"}}></img>{a.req.skills[x]}
+                {Object.keys(a?.skills || {}).map(x => <span className="row-detail-skills">
+                    <img src={"icon/" + x.replace(" ", "") + ".webp"} title={x} style={{marginRight: "4px"}}></img>{a.skills[x]}
                 </span>)}
-                {a?.req?.quests?.map(x => <span className="row-detail-quest">
+                {a?.quests?.map(x => <span className="row-detail-quest">
                     <img src="icon/Quest.png" title={x} style={{marginRight: "4px"}}></img>{x}
                 </span>)}
-                {a?.req?.diary?.map(x => <span className="row-detail-diary">
+                {a?.diary?.map(x => <span className="row-detail-diary">
                     <img src="icon/Diary.webp" title={x} style={{marginRight: "4px"}}></img>{x}
                 </span>)}
-                {Object.keys(a?.req?.kourend || {}).map(x => <span className="row-detail-kourend">
-                    <img src={"icon/Favour.webp"} title={x} style={{marginRight: "4px"}}></img>{x} {a.req.kourend[x]}%
+                {Object.keys(a?.kourend || {}).map(x => <span className="row-detail-kourend">
+                    <img src={"icon/Favour.webp"} title={x} style={{marginRight: "4px"}}></img>{x} {a.kourend[x]}%
                 </span>)}
                 </div>
             </div>
@@ -124,7 +139,15 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 }
             }
             if(filter.areas && filter.areas.length){
-                const areaKeys = Object.keys(reqs);
+                const areaKeys = reqs.flatMap(x => {
+                    return x.areas.flatMap(suba =>{
+                        if(Array.isArray(suba)){
+                            return suba;
+                        } else{
+                            return [suba];
+                        }
+                    });
+                });
                 const taskHasArea = areaKeys.some(ak => filter.areas.indexOf(ak) > -1);
                 if(!taskHasArea){
                     return false;
@@ -136,7 +159,7 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 }
             }
             if(filter.skills && filter.skills.length){
-                const reqValues = Object.values(reqs);
+                const reqValues = reqs;
                 if(filter.skills.indexOf("Quest") > -1){
                     const quests = reqValues.flatMap(a => a.quests);
                     if(quests.length){
@@ -155,7 +178,7 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 }
             }
             if(filter.canComplete && user && user.skills){
-                var canComplete = Object.values(reqs).some(x => {
+                var canComplete = reqs.some(x => {
                     if(!x.skills){return false;}
                     const skills = Object.keys(x.skills);
                     return skills.every(sk => {
@@ -179,7 +202,6 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
         if(this.props.filters.order){
             var key = this.props.filters.order.key;
             var desc = this.props.filters.order.desc;
-            console.log(key, desc);
             if(key != "default"){    
                 filteredTaskIndexPairs.sort((a, b) => {
                     var aTask = a.task;

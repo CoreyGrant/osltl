@@ -1,39 +1,22 @@
 {
-    "641": {
-        "Asgarnia": {
-            "skills": {"Crafting": 40}
-        },
-        "Kandarin": {
-            "skills": {"Ranged": 40, "Crafting": 14}
-        },
-        "Desert": {"skills": {"Crafting": 14}},
-        "Kourend": {"skills": {"Crafting": 14}},
-        "Morytania": {"skills": {"Crafting": 14}},
-        "Fremennik": {"skills": {"Crafting": 14, "Magic": 78}}
-    },
-    "691": {
-        "Kandarin": {"skills": {"Hunter": 15}},
-        "Kourend": {"skills": {"Hunter": 15}},
-        "Fremennik": {"skills": {"Hunter": 25}}
-    },
-    "1695": {
-        "Desert": {"quests": ["Icthlarin's Little Helper"]},
-        "Fremennik": {}
-    },
-    "1633": {
-        "Kandarin": {},
-        "Kourend": {}
-    },
-    "587": {
-        "Asgarnia": {},
-        "Morytania": {},
-        "Kandarin": {},
-        "Kourend":{},
-        "Tirannwn": {}
-    },
-    "581":{
-        "Fremennik": {"skills": {"Thieving": 5}},
-        "Kandarin": {"skills": {"Thieving": 5}},
-        "Kourend": {"skills": {"Thieving": 5}}
-    }
+    "641": [
+        {"skills": {"Crafting": 40}, "areas": ["Asgarnia"]},
+        {"skills": {"Crafting": 14, "Ranged": 40}, "areas": ["Kandarin"]},
+        {"skills": {"Crafting": 14}, "areas": ["Desert", "Kourend", "Morytania"]},
+        {"skills": {"Crafting": 14, "Magic": 78}, "areas": ["Fremennik"]}
+    ],
+    "691": [
+        {"skills": {"Hunter": 15}, "areas": ["Kandarin", "Kourend"]},
+        {"skills": {"Hunter": 25}, "areas": ["Fremennik"]}
+    ],
+    "1695": [
+        {"quests": ["Icthlarin's Little Helper"], "areas": ["Desert"]},
+        {"areas": ["Fremennik"]}
+    ],
+    "1633": [{"areas": ["Kandarin", "Kourend"]}],
+    "587": [{"areas": ["Asgarnia", "Morytania", "Kandarin", "Kourend", "Tirannwn"]}],
+    "581":[{"skills": {"Thieving": 5}, "areas": ["Fremennik", "Kandarin", "Kourend"]}],
+    "1694": [{"areas":["Wilderness"]}, {"skills": {"Cooking": 10}, "areas": ["Any"]}],
+    "1655": [{"areas": ["Asgarnia"], "quests": ["Below Ice Mountain"]}, {"areas": ["Desert"]}],
+    "1656": [{"areas": [["Kandarin", "Fremennik"]], "quests": ["Dragon Slayer II"]}]
 }

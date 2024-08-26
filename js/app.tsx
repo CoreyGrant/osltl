@@ -26,21 +26,40 @@ export class App extends React.Component<AppProps, AppState>{
     }
     updateUserDetails(){
         if(this.state.username && this.state.username.length){
-            userDetailsService.getDetails(this.state.username)
+            userDetailsService.getDetails()
                 .then(x => this.setState({userDetails: x}, () => {
                     const tasks = this.state.taskList;
                     const userLeagueTasks = this.state.userDetails.leagueTasks || [];
                     for(var task of tasks){
                         if(userLeagueTasks.indexOf(task.id) > -1){
                             task.completed = true;
+                        } else{
+                            task.completed = false;
                         }
                     }
+                    console.log("manual user update");
                     this.setState({taskList: [...tasks]});
                 }));
         }
     }
     componentDidMount(){
+        userDetailsService.updateUsername(this.state.username);
         this.updateUserDetails();
+        userDetailsService.beginAutosync((t) => {
+            t.then(x => this.setState({userDetails: x}, () => {
+                const tasks = this.state.taskList;
+                const userLeagueTasks = this.state.userDetails.leagueTasks || [];
+                for(var task of tasks){
+                    if(userLeagueTasks.indexOf(task.id) > -1){
+                        task.completed = true;
+                    } else{
+                        task.completed = false;
+                    }
+                }
+                console.log("Autosync user update");
+                this.setState({taskList: [...tasks]});
+            }));
+        })
     }
     render(){
         return <div className="app-container">
@@ -65,6 +84,7 @@ export class App extends React.Component<AppProps, AppState>{
     }
     usernameChange(e){
         this.setState({username: e.target.value});
+        userDetailsService.updateUsername(e.target.value);
         storage.setUsername(e.target.value);
     }
 }

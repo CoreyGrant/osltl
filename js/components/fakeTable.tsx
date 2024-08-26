@@ -24,7 +24,7 @@ export class FakeTable extends React.Component<FakeTableProps>{
             <div className="fake-table-body">
                 {data.map(x => {
                     var rowClass = Object.keys(this.props.rowClasses).filter(rc => x[rc]).map(rc => this.props.rowClasses[rc]).join(" ");
-                    return <div className={"fake-table-row " + rowClass} onClick={() => this.props.rowClick(x)}>
+                    return <div className={"fake-table-row " + rowClass} onClick={() => this.props.rowClick && this.props.rowClick(x)}>
                         {schema.map((s, i) => <div className={"fake-table-td fake-table-td-" + i}>{s.display(x)}</div>)}
                     </div>
                 })}

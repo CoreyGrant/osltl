@@ -408,15 +408,7 @@ function alternateParse($detailCell, baseArea, splitQuests){
             reqs.quests.push(questMatch[1]);
         }
     }
-    return areas.reduce((p, c) => {
-        return {...p, [c]: reqs}
-    }, {});
+    reqs.areas = areas.filter((x, i) => areas.indexOf(x) === i);
+    return [reqs];
 }
-// get quest names
-// (function(){
-//     var output = [];
-//     $('table.sortable tr').find('td:nth-child(2)').each((i, x) =>{
-//         output.push($(x).data('sortValue'))
-//     })
-//     window.output = output;
-// }())
+

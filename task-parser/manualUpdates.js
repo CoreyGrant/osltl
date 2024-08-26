@@ -4,8 +4,8 @@ var fs = require('fs');
 var fileJson = JSON.parse(fs.readFileSync('../data/parsedTasks.json'));
 var manualJson = JSON.parse(fs.readFileSync('../data/manualTasks.json'));
 
-for(var task in fileJson){
-    var replacementReqs = manualJson[task.indexOf.toString()];
+for(var task of fileJson){
+    var replacementReqs = manualJson[task.id.toString()];
     if(replacementReqs){
         task.reqs = replacementReqs;
     }
