@@ -293,7 +293,7 @@ body{
     /* border: 1px solid grey; */
     border-radius: 3px;
 }
-.row-detail-quest{
+.row-detail-quest, .row-detail-diary, .row-detail-kourend{
     margin-left: 4px;
     padding: 2px;
     display: flex;

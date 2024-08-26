@@ -13,6 +13,8 @@ export type Task = {
         [key: string]: {
             skills: {[key: string]: number};
             quests: string[];
+            diary: string[];
+            kourend: {[key: string]: number};
         }
     };
     completed?: boolean;
@@ -78,6 +80,12 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 </span>)}
                 {a?.req?.quests?.map(x => <span className="row-detail-quest">
                     <img src="icon/Quest.png" title={x} style={{marginRight: "4px"}}></img>{x}
+                </span>)}
+                {a?.req?.diary?.map(x => <span className="row-detail-diary">
+                    <img src="icon/Diary.webp" title={x} style={{marginRight: "4px"}}></img>{x}
+                </span>)}
+                {Object.keys(a?.req?.kourend || {}).map(x => <span className="row-detail-kourend">
+                    <img src={"icon/Favour.webp"} title={x} style={{marginRight: "4px"}}></img>{x} {a.req.kourend[x]}%
                 </span>)}
                 </div>
             </div>
