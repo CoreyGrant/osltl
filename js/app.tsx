@@ -64,7 +64,7 @@ export class App extends React.Component<AppProps, AppState>{
     render(){
         return <div className="app-container">
             <div className="app-top-bar">
-                <span className="app-top-bar-title">OSRS TL</span>
+                <span className="app-top-bar-title">OLT: Oldschool League Tasks</span>
                 <span>
                     <button onClick={() => this.setState({simple: !this.state.simple})}>{this.state.simple ? 'Detailed' : 'Simple'}</button>
                 </span>

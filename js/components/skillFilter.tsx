@@ -6,7 +6,7 @@ export type SkillFilterProps = {
 }
 
 const orderedSkills = ["Attack", "Hitpoints", "Mining", "Strength", "Agility", "Smithing", "Defence", "Herblore", "Fishing", "Ranged", "Thieving", "Cooking", "Prayer", "Crafting", "Firemaking", "Magic", "Fletching", "Woodcutting", "Runecraft", "Slayer", "Farming", "Construction", "Hunter"];
-const extraSkills = ["Total", "Combat", "Base", "Quest", "Any"]
+const extraSkills = ["Total", "Combat", "Base", "Quest", "Any", "Diary", "Favour"]
 export class SkillFilter extends React.Component<SkillFilterProps>{
     constructor(props){
         super(props);

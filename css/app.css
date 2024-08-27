@@ -228,7 +228,7 @@ body{
 .extra-skill-filter{
     margin-left: 14px;
     width: 28px;
-    height: 140px;
+    height: 196px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -425,7 +425,7 @@ body{
     }
     .extra-skill-filter{
         margin-left: 14px;
-        width: 56px;
+        width: 84px;
         height: 84px;
         display: flex;
         flex-direction: column;

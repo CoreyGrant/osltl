@@ -18,7 +18,7 @@ export type Task = {
     }[];
     completed?: boolean;
 }
-const diffVals = {"Easy": 0, "Medium": 1, "Hard": 2, "Elite": 3, "Master": 4};
+const diffVals = {"Easy": 10, "Medium": 40, "Hard": 80, "Elite": 200, "Master": 400};
 export type TaskTableProps = {filters: Filter, user: UserDetails, simple: boolean, taskList: Task[]};
 export type TaskTableState = {currentTaskIndices: number[], personalTaskList: number[]};
 export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
@@ -47,8 +47,8 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 display: (t) => <span>{this.renderDetails(t)}</span>
             },
             {
-                headerDisplay: () => <b>Difficulty</b>,
-                display: (t) => <span><img src={"icon/" + t.diff + "Task.webp"} style={{marginRight: "4px"}}/>{t.diff}</span>
+                headerDisplay: () => <b>Points - {this.difficultySum()}</b>,
+                display: (t) => <span><img src={"icon/" + t.diff + "Task.webp"} style={{marginRight: "4px"}}/>{diffVals[t.diff]}</span>
             },
             {
                 headerDisplay: () => <b>{this.state.personalTaskList.length}</b>,
@@ -161,8 +161,20 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
             if(filter.skills && filter.skills.length){
                 const reqValues = reqs;
                 if(filter.skills.indexOf("Quest") > -1){
-                    const quests = reqValues.flatMap(a => a.quests);
+                    const quests = reqValues.flatMap(a => a.quests || []);
                     if(quests.length){
+                        return true;
+                    }
+                }
+                if(filter.skills.indexOf("Diary") > -1){
+                    const diary = reqValues.flatMap(a => a.diary || []);
+                    if(diary.length){
+                        return true;
+                    }
+                }
+                if(filter.skills.indexOf("Favour") > -1){
+                    const favour = reqValues.flatMap(x => Object.keys(x.kourend || {}));
+                    if(favour.length){
                         return true;
                     }
                 }
@@ -224,5 +236,9 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
         this.setState({
             currentTaskIndices: newIndicies
         });
+    }
+    difficultySum(){
+        return this.state.currentTaskIndices
+            .map(x => diffVals[this.props.taskList[x].diff]).reduce((p, c) => p + c, 0);
     }
 }

@@ -391,6 +391,11 @@ function alternateParse($detailCell, baseArea, splitQuests){
                 var amount = +textContentArrReverse[i];
                 reqs.skills["Base"] = amount;
             }
+            if(nextItem == "Any"){
+                i++;
+                var amount = +textContentArrReverse[i];
+                reqs.skills["Any"] = amount;
+            }
         }
         if(item == "Diary"){
             i++;
