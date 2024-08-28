@@ -17,6 +17,12 @@ export class Storage{
     getFilters(){
         return JSON.parse(window.localStorage.getItem('filters') || "{\"areas\":[],\"difficulty\":[],\"skills\":[], \"order\": {\"key\":\"default\", \"desc\": false}}");
     }
+    setSimple(simple){
+        window.localStorage.setItem('simple', simple ? "true" : "false");
+    }
+    getSimple(){
+        return (window.localStorage.getItem("simple") || "false") == "true";
+    }
 }
 
 export const storage = new Storage();

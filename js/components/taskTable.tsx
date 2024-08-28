@@ -3,28 +3,16 @@ import { Filter } from './filterPanel';
 import { storage } from '../storage';
 import { UserDetails } from '../userDetailsService';
 import { FakeTableDatum, FakeTable } from './fakeTable';
-export type Difficulty ="Easy"|"Medium"|"Hard"|"Elite"|"Master"; 
-export type Task = {
-    id: number;
-    name: string;
-    desc: string;
-    diff: Difficulty;
-    reqs: {
-        skills: {[key: string]: number};
-        quests: string[];
-        diary: string[];
-        kourend: {[key: string]: number};
-        areas: (string|string[])[]
-    }[];
-    completed?: boolean;
-}
-const diffVals = {"Easy": 10, "Medium": 40, "Hard": 80, "Elite": 200, "Master": 400};
+import { Task, diffVals } from '../types/task';
+import { TaskDetails } from './taskDetails';
+
 export type TaskTableProps = {filters: Filter, user: UserDetails, simple: boolean, taskList: Task[]};
-export type TaskTableState = {currentTaskIndices: number[], personalTaskList: number[]};
+export type TaskTableState = {currentTaskIndices: number[], personalTaskList: number[], selectedTask: Task};
 export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
     constructor(props: TaskTableProps){
         super(props);
         this.state = {
+            selectedTask: null,
             currentTaskIndices: [],
             personalTaskList: storage.getPersonalTasks()
         };
@@ -54,15 +42,28 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 headerDisplay: () => <b>{this.state.personalTaskList.length}</b>,
                 display: (t) => <input type="checkbox" onChange={() => this.updatePersonalList(t.id)} checked={this.state.personalTaskList.indexOf(t.id) > -1} className="personal-checkbox"/>
             },
+            {
+                headerDisplay: () => <></>,
+                display: (t) => <img 
+                    className="row-detail-info"
+                    src={"icon/info.webp"} 
+                    onClick={() => this.setState({selectedTask: t})}/>
+            }
         ];
         const data = this.state.currentTaskIndices.map(x => this.props.taskList[x]);
         const rowClasses = {completed: 'completed'};
-        return <div className={"task-table" + (this.props.simple ? " simple" : "")}>
-            <FakeTable 
-                data={data} 
-                schema={schema} 
-                rowClasses={rowClasses}></FakeTable>
-        </div>
+        return <>
+            <div className={"task-table" + (this.props.simple ? " simple" : "")}>
+                <FakeTable 
+                    data={data} 
+                    schema={schema} 
+                    rowClasses={rowClasses}></FakeTable>
+            </div>
+            <TaskDetails 
+                open={!!this.state.selectedTask} 
+                onClose={() => this.setState({selectedTask: null})}
+                task={this.state.selectedTask}/>
+        </>
     }
     renderDetails(t){
         const reqs = t.reqs;
@@ -120,8 +121,24 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
         storage.setPersonalTasks(personalTasks);
     }
     componentDidUpdate(prevProps){
-        if(prevProps.filters != this.props.filters || prevProps.taskList != this.props.taskList){
-            this.updateFilters();
+        if(prevProps.filters != this.props.filters 
+            || prevProps.taskList != this.props.taskList){
+            var updatedPersonalTasks = [];
+            //console.log("starting personal tasks", this.state.personalTaskList);
+            for(var pt of this.state.personalTaskList){
+                //console.log("checking if task is complete", pt)
+                if(!this.props.taskList.find(t => t.id == pt).completed){
+                    //console.log("isnt complete, keeping");
+                    updatedPersonalTasks.push(pt);
+                }
+            }
+            //console.log("list of personal tasks to keep", updatedPersonalTasks);
+            if(updatedPersonalTasks.length !== this.state.personalTaskList.length){
+                this.setState({personalTaskList: updatedPersonalTasks}, () => this.updateFilters());
+                storage.setPersonalTasks(updatedPersonalTasks);
+            } else {
+                this.updateFilters();
+            }
         }
     }
     updateFilters(){

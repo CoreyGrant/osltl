@@ -1,9 +1,10 @@
 import React from 'react';
 import { Filter, FilterPanel } from './components/filterPanel';
-import { Task, TaskTable } from './components/taskTable';
+import { TaskTable } from './components/taskTable';
 import { storage } from './storage';
 import taskList from '../data/tasks.json';
 import { UserDetails, userDetailsService } from './userDetailsService';
+import {Task} from './types/Task';
 
 export type AppProps = {};
 export type AppState = {
@@ -20,7 +21,7 @@ export class App extends React.Component<AppProps, AppState>{
             filters: storage.getFilters(),
             userDetails: {} as any,
             username: storage.getUsername(),
-            simple: false,
+            simple: storage.getSimple(),
             taskList: taskList
         }
     }
@@ -49,8 +50,10 @@ export class App extends React.Component<AppProps, AppState>{
             t.then(x => this.setState({userDetails: x}, () => {
                 const tasks = this.state.taskList;
                 const userLeagueTasks = this.state.userDetails.leagueTasks || [];
+                console.log("userLeagueTasks", userLeagueTasks);
                 for(var task of tasks){
                     if(userLeagueTasks.indexOf(task.id) > -1){
+                        console.log("setting task as complete", task);
                         task.completed = true;
                     } else{
                         task.completed = false;
@@ -66,7 +69,7 @@ export class App extends React.Component<AppProps, AppState>{
             <div className="app-top-bar">
                 <span className="app-top-bar-title">OLT: Oldschool League Tasks</span>
                 <span>
-                    <button onClick={() => this.setState({simple: !this.state.simple})}>{this.state.simple ? 'Detailed' : 'Simple'}</button>
+                    <button className="btn btn-sm btn-primary" onClick={() => this.simpleChange()}>{this.state.simple ? 'Detailed' : 'Simple'}</button>
                 </span>
                 <div className="app-top-bar-right">
                     <span className="app-top-bar-username">
@@ -89,5 +92,9 @@ export class App extends React.Component<AppProps, AppState>{
         this.setState({username: e.target.value});
         userDetailsService.updateUsername(e.target.value);
         storage.setUsername(e.target.value);
+    }
+    simpleChange(){
+        this.setState({simple: !this.state.simple}, () => 
+            storage.setSimple(this.state.simple));
     }
 }

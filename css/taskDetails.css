@@ -1,0 +1,93 @@
+.task-details{
+ display: flex;
+ flex-direction: column;
+}
+
+.task-details>h1{
+
+}
+.task-details>h3{
+
+}
+.task-details>span{
+    margin-bottom: 8px;
+}
+.task-details>span>img{
+    margin-right: 4px;
+}
+.task-details-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.task-details-detail{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 3px solid rgb(99, 99, 99);
+    border-radius: 3px;
+    align-items: center;
+}
+.task-details-area{
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* border: 1px solid grey; */
+    border-radius: 3px;
+}
+.task-details-area-img{
+
+}
+.task-details-area-divider{
+    margin-left: 4px;
+    margin-right: 4px;
+    /* color:rgb(109, 66, 17); */
+    font-size: 32px;
+    font-weight: bolder;
+    line-height: 1;
+    height: 32px;
+    margin-top: -7px;
+    margin-bottom: 0;
+}
+.task-details-reqs{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.task-details-skills{
+    margin-left: 4px;
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*border: 1px solid grey; */
+    border-radius: 3px;
+}
+.task-details-quest{
+    margin-left: 4px;
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* border: 1px solid grey; */
+    border-radius: 3px;
+}
+.task-details-diary{
+    margin-left: 4px;
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* border: 1px solid grey; */
+    border-radius: 3px;
+}
+.task-details-kourend{
+    margin-left: 4px;
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* border: 1px solid grey; */
+    border-radius: 3px;
+}
