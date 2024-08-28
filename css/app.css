@@ -2,6 +2,10 @@
 *{
     box-sizing: border-box;
 }
+#app{
+    height: 100vh;
+    width: 100vw;
+}
 body{
     background-color: rgb(162, 144, 97);
     height: 100vh;
@@ -38,7 +42,9 @@ body{
     font-weight: bolder;
     margin-top:-4px;
 }
-
+.app-top-bar-title{
+    max-width: 37%;
+}
 /*Desktop*/
 .app-container{
     margin-top: 40px;
@@ -113,6 +119,7 @@ body{
     overflow-y: scroll;
     scrollbar-width: thin;
     overflow-x: hidden;
+    --webkit-overflow-scrolling: touch;
 }
 
 .fake-table-row{
@@ -320,7 +327,7 @@ body{
     height: 20px;
 }
 /*Tablet*/
-@media(max-width: 1024px){
+@media(max-width: 1085px){
     .fake-table-head{
         width: 100%;
     }
@@ -358,6 +365,22 @@ body{
 
 /*Mobile*/
 @media (max-width: 768px){
+    .app-top-bar-right{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+    }
+    .app-top-bar-username{
+        display: flex;
+        flex-direction: row;
+    }
+    .app-top-bar-icons{
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        top: 0px;
+        right: -10px;
+    }
     *{
         font-size: 0.8rem;
     }
@@ -374,6 +397,9 @@ body{
         height: 16px;
         width: 16px;
     }
+    .app-top-bar{
+        height: 60px;
+    }
     .app-top-bar .app-top-bar-title{
         font-size: 16px;
         color: rgb(109, 66, 17);
@@ -387,7 +413,7 @@ body{
         height: 16px;
     }
     .app-container{
-        margin-top: 40px;
+        margin-top: 60px;
         display: flex;
         flex-direction: column;
     }
