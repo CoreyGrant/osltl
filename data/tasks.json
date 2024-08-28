@@ -12334,15 +12334,23 @@
     "diff": "Hard",
     "reqs": [
       {
+        "areas": [
+          "Desert"
+        ],
         "diary": [
           "Hard Desert"
+        ]
+      },
+      {
+        "areas": [
+          [
+            "Asgarnia",
+            "Desert"
+          ]
         ],
         "skills": {
           "Herblore": 99
-        },
-        "areas": [
-          "Desert"
-        ]
+        }
       }
     ]
   },

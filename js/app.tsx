@@ -29,6 +29,7 @@ export class App extends React.Component<AppProps, AppState>{
         if(this.state.username && this.state.username.length){
             userDetailsService.getDetails()
                 .then(x => this.setState({userDetails: x}, () => {
+                    console.log(this.state.userDetails);
                     const tasks = this.state.taskList;
                     const userLeagueTasks = this.state.userDetails.leagueTasks || [];
                     for(var task of tasks){
@@ -38,7 +39,7 @@ export class App extends React.Component<AppProps, AppState>{
                             task.completed = false;
                         }
                     }
-                    console.log("manual user update");
+                    //console.log("manual user update");
                     this.setState({taskList: [...tasks]});
                 }));
         }
@@ -48,12 +49,13 @@ export class App extends React.Component<AppProps, AppState>{
         this.updateUserDetails();
         userDetailsService.beginAutosync((t) => {
             t.then(x => this.setState({userDetails: x}, () => {
+                console.log(this.state.userDetails);
                 const tasks = this.state.taskList;
                 const userLeagueTasks = this.state.userDetails.leagueTasks || [];
-                console.log("userLeagueTasks", userLeagueTasks);
+                //console.log("userLeagueTasks", userLeagueTasks);
                 for(var task of tasks){
                     if(userLeagueTasks.indexOf(task.id) > -1){
-                        console.log("setting task as complete", task);
+                        //console.log("setting task as complete", task);
                         task.completed = true;
                     } else{
                         task.completed = false;

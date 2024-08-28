@@ -18,5 +18,6 @@
     "581":[{"skills": {"Thieving": 5}, "areas": ["Fremennik", "Kandarin", "Kourend"]}],
     "1694": [{"areas":["Wilderness"]}, {"skills": {"Cooking": 10}, "areas": ["Any"]}],
     "1655": [{"areas": ["Asgarnia"], "quests": ["Below Ice Mountain"]}, {"areas": ["Desert"]}],
-    "1656": [{"areas": [["Kandarin", "Fremennik"]], "quests": ["Dragon Slayer II"]}]
+    "1656": [{"areas": [["Kandarin", "Fremennik"]], "quests": ["Dragon Slayer II"]}],
+    "1215": [{"areas": ["Desert"], "diary": ["Hard Desert"]}, {"areas": [["Asgarnia", "Desert"]], "skills": {"Herblore": 99}}]
 }

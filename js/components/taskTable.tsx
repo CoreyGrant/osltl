@@ -208,19 +208,27 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
             }
             if(filter.canComplete && user && user.skills){
                 var canComplete = reqs.some(x => {
-                    if(!x.skills){return false;}
-                    const skills = Object.keys(x.skills);
-                    return skills.every(sk => {
+                    const skills = Object.keys(x.skills || {});
+                    const quests = x.quests || [];
+                    const diaries = x.diaries || [];
+                    var skillsOk = skills.every(sk => {
                         if(sk == "Any"){
-                            return Object.values(user.skills).some(usk => usk >= x.skills[sk]);
+                            const anyThreshold = x.skills[sk];
+                            return Object.keys(user.skills).some(usk => user.skills[usk] >= anyThreshold);
                         } else if(sk == "Base"){
-                            return Object.values(user.skills).every(usk => usk >= x.skills[sk]);     
+                            const baseThrehold = x.skills[sk];
+                            console.log(task, baseThrehold, user.skills);
+                            return Object.keys(user.skills).every(usk => user.skills[usk] >= baseThrehold);     
                         } else if(sk == "Total"){
                             return x.skills[sk] <= Object.values(user.skills).reduce((p, c) => p + c, 0);
                         }
                         return user.skills[sk] >= x.skills[sk];
                     });
+                    var questsOk = quests.every(q => user.quests.indexOf(q) > -1);
+                    var diariesOk = diaries.every(d => user.diaries.indexOf(d) > -1);
+                    return skillsOk && questsOk && diariesOk;
                 });
+
                 if(!canComplete){
                     return false;
                 }

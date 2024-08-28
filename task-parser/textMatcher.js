@@ -337,6 +337,7 @@ function getMatcher(){
             if(!obj.quests){obj.quests = []}
             obj.quests.push(tvs[0]);
         }),
+        // diaries can have multiple parts to a name, look for them specifically
         new TextMatcherRule([ // diaries
             new TextMatcherToken("$string"),
             new TextMatcherToken("$string"),
@@ -345,6 +346,38 @@ function getMatcher(){
         (obj, tvs) => {
             if(!obj.diary){obj.diary = []}
             obj.diary.push(tvs[0] + " " + tvs[1]);
+        }),
+        new TextMatcherRule([ // kourend & kerbos diary
+            new TextMatcherToken("$string"),
+            new TextMatcherToken("Kourend"),
+            new TextMatcherToken("&"),
+            new TextMatcherToken("Kerbos"),
+            new TextMatcherToken("Diary"),
+        ],
+        (obj, tvs) => {
+            if(!obj.diary){obj.diary = []}
+            obj.diary.push("Kourend & Kerbos " + tvs[1]);
+        }),
+        new TextMatcherRule([ // Lumbridge & Draynor diary
+            new TextMatcherToken("$string"),
+            new TextMatcherToken("Lumbridge"),
+            new TextMatcherToken("&"),
+            new TextMatcherToken("Draynor"),
+            new TextMatcherToken("Diary"),
+        ],
+        (obj, tvs) => {
+            if(!obj.diary){obj.diary = []}
+            obj.diary.push("Lumbridge and Draynor " + tvs[1]);
+        }),
+        new TextMatcherRule([ // Western Provinces diary
+            new TextMatcherToken("$string"),
+            new TextMatcherToken("Western"),
+            new TextMatcherToken("Provinces"),
+            new TextMatcherToken("Diary"),
+        ],
+        (obj, tvs) => {
+            if(!obj.diary){obj.diary = []}
+            obj.diary.push("Western Provinces " + tvs[1]);
         }),
         new TextMatcherRule([ // skill number
             new TextMatcherToken("$number"),

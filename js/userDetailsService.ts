@@ -36,11 +36,20 @@ export class UserDetailsService{
         // }
         return fetch("https://sync.runescape.wiki/runelite/player/" + this.username + "/STANDARD")
             .then(x => x.json())
-            .then(x => ({
-                leagueTasks: x.league_tasks,
-                skills: x.levels,
-                quests: x.quests
-            }));
+            .then(x => {
+                delete x.levels["Overall"];
+                return {
+                    leagueTasks: x.league_tasks,
+                    skills: x.levels,
+                    quests: Object.keys(x.quests).filter(q => x.quests[q] == 2),
+                    diaries: Object.keys(x.achievement_diaries).flatMap(d => {
+                        var areaDiaries= x.achievement_diaries[d];
+                        var completedDiaries = Object.keys(areaDiaries).map(di => ({com: areaDiaries[di], key: di}))
+                            .filter(di => di.com.complete).map(di => di.key + " " + d);
+                        return completedDiaries;
+                    })
+                }
+            });
     }
     beginAutosync(callback){
         // Five minute update period
@@ -61,7 +70,8 @@ export class UserDetailsService{
 export type UserDetails = {
     leagueTasks: number[];
     skills: {[skill: string]: number};
-    quests: {[questName: string] : number}; 
+    quests: string[];
+    diaries: string[];
 }
 
 export const userDetailsService = new UserDetailsService();

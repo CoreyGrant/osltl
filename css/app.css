@@ -48,7 +48,7 @@ body{
 
 
 .fake-table-row.completed{
-    background-color: green;
+    background-color: rgba(0,128,0,0.5);
 }
 .form-input{
     display: flex;
