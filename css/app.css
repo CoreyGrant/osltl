@@ -159,7 +159,14 @@ body{
     .app-top-bar{
         height: 60px;
     }
+    .btn-sm{
+        padding: 0.125rem 0.25rem;
+        font-size: 0.75rem;
+    }
     .app-container{
         margin-top: 60px;
+    }
+    .app-top-bar-username-input{
+        width: 80px;
     }
 }
