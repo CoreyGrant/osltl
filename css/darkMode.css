@@ -29,3 +29,15 @@ body{
 .filter-panel-reset-dark, .row-detail-info.dark{
     display: block;
 }
+.tabs-content{
+    border-color: rgb(230, 230, 230);
+}
+.tab-header{
+    border-color: rgb(230, 230, 230);
+}
+.tabs-collapse{
+    border-color: rgb(230, 230, 230);
+}
+.tab-header:first-child{
+    border-color: rgb(230, 230, 230);
+}
