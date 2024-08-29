@@ -174,7 +174,11 @@ export class FilterPanelSection extends React.Component<FilterPanelSectionProps,
         return <div className="filter-panel-section">
             <div onClick={() => this.setState({collapsed: !this.state.collapsed})} className="filter-panel-section-header"><p className={"filter-panel-section-title"}>{this.props.title}</p></div>
             {this.state.collapsed ? null : <div className="filter-panel-section-contents">{this.props.children}</div>}
-            {this.props.clear && <div className="filter-panel-clear" onClick={() => this.props.clear()} title="Reset to default"><img src={"icon/reset.png"}></img></div>}
+            {this.props.clear && 
+                <div className="filter-panel-clear" onClick={() => this.props.clear()} title="Reset to default">
+                    <img className="filter-panel-reset-light" src={"icon/reset.png"}></img>
+                    <img className="filter-panel-reset-dark" src={"icon/resetLight.png"}></img>
+                </div>}
         </div>
     }
 }

@@ -24,7 +24,8 @@ export class App extends React.Component<AppProps, AppState>{
             username: storage.getUsername(),
             simple: storage.getSimple(),
             taskList: taskList,
-            lastUpdated: null
+            lastUpdated: null,
+            darkMode: storage.getDarkMode(),
         }
     }
     updateUserDetails(){
@@ -69,7 +70,8 @@ export class App extends React.Component<AppProps, AppState>{
         })
     }
     render(){
-        return <div className="app-container">
+        return <div className={"app-container" + (this.state.darkMode ? " dark-mode" : "")}>
+            {this.state.darkMode ? <link rel="stylesheet" href="css/darkMode.css"/> : null}
             <div className="app-top-bar">
                 <span className="app-top-bar-title">OLT: Oldschool League Tasks</span>
                 <span>
@@ -77,10 +79,11 @@ export class App extends React.Component<AppProps, AppState>{
                 </span>
                 <div className="app-top-bar-right">
                     <span className="app-top-bar-username">
-                        <label>User <input type="text" className="app-top-bar-username-input" value={this.state.username} onChange={(e) => this.usernameChange(e)}/><img src="icon/refresh.png" onClick={() => this.updateUserDetails()} style={{height: "20px", width: "20px", marginLeft: "2px", marginRight: "10px", cursor: 'pointer'}} title={this.state.lastUpdated && ("Last updated: " + this.state.lastUpdated.toLocaleString().split(", ")[1])}/></label>
+                        <label>User <input type="text" className="app-top-bar-username-input" value={this.state.username} onChange={(e) => this.usernameChange(e)}/><img src={"icon/refresh" + (this.state.darkMode ? "Light" : "") + ".png"} onClick={() => this.updateUserDetails()} style={{height: "20px", width: "20px", marginLeft: "2px", marginRight: "10px", cursor: 'pointer'}} title={this.state.lastUpdated && ("Last updated: " + this.state.lastUpdated.toLocaleString().split(", ")[1])}/></label>
                     </span>
                     <span className="app-top-bar-icons">
-                        <a href="https://discord.gg/RwhEHT9qhW" target="_blank"><img src="icon/DiscordLogo.svg" style={{height: "20px"}}></img></a>
+                        <a href="https://discord.gg/RwhEHT9qhW" target="_blank"><img src="icon/DiscordLogo.svg" className="app-top-bar-discord"></img></a>
+                        <img src={"icon/darkMode" + (this.state.darkMode ? "Light" : "") + ".png"} className="app-top-bar-dark-toggle" title={"Toggle dark mode"} onClick={() => this.darkModeChange()}/>
                     </span>
                 </div>
             </div>
@@ -100,5 +103,9 @@ export class App extends React.Component<AppProps, AppState>{
     simpleChange(){
         this.setState({simple: !this.state.simple}, () => 
             storage.setSimple(this.state.simple));
+    }
+    darkModeChange(){
+        this.setState({darkMode: !this.state.darkMode}, () => 
+            storage.setDarkMode(this.state.darkMode));
     }
 }

@@ -44,10 +44,16 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
             },
             {
                 headerDisplay: () => <></>,
-                display: (t) => <img 
-                    className="row-detail-info"
-                    src={"icon/info.webp"} 
-                    onClick={() => this.setState({selectedTask: t})}/>
+                display: (t) => <>
+                    <img 
+                        className="row-detail-info light"
+                        src={"icon/info.webp"} 
+                        onClick={() => this.setState({selectedTask: t})}/>
+                    <img 
+                        className="row-detail-info dark"
+                        src={"icon/infoLight.webp"} 
+                        onClick={() => this.setState({selectedTask: t})}/>
+                </>
             }
         ];
         const data = this.state.currentTaskIndices.map(x => this.props.taskList[x]);

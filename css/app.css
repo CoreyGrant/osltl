@@ -64,11 +64,27 @@ body{
     font-size: 12px;
     height: 20px;
 }
+
+.filter-panel-reset-light, .row-detail-info.light{
+    display: block;
+}
+.filter-panel-reset-dark, .row-detail-info.dark{
+    display: none;
+}
+.app-top-bar-discord{
+    height: 20px;
+    cursor: pointer;
+    margin-left: 4px;
+}
+.app-top-bar-dark-toggle{
+    height: 20px;
+    cursor: pointer;
+    margin-left: 4px;
+}
 /*Tablet*/
 @media(max-width: 1085px){
     .app-top-bar .app-top-bar-title{
         font-size: 20px;
-        color: rgb(109, 66, 17);
         font-weight: bolder;
     }
     .app-container{
@@ -79,11 +95,16 @@ body{
     *{
         font-size: 0.9rem;
     }
-    img{
-        height: 16px;
-        width: 16px;
+    .app-top-bar-discord{
+        height: 18px;
+        cursor: pointer;
+        margin-left: 4px;
     }
-    
+    .app-top-bar-dark-toggle{
+        height: 18px;
+        cursor: pointer;
+        margin-left: 4px;
+    }
 }
 
 /*Mobile*/
@@ -96,13 +117,24 @@ body{
     .app-top-bar-username{
         display: flex;
         flex-direction: row;
+        margin-right: 24px;
     }
     .app-top-bar-icons{
         display: flex;
         flex-direction: row;
         position: absolute;
-        top: 0px;
+        top: 4px;
         right: -10px;
+    }
+    .app-top-bar-discord{
+        height: 16px;
+        cursor: pointer;
+        margin-left: 4px;
+    }
+    .app-top-bar-dark-toggle{
+        height: 16px;
+        cursor: pointer;
+        margin-left: 4px;
     }
     *{
         font-size: 0.8rem;
@@ -116,12 +148,7 @@ body{
     }
     .app-top-bar .app-top-bar-title{
         font-size: 16px;
-        color: rgb(109, 66, 17);
         font-weight: bolder;
-    }
-    img{
-        height: 16px;
-        width: 16px;
     }
     
     .app-container{

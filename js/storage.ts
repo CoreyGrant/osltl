@@ -23,6 +23,12 @@ export class Storage{
     getSimple(){
         return (window.localStorage.getItem("simple") || "false") == "true";
     }
+    setDarkMode(darkMode){
+        window.localStorage.setItem('darkMode', darkMode ? "true" : "false");
+    }
+    getDarkMode(){
+        return (window.localStorage.getItem("darkMode") || "false") == "true";
+    }
 }
 
 export const storage = new Storage();

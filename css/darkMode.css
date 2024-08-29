@@ -1,0 +1,31 @@
+body{
+    background-color: rgb(30,30,30);
+    color: rgb(230, 230, 230);
+}
+.app-top-bar .app-top-bar-title{
+    color: rgb(197, 148, 92);
+}
+.fake-table-head{
+    border-bottom-color: rgb(230, 230, 230);
+}
+.fake-table-th, .fake-table-td{
+    border-color: rgb(230, 230, 230);
+}
+.filter-panel-section-header{
+    border-bottom-color: rgb(230, 230, 230);
+}
+.filter-panel-section-contents{
+    border-bottom-color: rgb(230, 230, 230);
+}
+.single-skill-filter, .single-diff-filter, .single-area-filter{
+    border-color: rgb(230, 230, 230);
+}
+.row-detail-area-divider{
+    color: rgb(197, 148, 92);
+}
+.filter-panel-reset-light, .row-detail-info.light{
+    display: none;
+}
+.filter-panel-reset-dark, .row-detail-info.dark{
+    display: block;
+}

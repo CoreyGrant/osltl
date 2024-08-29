@@ -45,7 +45,7 @@
 .filter-panel-clear{
     position: absolute;
     right: 10px;
-    top: -1px;
+    top: 5px;
     cursor: pointer;
 }
 .filter-panel-clear > img{
@@ -112,10 +112,7 @@
 
 
 @media(max-width: 1085px){
-    .personal-checkbox{
-        height: 24px;
-        width: 24px;
-    }
+
     .filter-panel{
         width: 160px;
         height: calc(100vh - 50px);

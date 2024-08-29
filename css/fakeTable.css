@@ -42,10 +42,20 @@
     border-collapse: collapse;
     display: flex;
     align-items: center;
-    padding: 4px;
+    padding: 2px 4px;
 }
 @media(max-width: 1085px){
     .fake-table-head{
         width: 100%;
+    }
+    .fake-table img{
+        width: 18px;
+        height: 18px;
+    }
+}
+@media (max-width: 768px){
+    .fake-table img{
+        width: 16px;
+        height: 16px;
     }
 }
