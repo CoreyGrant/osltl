@@ -5,6 +5,7 @@ import { storage } from './storage';
 import taskList from '../data/tasks.json';
 import { UserDetails, userDetailsService } from './userDetailsService';
 import {Task} from './types/Task';
+import { UserDetailsModal } from './components/userDetails';
 
 export type AppProps = {};
 export type AppState = {
@@ -29,7 +30,8 @@ export class App extends React.Component<AppProps, AppState>{
             lastUpdated: null,
             darkMode: storage.getDarkMode(),
             personalList: storage.getPersonalTasks(),
-            filtersCollapsed: true
+            filtersCollapsed: true,
+            userModalOpen: false
         }
     }
     updateUserDetails(){
@@ -75,6 +77,12 @@ export class App extends React.Component<AppProps, AppState>{
     }
     render(){
         return <div className={"app-container" + (this.state.darkMode ? " dark-mode" : "")}>
+            <UserDetailsModal 
+                user={this.state.userDetails} 
+                username={this.state.username}
+                open={this.state.userModalOpen}
+                onClose={() => this.setState({userModalOpen: false})} 
+                />
             {this.state.darkMode ? <link rel="stylesheet" href="css/darkMode.css"/> : null}
             <div className="app-top-bar">
                 <span className="app-top-bar-title">OLT: Oldschool League Tasks</span>
@@ -83,7 +91,24 @@ export class App extends React.Component<AppProps, AppState>{
                 </span>
                 <div className="app-top-bar-right">
                     <span className="app-top-bar-username">
-                        <label>User <input type="text" className="app-top-bar-username-input" value={this.state.username} onChange={(e) => this.usernameChange(e)}/><img src={"icon/refresh" + (this.state.darkMode ? "Light" : "") + ".png"} onClick={() => this.updateUserDetails()} style={{height: "20px", width: "20px", marginLeft: "2px", marginRight: "10px", cursor: 'pointer'}} title={this.state.lastUpdated && ("Last updated: " + this.state.lastUpdated.toLocaleString().split(", ")[1])}/></label>
+                        <label>
+                            <span 
+                                onClick={() => (this.state.username && this.state.username.length) && this.setState({userModalOpen: true})} 
+                                style={{cursor: (this.state.userDetails && this.state.userDetails.skills) ? 'pointer' : "initial"}} 
+                                title={(this.state.userDetails && this.state.userDetails.skills) ? "Click to view" : undefined}>
+                                User
+                            </span>
+                            <input 
+                                type="text" 
+                                className="app-top-bar-username-input" 
+                                value={this.state.username} 
+                                onChange={(e) => this.usernameChange(e)}/>
+                            <img 
+                                src={"icon/refresh" + (this.state.darkMode ? "Light" : "") + ".png"} 
+                                onClick={() => this.updateUserDetails()} 
+                                style={{height: "20px", width: "20px", marginLeft: "2px", marginRight: "10px", cursor: 'pointer'}} 
+                                title={this.state.lastUpdated && ("Last updated: " + this.state.lastUpdated.toLocaleString().split(", ")[1])}/>
+                        </label>
                     </span>
                     <span className="app-top-bar-icons">
                         <a href="https://discord.gg/RwhEHT9qhW" target="_blank"><img src="icon/DiscordLogo.svg" className="app-top-bar-discord"></img></a>

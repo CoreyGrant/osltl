@@ -1,0 +1,65 @@
+.user-details{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.user-details-skills{
+    display: flex;
+    height: 100%;
+    width: 50%;
+    flex-direction: column;
+    position: relative;
+}
+.user-details-panel{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.user-details-side-panel{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.user-details-skill-panel{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.user-details-skill{
+    width: 33.3%;
+    height: 12.5%;
+}
+.user-details-quests{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.user-details-quest-panel{
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.user-details-quest{
+
+}
+.user-details-diaries{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.user-details-diary-panel{
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.user-details-diary{
+}
