@@ -13,6 +13,7 @@ export type AppState = {
     username: string;
     simple: boolean;
     taskList: Task[];
+    lastUpdated: Date;
 };
 export class App extends React.Component<AppProps, AppState>{
     constructor(props){
@@ -22,13 +23,14 @@ export class App extends React.Component<AppProps, AppState>{
             userDetails: {} as any,
             username: storage.getUsername(),
             simple: storage.getSimple(),
-            taskList: taskList
+            taskList: taskList,
+            lastUpdated: null
         }
     }
     updateUserDetails(){
         if(this.state.username && this.state.username.length){
             userDetailsService.getDetails()
-                .then(x => this.setState({userDetails: x}, () => {
+                .then(x => this.setState({userDetails: x, lastUpdated: new Date()}, () => {
                     console.log(this.state.userDetails);
                     const tasks = this.state.taskList;
                     const userLeagueTasks = this.state.userDetails.leagueTasks || [];
@@ -48,7 +50,7 @@ export class App extends React.Component<AppProps, AppState>{
         userDetailsService.updateUsername(this.state.username);
         this.updateUserDetails();
         userDetailsService.beginAutosync((t) => {
-            t.then(x => this.setState({userDetails: x}, () => {
+            t.then(x => this.setState({userDetails: x, lastUpdated: new Date()}, () => {
                 console.log(this.state.userDetails);
                 const tasks = this.state.taskList;
                 const userLeagueTasks = this.state.userDetails.leagueTasks || [];
@@ -75,7 +77,7 @@ export class App extends React.Component<AppProps, AppState>{
                 </span>
                 <div className="app-top-bar-right">
                     <span className="app-top-bar-username">
-                        <label>User <input type="text" className="app-top-bar-username-input" value={this.state.username} onChange={(e) => this.usernameChange(e)}/><img src="icon/refresh.png" onClick={() => this.updateUserDetails()} style={{height: "20px", width: "20px", marginLeft: "2px", marginRight: "10px", cursor: 'pointer'}}/></label>
+                        <label>User <input type="text" className="app-top-bar-username-input" value={this.state.username} onChange={(e) => this.usernameChange(e)}/><img src="icon/refresh.png" onClick={() => this.updateUserDetails()} style={{height: "20px", width: "20px", marginLeft: "2px", marginRight: "10px", cursor: 'pointer'}} title={this.state.lastUpdated && ("Last updated: " + this.state.lastUpdated.toLocaleString().split(", ")[1])}/></label>
                     </span>
                     <span className="app-top-bar-icons">
                         <a href="https://discord.gg/RwhEHT9qhW" target="_blank"><img src="icon/DiscordLogo.svg" style={{height: "20px"}}></img></a>
