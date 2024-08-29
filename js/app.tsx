@@ -1,5 +1,5 @@
 import React from 'react';
-import { Filter, FilterPanel } from './components/filterPanel';
+import { Filter, FilterPanel, TabbedFilterPanel } from './components/filterPanel';
 import { TaskTable } from './components/taskTable';
 import { storage } from './storage';
 import taskList from '../data/tasks.json';
@@ -14,6 +14,8 @@ export type AppState = {
     simple: boolean;
     taskList: Task[];
     lastUpdated: Date;
+    personalList: number[];
+    filtersCollapsed: boolean;
 };
 export class App extends React.Component<AppProps, AppState>{
     constructor(props){
@@ -26,6 +28,8 @@ export class App extends React.Component<AppProps, AppState>{
             taskList: taskList,
             lastUpdated: null,
             darkMode: storage.getDarkMode(),
+            personalList: storage.getPersonalTasks(),
+            filtersCollapsed: true
         }
     }
     updateUserDetails(){
@@ -87,8 +91,9 @@ export class App extends React.Component<AppProps, AppState>{
                     </span>
                 </div>
             </div>
-            <FilterPanel filterUpdate={(f) => this.filterChange(f)} filters={this.state.filters}></FilterPanel>
-            <TaskTable filters={this.state.filters} user={this.state.userDetails} simple={this.state.simple} taskList={this.state.taskList}></TaskTable>
+            <FilterPanel filterUpdate={(f) => this.filterChange(f)} filters={this.state.filters} counts={{personalList: (this.state.personalList || []).length}}></FilterPanel>
+            <TabbedFilterPanel filterUpdate={(f) => this.filterChange(f)} filters={this.state.filters} counts={{personalList: (this.state.personalList || []).length}} collapsedChanged={(col) => this.setState({filtersCollapsed: col})}></TabbedFilterPanel>
+            <TaskTable filters={this.state.filters} user={this.state.userDetails} simple={this.state.simple} taskList={this.state.taskList} personalListChange={(pl) => this.setState({personalList: pl})} filtersCollapsed={this.state.filtersCollapsed}></TaskTable>
         </div>
     }
     filterChange(f){

@@ -143,17 +143,23 @@ body{
         width: 100px;
     }
     
-    .app-top-bar{
-        height: 60px;
-    }
+    
     .app-top-bar .app-top-bar-title{
         font-size: 16px;
         font-weight: bolder;
     }
-    
     .app-container{
-        margin-top: 60px;
         display: flex;
         flex-direction: column;
+    }
+    
+}
+
+@media(max-width: 609px){
+    .app-top-bar{
+        height: 60px;
+    }
+    .app-container{
+        margin-top: 60px;
     }
 }

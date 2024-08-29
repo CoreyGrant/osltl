@@ -6,7 +6,14 @@ import { FakeTableDatum, FakeTable } from './fakeTable';
 import { Task, diffVals } from '../types/task';
 import { TaskDetails } from './taskDetails';
 
-export type TaskTableProps = {filters: Filter, user: UserDetails, simple: boolean, taskList: Task[]};
+export type TaskTableProps = {
+    filters: Filter;
+    user: UserDetails;
+    simple: boolean;
+    taskList: Task[];
+    personalListChange: (pl) => void;
+    filtersCollapsed: boolean;
+};
 export type TaskTableState = {currentTaskIndices: number[], personalTaskList: number[], selectedTask: Task};
 export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
     constructor(props: TaskTableProps){
@@ -59,7 +66,7 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
         const data = this.state.currentTaskIndices.map(x => this.props.taskList[x]);
         const rowClasses = {completed: 'completed'};
         return <>
-            <div className={"task-table" + (this.props.simple ? " simple" : "")}>
+            <div className={"task-table" + (this.props.simple ? " simple" : "") + (this.props.filtersCollapsed ? " filters-collapsed" : "")}>
                 <FakeTable 
                     data={data} 
                     schema={schema} 
@@ -125,6 +132,7 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
         }
         this.setState({personalTaskList: personalTasks}, () => this.updateFilters());
         storage.setPersonalTasks(personalTasks);
+        this.props.personalListChange(personalTasks);
     }
     componentDidUpdate(prevProps){
         if(prevProps.filters != this.props.filters 

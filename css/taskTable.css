@@ -155,8 +155,11 @@
 
 @media (max-width: 768px){
     .task-table{
-        height: calc(100% - 150px);
+        height: calc(100% - 183px);
         width: 100%;
+    }
+    .task-table.filters-collapsed{
+        height: calc(100% - 83px);
     }
     .fake-table-th-2, .fake-table-td-2{
         width: calc(55% - 60px);
