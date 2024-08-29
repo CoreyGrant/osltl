@@ -111,7 +111,7 @@ export class App extends React.Component<AppProps, AppState>{
                         </label>
                     </span>
                     <span className="app-top-bar-icons">
-                        <a href="https://discord.gg/RwhEHT9qhW" target="_blank"><img src="icon/DiscordLogo.svg" className="app-top-bar-discord"></img></a>
+                        <a href="https://discord.gg/8pjZbD4MYg" target="_blank"><img src="icon/DiscordLogo.svg" className="app-top-bar-discord"></img></a>
                         <img src={"icon/darkMode" + (this.state.darkMode ? "Light" : "") + ".png"} className="app-top-bar-dark-toggle" title={"Toggle dark mode"} onClick={() => this.darkModeChange()}/>
                     </span>
                 </div>
