@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "webpack-asset-manifest": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

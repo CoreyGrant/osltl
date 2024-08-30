@@ -135,6 +135,8 @@ export class App extends React.Component<AppProps, AppState>{
             storage.setSimple(this.state.simple));
     }
     darkModeChange(){
+        var darkModeCssElement = document.getElementById('dark-mode-css');
+        if(darkModeCssElement){darkModeCssElement.remove()}
         this.setState({darkMode: !this.state.darkMode}, () => 
             storage.setDarkMode(this.state.darkMode));
     }
