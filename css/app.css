@@ -60,9 +60,17 @@ body{
 }
 
 .app-top-bar-username-input{
+    background-color: rgb(162, 144, 97);
+    border: 2px solid rgb(79, 69, 47);
+    border-radius: 4px;
+    color: #212529;
     width: 120px;
     font-size: 12px;
     height: 20px;
+    margin-left: 4px;
+}
+.app-top-bar-username-input:focus-visible{
+    outline: 2px solid rgb(79, 69, 47);
 }
 
 .filter-panel-reset-light, .row-detail-info.light{
@@ -80,6 +88,9 @@ body{
     height: 20px;
     cursor: pointer;
     margin-left: 4px;
+}
+.app-top-bar-dark-toggle-dark{
+    transform: rotate(180deg);
 }
 /*Tablet*/
 @media(max-width: 1085px){

@@ -1,27 +1,27 @@
 body{
-    background-color: rgb(30,30,30);
-    color: rgb(230, 230, 230);
+    background-color: #212529;
+    color: rgb(162, 144, 97);
 }
 .app-top-bar .app-top-bar-title{
     color: rgb(197, 148, 92);
 }
 .fake-table-head{
-    border-bottom-color: rgb(230, 230, 230);
+    border-bottom-color: rgb(162, 144, 97);
 }
 .fake-table-th, .fake-table-td{
-    border-color: rgb(230, 230, 230);
+    border-color: rgb(162, 144, 97);
 }
 .filter-panel-section-header{
-    border-bottom-color: rgb(230, 230, 230);
+    border-bottom-color: rgb(162, 144, 97);
 }
 .filter-panel-section-contents{
-    border-bottom-color: rgb(230, 230, 230);
+    border-bottom-color: rgb(162, 144, 97);
 }
 .single-skill-filter, .single-diff-filter, .single-area-filter{
-    border-color: rgb(230, 230, 230);
+    border-color: rgb(162, 144, 97);
 }
 .row-detail-area-divider{
-    color: rgb(197, 148, 92);
+    color: rgb(162, 144, 97);
 }
 .filter-panel-reset-light, .row-detail-info.light{
     display: none;
@@ -30,14 +30,21 @@ body{
     display: block;
 }
 .tabs-content{
-    border-color: rgb(230, 230, 230);
+    border-color: rgb(162, 144, 97);
 }
 .tab-header{
-    border-color: rgb(230, 230, 230);
+    border-color: rgb(162, 144, 97);
 }
 .tabs-collapse{
-    border-color: rgb(230, 230, 230);
+    border-color: rgb(162, 144, 97);
 }
 .tab-header:first-child{
-    border-color: rgb(230, 230, 230);
+    border-color: rgb(162, 144, 97);
+}
+.row-detail{
+    border-color: rgb(162, 144, 97);
+}
+.app-top-bar-username-input{
+    color: rgb(162, 144, 97);
+    background-color: #212529;
 }

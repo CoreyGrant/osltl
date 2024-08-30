@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    border: 2px solid rgb(99, 99, 99);
+    border: 2px solid #212529;
     border-radius: 3px;
     align-items: center;
 }
@@ -46,7 +46,7 @@
 .row-detail-area-divider{
     margin-left: 4px;
     margin-right: 4px;
-    color:rgb(109, 66, 17);
+    color:#212529;
     font-size: 32px;
     font-weight: bolder;
     line-height: 1;
@@ -63,7 +63,6 @@
     border-radius: 3px;
 }
 .row-detail-info{
-    filter: invert(10%) sepia(10%) saturate(896%) hue-rotate(169deg) brightness(92%) contrast(88%);
     cursor: pointer;
     height: 20px;
     width: 20px;
