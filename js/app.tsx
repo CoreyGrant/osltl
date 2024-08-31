@@ -4,7 +4,7 @@ import { TaskTable } from './components/taskTable';
 import { storage } from './storage';
 import taskList from '../data/tasks.json';
 import { UserDetails, userDetailsService } from './userDetailsService';
-import {Task} from './types/Task';
+import {Task} from './types/task';
 import { UserDetailsModal } from './components/userDetails';
 
 export type AppProps = {};
@@ -17,6 +17,8 @@ export type AppState = {
     lastUpdated: Date;
     personalList: number[];
     filtersCollapsed: boolean;
+    darkMode: boolean;
+    userModalOpen: boolean;
 };
 export class App extends React.Component<AppProps, AppState>{
     constructor(props){
@@ -105,8 +107,8 @@ export class App extends React.Component<AppProps, AppState>{
                                 onChange={(e) => this.usernameChange(e)}/>
                             <img 
                                 src={"icon/refresh" + (this.state.darkMode ? "Light" : "") + ".png"} 
-                                onClick={() => this.updateUserDetails()} 
-                                style={{height: "20px", width: "20px", marginLeft: "2px", marginRight: "10px", cursor: 'pointer'}} 
+                                onClick={() => this.updateUserDetails()}
+                                className={"app-top-bar-username-refresh"} 
                                 title={this.state.lastUpdated && ("Last updated: " + this.state.lastUpdated.toLocaleString().split(", ")[1])}/>
                         </label>
                     </span>
