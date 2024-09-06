@@ -23,12 +23,6 @@ body{
 .row-detail-area-divider{
     color: rgb(162, 144, 97);
 }
-.filter-panel-reset-light, .row-detail-info.light{
-    display: none;
-}
-.filter-panel-reset-dark, .row-detail-info.dark{
-    display: block;
-}
 .tabs-content{
     border-color: rgb(162, 144, 97);
 }
@@ -44,7 +38,14 @@ body{
 .row-detail{
     border-color: rgb(162, 144, 97);
 }
-.app-top-bar-username-input{
-    color: rgb(162, 144, 97);
-    background-color: #212529;
+.options-panel{
+    background-color:rgb(33, 37, 41);
+    border-color:  rgb(162, 144, 97);
+}
+.list-divider{
+    border-color:  rgb(162, 144, 97);
+}
+
+.options-panel-item:hover{
+    background-color: rgb(79, 69, 47);
 }

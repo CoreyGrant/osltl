@@ -1,27 +1,31 @@
 import React from 'react';
-import { Filter } from './filterPanel';
-import { storage } from '../storage';
-import { UserDetails } from '../userDetailsService';
+import { Filter } from '../types/filter';
+import { UserDetails } from '../types/user';
 import { FakeTableDatum, FakeTable } from './fakeTable';
 import { Task, diffVals } from '../types/task';
 import { TaskDetails } from './taskDetails';
+import {connect} from 'react-redux';
+import { AppState, addPersonalTask, removePersonalTask, updatePersonalTasks } from '../store/appSlice';
 
 export type TaskTableProps = {
     filters: Filter;
+    darkMode: boolean;
     user: UserDetails;
     simple: boolean;
     taskList: Task[];
-    personalListChange: (pl) => void;
+    personalList: number[];
+    addPersonalTask: (pl) => void;
+    removePersonalTask: (pl) => void;
+    updatePersonalTasks: (pl) => void;
     filtersCollapsed: boolean;
 };
-export type TaskTableState = {currentTaskIndices: number[], personalTaskList: number[], selectedTask: Task};
-export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
+export type TaskTableState = {currentTaskIndices: number[], selectedTask: Task};
+class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
     constructor(props: TaskTableProps){
         super(props);
         this.state = {
             selectedTask: null,
-            currentTaskIndices: [],
-            personalTaskList: storage.getPersonalTasks()
+            currentTaskIndices: []
         };
     }
     componentDidMount(){
@@ -46,21 +50,16 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 display: (t) => <span><img src={"icon/" + t.diff + "Task.webp"} style={{marginRight: "4px"}}/>{diffVals[t.diff]}</span>
             },
             {
-                headerDisplay: () => <b>{this.state.personalTaskList.length}</b>,
-                display: (t) => <input type="checkbox" onChange={() => this.updatePersonalList(t.id)} checked={this.state.personalTaskList.indexOf(t.id) > -1} className="personal-checkbox"/>
+                headerDisplay: () => <b>{this.props.personalList.length}</b>,
+                display: (t) => <input type="checkbox" onChange={() => this.updatePersonalList(t.id)} checked={this.props.personalList.indexOf(t.id) > -1} className="personal-checkbox" disabled={!this.props.currentUser}/>
             },
             {
                 headerDisplay: () => <></>,
-                display: (t) => <>
+                display: (t) =>
                     <img 
-                        className="row-detail-info light"
-                        src={"icon/info.webp"} 
+                        className="row-detail-info"
+                        src={this.props.darkMode ? "icon/infoLight.webp" : "icon/info.webp"} 
                         onClick={() => this.setState({selectedTask: t})}/>
-                    <img 
-                        className="row-detail-info dark"
-                        src={"icon/infoLight.webp"} 
-                        onClick={() => this.setState({selectedTask: t})}/>
-                </>
             }
         ];
         const data = this.state.currentTaskIndices.map(x => this.props.taskList[x]);
@@ -124,22 +123,19 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
         </div>
     }
     updatePersonalList(taskId){
-        var personalTasks = this.state.personalTaskList;
+        var personalTasks = this.props.personalList;
         if(personalTasks.indexOf(taskId) > -1){
-            personalTasks = personalTasks.filter(x => x != taskId);
+            this.props.removePersonalTask(taskId);
         } else {
-            personalTasks = [...personalTasks, taskId];
+            this.props.addPersonalTask(taskId);
         }
-        this.setState({personalTaskList: personalTasks}, () => this.updateFilters());
-        storage.setPersonalTasks(personalTasks);
-        this.props.personalListChange(personalTasks);
     }
     componentDidUpdate(prevProps){
         if(prevProps.filters != this.props.filters 
             || prevProps.taskList != this.props.taskList){
             var updatedPersonalTasks = [];
             //console.log("starting personal tasks", this.state.personalTaskList);
-            for(var pt of this.state.personalTaskList){
+            for(var pt of this.props.personalList){
                 //console.log("checking if task is complete", pt)
                 if(!this.props.taskList.find(t => t.id == pt).completed){
                     //console.log("isnt complete, keeping");
@@ -147,9 +143,8 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 }
             }
             //console.log("list of personal tasks to keep", updatedPersonalTasks);
-            if(updatedPersonalTasks.length !== this.state.personalTaskList.length){
-                this.setState({personalTaskList: updatedPersonalTasks}, () => this.updateFilters());
-                storage.setPersonalTasks(updatedPersonalTasks);
+            if(updatedPersonalTasks.length !== this.props.personalList.length){
+                this.props.updatePersonalTasks(updatedPersonalTasks);//, () => this.updateFilters());
             } else {
                 this.updateFilters();
             }
@@ -216,7 +211,7 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 }
             }
             if(filter.personal){
-                if(this.state.personalTaskList.indexOf(task.id) === -1){
+                if(this.props.personalList.indexOf(task.id) === -1){
                     return false;
                 }
             }
@@ -281,3 +276,19 @@ export class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
             .map(x => diffVals[this.props.taskList[x].diff]).reduce((p, c) => p + c, 0);
     }
 }
+
+export default connect(
+    (state: any) => ({
+        filters: state.app.filters,
+        user: state.app.users[state.app.currentUser] || {},
+        simple: state.app.simple,
+        filtersCollapsed: state.app.filtersCollapsed,
+        taskList: state.app.taskList,
+        personalList: state.app.personalTasks[state.app.currentUser] || [],
+        darkMode: state.app.darkMode
+    }),
+    {
+        addPersonalTask: addPersonalTask,
+        removePersonalTask: removePersonalTask,
+        updatePersonalTasks: updatePersonalTasks
+    })(TaskTable)

@@ -1,9 +1,27 @@
-export class UserEntity{
+const userEntityTable = "user";
+const userDetailsEntityTable = "userDetails"
+
+class UserEntity{
     id;
     emailAddress;
     passwordHash;
     salt;
     fpwExp;
     fpwToken;
-    dataJson; // possibly split out based on performance
+    userDetailsId;
+}
+
+class UserDetailsEntity{
+    personalTasks;
+    currentUser;
+    filters;
+    simple;
+    darkMode;
+}
+
+module.exports = { 
+    userEntityTable,
+    userDetailsEntityTable,
+    UserEntity,
+    UserDetailsEntity
 }

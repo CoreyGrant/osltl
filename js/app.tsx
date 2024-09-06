@@ -1,145 +1,170 @@
 import React from 'react';
-import { Filter, FilterPanel, TabbedFilterPanel } from './components/filterPanel';
-import { TaskTable } from './components/taskTable';
-import { storage } from './storage';
+import { 
+    connectedFilterPanel as FilterPanel,
+    connectedTabbedFilterPanel as TabbedFilterPanel
+} from './components/filterPanel';
+import {Filter} from './types/filter';
+import TaskTable from './components/taskTable';
 import taskList from '../data/tasks.json';
-import { UserDetails, userDetailsService } from './userDetailsService';
+import { userDetailsService } from './userDetailsService';
+import { UserDetails } from './types/user';
 import {Task} from './types/task';
-import { UserDetailsModal } from './components/userDetails';
+import UserDetailsModal from './components/userDetails';
+import {connect} from 'react-redux';
+import {AppState as AppStoreState, updatePersonalTasks, setSimple, setDarkMode, load, loadUserDetails, setLoggedIn} from './store/appSlice';
+import UserSelectModal from './components/userSelectModal';
+import AccountModal from './components/accountModal';
+import { appLocalStorage } from './storage';
+import { appApiService } from './appApiService';
+import ToastNotification from './components/toastNotification';
+import OptionsPanel from './components/optionsPanel'
 
-export type AppProps = {};
-export type AppState = {
-    filters: Filter;
+export type AppProps = {
+    personalTasks: {[username: string]: number[]};
+    darkMode: boolean;
     userDetails: UserDetails;
-    username: string;
+    currentUser: string;
     simple: boolean;
     taskList: Task[];
-    lastUpdated: Date;
-    personalList: number[];
-    filtersCollapsed: boolean;
-    darkMode: boolean;
+    updatePersonalTasks: (pl) => void;
+    setSimple: (pl) => void;
+    setDarkMode: (pl) => void;
+    load: (pl) => void;
+    loadUserDetails: (pl) => void;
+    lastUpdated?: Date;
+    loggedIn: boolean;
+    setLoggedIn: (pl) => void;
+};
+export type AppState = {
     userModalOpen: boolean;
+    userManageModalOpen: boolean;
+    accountModalOpen: boolean;
+    optionsPanelOpen: boolean;
 };
 export class App extends React.Component<AppProps, AppState>{
     constructor(props){
         super(props);
         this.state = {
-            filters: storage.getFilters(),
-            userDetails: {} as any,
-            username: storage.getUsername(),
-            simple: storage.getSimple(),
-            taskList: taskList,
-            lastUpdated: null,
-            darkMode: storage.getDarkMode(),
-            personalList: storage.getPersonalTasks(),
-            filtersCollapsed: true,
-            userModalOpen: false
+            userModalOpen: false,
+            userManageModalOpen: false,
+            accountModalOpen: false,
+            optionsPanelOpen: false
         }
     }
-    updateUserDetails(){
-        if(this.state.username && this.state.username.length){
-            userDetailsService.getDetails()
-                .then(x => this.setState({userDetails: x, lastUpdated: new Date()}, () => {
-                    console.log(this.state.userDetails);
-                    const tasks = this.state.taskList;
-                    const userLeagueTasks = this.state.userDetails.leagueTasks || [];
-                    for(var task of tasks){
-                        if(userLeagueTasks.indexOf(task.id) > -1){
-                            task.completed = true;
-                        } else{
-                            task.completed = false;
-                        }
-                    }
-                    //console.log("manual user update");
-                    this.setState({taskList: [...tasks]});
-                }));
+    componentDidUpdate(oldProps){
+        if(oldProps.loggedIn !== this.props.loggedIn){
+            if(this.props.loggedIn){
+                appApiService.getUserDetails()
+                    .then(x => {
+                        this.props.load(x)
+                        appLocalStorage.setDetails(x);
+                        var keys = Object.keys(x.personalTasks || {});
+                        this.loadUserDetails(keys);
+                    });
+            } else {
+                appLocalStorage.getDetails()
+                    .then(x => {
+                        console.log("loading local", x);
+                        this.props.load(x)
+                        var keys = Object.keys(x.personalTasks);
+                        this.loadUserDetails(keys);
+                    });
+            }
+        } else{
+            
         }
     }
     componentDidMount(){
-        userDetailsService.updateUsername(this.state.username);
-        this.updateUserDetails();
-        userDetailsService.beginAutosync((t) => {
-            t.then(x => this.setState({userDetails: x, lastUpdated: new Date()}, () => {
-                console.log(this.state.userDetails);
-                const tasks = this.state.taskList;
-                const userLeagueTasks = this.state.userDetails.leagueTasks || [];
-                //console.log("userLeagueTasks", userLeagueTasks);
-                for(var task of tasks){
-                    if(userLeagueTasks.indexOf(task.id) > -1){
-                        //console.log("setting task as complete", task);
-                        task.completed = true;
-                    } else{
-                        task.completed = false;
-                    }
-                }
-                console.log("Autosync user update");
-                this.setState({taskList: [...tasks]});
-            }));
+        appApiService.loggedIn().then(x => {
+            this.props.setLoggedIn(x);
+        });
+        userDetailsService.beginAutosync(() => Object.keys(this.props.personalTasks), (res) => {
+            res.then(ud => {
+                const keys = Object.keys(this.props.personalTasks);
+                var allUserDetails = ud.reduce((p, c, i) => {
+                    return {...p, [keys[i]]: c};
+                }, {});
+                this.props.loadUserDetails(allUserDetails);
+            });
+        });
+    }
+    loadUserDetails(keys){
+        Promise.all(keys.map(k => userDetailsService.getDetails(k)))
+        .then(ud => {
+            var allUserDetails = ud.reduce((p, c, i) => {
+                return {...p, [keys[i]]: c};
+            }, {});
+            this.props.loadUserDetails(allUserDetails);
         })
     }
     render(){
-        return <div className={"app-container" + (this.state.darkMode ? " dark-mode" : "")}>
-            <UserDetailsModal 
-                user={this.state.userDetails} 
-                username={this.state.username}
+        return <div className={"app-container" + (this.props.darkMode ? " dark-mode" : "")}>
+            <ToastNotification/>
+            <UserDetailsModal
                 open={this.state.userModalOpen}
                 onClose={() => this.setState({userModalOpen: false})} 
                 />
-            {this.state.darkMode ? <link rel="stylesheet" href="css/darkMode.css"/> : null}
+            <UserSelectModal
+                title={"Manage users"}
+                open={this.state.userManageModalOpen}
+                onClose={() => this.setState({userManageModalOpen: false})}></UserSelectModal>
+            <AccountModal
+                title="Account"
+                open={this.state.accountModalOpen}
+                onClose={() => this.setState({accountModalOpen: false})} />
+            <OptionsPanel
+                open={this.state.optionsPanelOpen}
+                onClose={() => this.setState({optionsPanelOpen: false})}
+                manageUsers={() => this.manageUsers()}
+                refreshData={() => {}}
+                loginClick={() => {this.loginClick()}}/>
+            {this.props.darkMode ? <link rel="stylesheet" href="css/darkMode.css"/> : null}
             <div className="app-top-bar">
                 <span className="app-top-bar-title">OLT: Oldschool League Tasks</span>
-                <span>
-                    <button className="btn btn-sm btn-primary" onClick={() => this.simpleChange()}>{this.state.simple ? 'Detailed' : 'Simple'}</button>
-                </span>
                 <div className="app-top-bar-right">
-                    <span className="app-top-bar-username">
-                        <label>
-                            <span 
-                                onClick={() => (this.state.username && this.state.username.length) && this.setState({userModalOpen: true})} 
-                                style={{cursor: (this.state.userDetails && this.state.userDetails.skills) ? 'pointer' : "initial"}} 
-                                title={(this.state.userDetails && this.state.userDetails.skills) ? "Click to view" : undefined}>
-                                User
-                            </span>
-                            <input 
-                                type="text" 
-                                className="app-top-bar-username-input" 
-                                value={this.state.username} 
-                                onChange={(e) => this.usernameChange(e)}/>
-                            <img 
-                                src={"icon/refresh" + (this.state.darkMode ? "Light" : "") + ".png"} 
-                                onClick={() => this.updateUserDetails()}
-                                className={"app-top-bar-username-refresh"} 
-                                title={this.state.lastUpdated && ("Last updated: " + this.state.lastUpdated.toLocaleString().split(", ")[1])}/>
-                        </label>
-                    </span>
-                    <span className="app-top-bar-icons">
-                        <a href="https://discord.gg/8pjZbD4MYg" target="_blank" title="Join the discord server"><img src="icon/DiscordLogo.svg" className="app-top-bar-discord"></img></a>
-                        <img src={"icon/darkMode" + (this.state.darkMode ? "Light" : "") + ".png"} className={"app-top-bar-dark-toggle" + (this.state.darkMode ? " app-top-bar-dark-toggle-dark" : "")} title={"Toggle dark mode"} onClick={() => this.darkModeChange()}/>
+                    <span className="app-top-bar-options">
+                        <img src={this.props.darkMode ? 'icon/settingsLight.png' : 'icon/settings.png'} onClick={() => this.setState({optionsPanelOpen: true})}/>
                     </span>
                 </div>
             </div>
-            <FilterPanel filterUpdate={(f) => this.filterChange(f)} filters={this.state.filters} counts={{personalList: (this.state.personalList || []).length}}></FilterPanel>
-            <TabbedFilterPanel filterUpdate={(f) => this.filterChange(f)} filters={this.state.filters} counts={{personalList: (this.state.personalList || []).length}} collapsedChanged={(col) => this.setState({filtersCollapsed: col})}></TabbedFilterPanel>
-            <TaskTable filters={this.state.filters} user={this.state.userDetails} simple={this.state.simple} taskList={this.state.taskList} personalListChange={(pl) => this.setState({personalList: pl})} filtersCollapsed={this.state.filtersCollapsed}></TaskTable>
+            <FilterPanel></FilterPanel>
+            <TabbedFilterPanel></TabbedFilterPanel>
+            <TaskTable></TaskTable>
         </div>
     }
-    filterChange(f){
-        storage.setFilters(f);
-        this.setState({filters: f});
+    loginClick(){
+        this.props.loggedIn ? appApiService.logout() : this.setState({accountModalOpen: true});
     }
-    usernameChange(e){
-        this.setState({username: e.target.value});
-        userDetailsService.updateUsername(e.target.value);
-        storage.setUsername(e.target.value);
+    manageUsers(){
+        this.setState({userManageModalOpen: true});
     }
     simpleChange(){
-        this.setState({simple: !this.state.simple}, () => 
-            storage.setSimple(this.state.simple));
+        this.props.setSimple(!this.props.simple);
     }
     darkModeChange(){
         var darkModeCssElement = document.getElementById('dark-mode-css');
         if(darkModeCssElement){darkModeCssElement.remove()}
-        this.setState({darkMode: !this.state.darkMode}, () => 
-            storage.setDarkMode(this.state.darkMode));
+        this.props.setDarkMode(!this.props.darkMode);
+    }
+    logout(){
+        appApiService.logout().then(x => this.props.setLoggedIn(false));
     }
 }
+
+export default connect((state: any, b) => ({
+    personalTasks: state.app.personalTasks,
+    darkMode: state.app.darkMode,
+    userDetails: state.app.users[state.app.currentUser] || {},
+    simple: state.app.simple,
+    taskList: state.app.taskList,
+    currentUser: state.app.currentUser,
+    lastUpdated: state.app.lastUpdated,
+    loggedIn: state.app.loggedIn
+}), {
+    updatePersonalTasks: updatePersonalTasks,
+    setSimple: setSimple,
+    setDarkMode: setDarkMode,
+    load,
+    loadUserDetails,
+    setLoggedIn
+})(App);

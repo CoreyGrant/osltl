@@ -45,7 +45,7 @@
 .filter-panel-clear{
     position: absolute;
     right: 10px;
-    top: 5px;
+    top: 0px;
     cursor: pointer;
 }
 .filter-panel-clear > img{

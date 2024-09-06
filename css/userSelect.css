@@ -1,0 +1,40 @@
+.user-select{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.user-select-list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.user-select-adding-input{
+    display: flex;
+    flex-direction: column;
+}
+.user-select-user{
+    font-size: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.user-select-user.current-user{
+    background-color: rgba(0,128,0,0.5);
+}
+.user-select-user-actions{
+    display: flex;
+    flex-direction: row;
+}
+.user-select-add{
+    display: flex;
+    flex-direction: row;
+}
+.user-select-adding{
+    display: flex;
+    flex-direction: row;
+}

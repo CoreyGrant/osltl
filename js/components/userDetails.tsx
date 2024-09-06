@@ -1,13 +1,15 @@
 import React from 'react';
-import { UserDetails } from '../userDetailsService';
+import { UserDetails } from '../types/user';
 import { ModalProps, Modal } from './taskDetails';
 import { orderedSkills } from './skillFilter';
+import {connect} from 'react-redux';
+import {AppState} from '../store/appSlice';
 
 export type UserDetailsModalProps = ModalProps & {
     user: UserDetails;
     username: string;
 }
-export class UserDetailsModal<UserDetailsModalProps> extends React.Component{
+class UserDetailsModal<UserDetailsModalProps> extends React.Component{
     constructor(props){
         super(props);
     }
@@ -53,3 +55,10 @@ export class UserDetailsModal<UserDetailsModalProps> extends React.Component{
         </Modal>
     }
 }
+
+export default connect((state: any) => ({
+    username: state.app.currentUser,
+    user: state.app.users[state.app.currentUser]
+}), {
+
+})(UserDetailsModal)

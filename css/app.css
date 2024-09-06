@@ -2,6 +2,21 @@
 *{
     box-sizing: border-box;
 }
+.toast-notification{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+    font-size: 24px;
+    color: rgb(197, 148, 92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: green;
+    z-index: 1000;
+}
+.toast-notification>p{margin: 0;}
 #app{
     height: 100vh;
     width: 100vw;
@@ -27,15 +42,19 @@ body{
     border-bottom: 3px solid rgb(79, 69, 47);
     box-shadow: 2px solid rgb(79, 69, 47); 
 }
+.app-top-bar-right{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: end;
+}
 .app-top-bar .app-top-bar-title{
     font-size: 28px;
     color: rgb(109, 66, 17);
     font-weight: bolder;
     margin-top:-6px;
 }
-.app-top-bar-title{
-    max-width: 37%;
-}
+
 /*Desktop*/
 .app-container{
     margin-top: 40px;
@@ -52,63 +71,37 @@ body{
 }
 .form-input{
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
 }
-.form-input>input{
+.form-input-inline{
+    display: flex;
+    flex-direction: column;
+}
+.form-input-inline>input{
     margin-right: 4px;
 }
-.app-top-bar-username{
-    font-size: 22px;
-}
-.app-top-bar-username-refresh{
-    height: 32px;
-    width: 32px;
-    margin-left: 2px;
-    margin-right: 10px;
-    cursor: pointer;
-    margin-top: -8px;
-}
-.app-top-bar-username-input{
-    background-color: rgb(162, 144, 97);
-    border: 2px solid rgb(79, 69, 47);
-    border-radius: 4px;
-    color: #212529;
-    width: 200px;
-    font-size: 22px;
-    height: 32px;
-    margin-left: 4px;
-}
-.app-top-bar-discord{
+.app-top-bar-options>img{
     height: 32px;
     width: 32px;
     cursor: pointer;
-    margin-left: 4px;
-    margin-top: -12px;
 }
-.app-top-bar-dark-toggle{
-    height: 32px;
-    width: 32px;
-    cursor: pointer;
-    margin-left: 4px;
-    margin-top: -12px;
+.app-text-input{
+    background-color:rgb(162, 144, 97);
+    color: rgb(33,37,41);
 }
-.app-top-bar-username-input:focus-visible{
+.app-text-input:focus-visible{
     outline: 2px solid rgb(79, 69, 47);
 }
-
-.filter-panel-reset-light, .row-detail-info.light{
-    display: block;
-}
-.filter-panel-reset-dark, .row-detail-info.dark{
-    display: none;
+.error-message{
+    color: red;
+    font-size: 12px;
 }
 .app-top-bar-dark-toggle-dark{
     transform: rotate(180deg);
 }
 .btn.btn-primary{
-    background-color: rgb(79, 69, 47);
-    border-color: rgb(79, 69, 47);
+    background-color: rgb(197, 148, 92);
+    border-color: rgb(197, 148, 92);
 }
 .btn.btn-primary:hover{
     background-color: rgb(69, 59, 37);
@@ -119,14 +112,6 @@ body{
     .app-top-bar .app-top-bar-title{
         font-size: 24px;
         font-weight: bolder;
-    }
-    .app-top-bar-username>label>span{
-        font-size: 20px;
-    }
-    .app-top-bar-username>input{
-        font-size: 20px;
-        height: 28px;
-        width: 180px;
     }
     .app-container{
         margin-top: 40px;
@@ -140,94 +125,28 @@ body{
 
 /*Mobile*/
 @media (max-width: 768px){
-    .app-top-bar-right{
-        display: flex;
-        flex-direction: row;
-        position: relative;
-    }
-    .app-top-bar-username{
-        display: flex;
-        flex-direction: row;
-    }
-    .app-top-bar-icons{
-        display: flex;
-        flex-direction: row;
-        margin-top: 2px;
-    }
-    .app-top-bar-discord{
-        height: 16px;
-        width: 16px;
-        cursor: pointer;
-        margin-left: 4px;
-    }
-    .app-top-bar-dark-toggle{
-        height: 16px;
-        width: 16px;
-        cursor: pointer;
-        margin-left: 4px;
-    }
+    
     *{
         font-size: 0.8rem;
     }
-    .app-top-bar-username-input{
-        width: 100px;
-        font-size: 15px;
-        height: 24px;
-    }
-    .app-top-bar-username>label>span{
-        font-size: 15px;
-    }
-    
     .app-top-bar .app-top-bar-title{
-        font-size: 16px;
+        font-size: 20px;
         font-weight: bolder;
     }
     .app-container{
         display: flex;
         flex-direction: column;
     }
-    .app-top-bar-discord, .app-top-bar-dark-toggle, .app-top-bar-username-refresh{
+    .app-top-bar-options>img{
         height: 20px;
         width: 20px;
         margin-top: 0;
-    }
-    .app-top-bar-username-refresh{
-        margin-top: -4px;
     }
 }
 
 @media(max-width: 609px){
     .app-top-bar{
-        height: 60px;
         padding-left: 5px;
         padding-right: 5px;
-    }
-    .btn-sm{
-        padding: 0.125rem 0.25rem;
-        font-size: 0.75rem;
-    }
-    .app-container{
-        margin-top: 60px;
-    }
-    .app-top-bar-icons{
-        margin-top: 0;
-    }
-    .app-top-bar-username-input{
-        width: 80px;
-        font-size: 13px;
-        height: 20px;
-    }
-    .app-top-bar-username>label>span{
-        font-size: 14px;
-    }
-    .app-top-bar-username>label{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-    }
-    .app-top-bar-discord, .app-top-bar-dark-toggle, .app-top-bar-username-refresh{
-        height: 20px;
-        width: 20px;
-        margin-top: 0;
     }
 }

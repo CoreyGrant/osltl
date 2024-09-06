@@ -1,0 +1,4 @@
+The app should support multiple users, each with their own task list
+other app settings should be constant across accounts
+Instead of a username input, will open a modal for them to manage their users, adding new ones and deleting existing. A dropdown will allow them to select the current user.
+By default the app will use local storage, but the user can also create an account and log into it

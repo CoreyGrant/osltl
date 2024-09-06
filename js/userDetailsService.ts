@@ -1,6 +1,8 @@
+import { UserDetails } from "./types/user";
+
 export class UserDetailsService{
     counter: number = 0;
-    getDetails():Promise<UserDetails>{
+    async getDetails(username):Promise<UserDetails>{
         // console.log("requested update", this.counter);
         // if(this.counter == 0){
         //     this.counter++;
@@ -34,9 +36,10 @@ export class UserDetailsService{
         //         quests: {}
         //     }));
         // }
-        return fetch("https://sync.runescape.wiki/runelite/player/" + this.username + "/STANDARD")
+        return fetch("https://sync.runescape.wiki/runelite/player/" + username + "/STANDARD")
             .then(x => x.json())
             .then(x => {
+                if(x.code && x.code == "NO_USER_DATA"){return {} as any;}
                 delete x.levels["Overall"];
                 return {
                     leagueTasks: x.league_tasks,
@@ -51,27 +54,14 @@ export class UserDetailsService{
                 }
             });
     }
-    beginAutosync(callback){
+    beginAutosync(getUsernames, callback){
         // Five minute update period
         var period = 1000*5*60;
         setInterval(() => {
-            console.log("interval", this.username);
-            if(this.username && this.username.length){
-                callback(this.getDetails())
-            }
+            const usernames = getUsernames();
+            callback(Promise.all(usernames.map(u => this.getDetails(u))))
         }, period);
     }
-    username: string;
-    updateUsername(username: string){
-        this.username = username;
-    }
-}
-
-export type UserDetails = {
-    leagueTasks: number[];
-    skills: {[skill: string]: number};
-    quests: string[];
-    diaries: string[];
 }
 
 export const userDetailsService = new UserDetailsService();

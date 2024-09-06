@@ -1,15 +1,39 @@
-export class Storage{
-    setPersonalTasks(tasks: number[]){
-        window.localStorage.setItem('personal', JSON.stringify(tasks));
+import { AppUserDetails } from "./types/appUserDetails";
+
+export interface IStorage{
+    getDetails(): Promise<AppUserDetails>;
+    setDetails(details: AppUserDetails): Promise<void>;
+}
+
+export class AppLocalStorage implements IStorage{
+    async getDetails(): Promise<AppUserDetails>{
+        return {
+            personalTasks: this.getpersonalTasks(),
+            darkMode: this.getDarkMode(),
+            currentUser: this.getCurrentUser(),
+            filters: this.getFilters(),
+            simple: this.getSimple()
+        };
     }
-    getPersonalTasks(){
-        return JSON.parse(window.localStorage.getItem('personal') || "[]")
+    async setDetails(details: AppUserDetails): Promise<void>{
+        this.setpersonalTasks(details.personalTasks);
+        this.setDarkMode(details.darkMode);
+        this.setCurrentUser(details.currentUser);
+        this.setFilters(details.filters);
+        this.setSimple(details.simple);
     }
-    setUsername(username: string){
-        window.localStorage.setItem('username', username);
+    setpersonalTasks(tasks: {[username: string]: number[]}){
+        window.localStorage.setItem('personalTasks', JSON.stringify(tasks || {}));
     }
-    getUsername(){
-        return window.localStorage.getItem('username');
+    getpersonalTasks(){
+        return JSON.parse(window.localStorage.getItem('personalTasks') || "{}")
+    }
+    setCurrentUser(username: string){
+        window.localStorage.setItem('currentUser', username);
+    }
+    getCurrentUser(){
+        const item = window.localStorage.getItem('currentUser');
+        return (item == "undefined" || item == "null") ? undefined : item;
     }
     setFilters(filters: any){
         window.localStorage.setItem('filters', JSON.stringify(filters));
@@ -31,4 +55,4 @@ export class Storage{
     }
 }
 
-export const storage = new Storage();
+export const appLocalStorage = new AppLocalStorage();
