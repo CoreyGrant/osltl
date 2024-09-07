@@ -1,0 +1,20 @@
+.first-load-modal{
+    display: flex;
+    flex-direction: column;
+}
+.first-load-modal-username{
+    display: flex;
+    flex-direction: column;
+}
+.first-load-modal-info{
+    display: flex;
+    flex-direction: column;
+}
+.first-load-modal-account{
+    display: flex;
+    flex-direction: column;
+}
+.first-load-modal-buttons{
+    display: flex;
+    flex-direction: row;
+}

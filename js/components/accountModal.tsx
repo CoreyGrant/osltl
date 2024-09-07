@@ -2,15 +2,18 @@ import React from 'react';
 import {Modal, ModalProps} from './taskDetails';
 import { appApiService } from '../appApiService';
 import {connect} from 'react-redux';
-import { AppState, setLoggedIn } from '../store/appSlice';
+import { AppState, load, setLoggedIn, setNotification } from '../store/appSlice';
+import { store } from '../store/store';
 
 export type AccountModalProps = ModalProps & {
     setLoggedIn: (pl) => void;
+    load: (pl) => void;
     darkMode: boolean;
     simple: boolean;
     filters: Filters;
     personalTasks: {[username: string]: number[]},
     currentUser: string;
+    loginDefault: boolean;
 }
 
 export type AccountModalState = {
@@ -46,6 +49,11 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
             registerError: undefined
         }
     }
+    componentDidUpdate(oldProps){
+        if(oldProps.open !== this.props.open && this.props.open){
+            this.setState({registering: !this.props.loginDefault});
+        }
+    }
     onClose(){
         this.setState({
             rEmailAddress: "",
@@ -59,7 +67,8 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
             rPasswordError: undefined,
             lPasswordError: undefined,
             loginError: undefined,
-            registerError: undefined
+            registerError: undefined,
+            loginSync: false,
         });
         this.props.onClose();
     }
@@ -70,9 +79,10 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                 onChange: (e) => this.setState({[key]: e.target.value})
             };
         }
-        return <Modal open={this.props.open} onClose={() => this.onClose()}>
+        return <Modal open={this.props.open} onClose={() => this.onClose()} title={"Account"}>
             <div className="account-modal">
             {this.state.registering ? undefined : <div className="account-login">
+                <h1>Login</h1>
                 <div className="account-register-prompt">   
                     <p>An account allows all settings and your personal task list(s) to be saved for use on multiple devices/platforms</p>
                 </div>
@@ -86,6 +96,11 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                     <input type="password" className="account-login-password" id="acc-log-pad" {...getInputProps("lPassword")}/>
                     {this.state.lPasswordError && <span className="error-message">{this.state.lPasswordError}</span>}
                 </div>
+                <div className="form-input-inline">
+                    <input id="acc-log-sync" type="checkbox" checked={this.state.loginSync} onClick={(e) => this.setState({loginSync: e.target.checked})}/>
+                    <label htmlFor="acc-log-sync">Sync local to account?</label>
+                </div>
+                <p>WARNING - this will set your account to everything set locally, only select if you have made changes while logged out. If you are logging into an existing account on a new device, this will wipe everything saved.</p>
                 {this.state.loginError && <p className="error-message">{this.state.loginError}</p>}
                 <div className="account-login-buttons">
                     <button className="btn btn-primary" onClick={() => this.login()}>Login</button>
@@ -93,6 +108,7 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                 </div>
             </div>}
             {this.state.registering ? <div className="account-register">
+                <h1>Register</h1>
                 <div className="form-input">
                     <label htmlFor="acc-reg-em">Email address</label>
                     <input type="text" className="account-register-email" id="acc-reg-em" {...getInputProps("rEmailAddress")}/>
@@ -129,9 +145,27 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
         return appApiService.login(emailAddress, password)
             .then(res => {
                 if(res){
-                    console.log("login result", res);
-                    this.props.setLoggedIn(true);
-                    this.props.onClose();
+                    if(this.state.loginSync){
+                        // we need to send local data to server, rather than load
+                        appApiService.updateUserDetails({
+                            currentUser: this.props.currentUser,
+                            filters: this.props.filters,
+                            darkMode: this.props.darkMode,
+                            simple: this.props.simple,
+                            personalTasks: this.props.personalTasks
+                        }).then(() => {        
+                            this.props.setNotification("Logged in");
+                            this.props.setLoggedIn(true);
+                            this.props.onClose();
+                        });
+                    } else {
+                        appApiService.getUserDetails().then(x => {
+                            this.props.load(x);
+                        });
+                        this.props.setNotification("Logged in");
+                        this.props.setLoggedIn(true);
+                        this.props.onClose();
+                    }
                 } else {
                     this.setState({loginError: 'Login failed. Please check details and try again.'})
                 }
@@ -201,5 +235,7 @@ export default connect((state: any) => {
         currentUser: appState.currentUser
     };
 }, {
-    setLoggedIn
+    setLoggedIn,
+    load,
+    setNotification
 })(AccountModal);

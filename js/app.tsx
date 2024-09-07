@@ -3,9 +3,7 @@ import {
     connectedFilterPanel as FilterPanel,
     connectedTabbedFilterPanel as TabbedFilterPanel
 } from './components/filterPanel';
-import {Filter} from './types/filter';
 import TaskTable from './components/taskTable';
-import taskList from '../data/tasks.json';
 import { userDetailsService } from './userDetailsService';
 import { UserDetails } from './types/user';
 import {Task} from './types/task';
@@ -18,6 +16,7 @@ import { appLocalStorage } from './storage';
 import { appApiService } from './appApiService';
 import ToastNotification from './components/toastNotification';
 import OptionsPanel from './components/optionsPanel'
+import FirstLoadModal from './components/firstLoadModal';
 
 export type AppProps = {
     personalTasks: {[username: string]: number[]};
@@ -40,6 +39,7 @@ export type AppState = {
     userManageModalOpen: boolean;
     accountModalOpen: boolean;
     optionsPanelOpen: boolean;
+    firstLoadModalOpen: boolean;
 };
 export class App extends React.Component<AppProps, AppState>{
     constructor(props){
@@ -48,7 +48,9 @@ export class App extends React.Component<AppProps, AppState>{
             userModalOpen: false,
             userManageModalOpen: false,
             accountModalOpen: false,
-            optionsPanelOpen: false
+            optionsPanelOpen: false,
+            firstLoadModalOpen: false,
+            loginDefault: true,
         }
     }
     componentDidUpdate(oldProps){
@@ -75,6 +77,12 @@ export class App extends React.Component<AppProps, AppState>{
         }
     }
     componentDidMount(){
+        // check to see if user has used the app before
+        const notFirstLoad = appLocalStorage.getNotFirstLoad();
+        if(!notFirstLoad){
+            this.setState({firstLoadModalOpen: true});
+        }
+
         appApiService.loggedIn().then(x => {
             this.props.setLoggedIn(x);
         });
@@ -100,6 +108,24 @@ export class App extends React.Component<AppProps, AppState>{
     render(){
         return <div className={"app-container" + (this.props.darkMode ? " dark-mode" : "")}>
             <ToastNotification/>
+            <FirstLoadModal 
+                open={this.state.firstLoadModalOpen}
+                onClose={() => {
+                    this.setState({firstLoadModalOpen: false}, () => {
+                        appLocalStorage.setNotFirstLoad();
+                    })
+                }}
+                loginClick={
+                    () => this.setState({firstLoadModalOpen: false, accountModalOpen: true, loginDefault: true},
+                        () => {appLocalStorage.setNotFirstLoad()}
+                    )
+                }
+                registerClick={
+                    () => this.setState({firstLoadModalOpen: false, accountModalOpen: true, loginDefault: false},
+                        () => {appLocalStorage.setNotFirstLoad()}
+                    )
+                }
+                />
             <UserDetailsModal
                 open={this.state.userModalOpen}
                 onClose={() => this.setState({userModalOpen: false})} 
@@ -111,7 +137,8 @@ export class App extends React.Component<AppProps, AppState>{
             <AccountModal
                 title="Account"
                 open={this.state.accountModalOpen}
-                onClose={() => this.setState({accountModalOpen: false})} />
+                onClose={() => this.setState({accountModalOpen: false})}
+                loginDefault={this.state.loginDefault} />
             <OptionsPanel
                 open={this.state.optionsPanelOpen}
                 onClose={() => this.setState({optionsPanelOpen: false})}
@@ -123,7 +150,9 @@ export class App extends React.Component<AppProps, AppState>{
                 <span className="app-top-bar-title">OLT: Oldschool League Tasks</span>
                 <div className="app-top-bar-right">
                     <span className="app-top-bar-options">
-                        <img src={this.props.darkMode ? 'icon/settingsLight.png' : 'icon/settings.png'} onClick={() => this.setState({optionsPanelOpen: true})}/>
+                        <span onClick={() => this.setState({userModalOpen: true})} style={{cursor: "pointer"}}><p>User: {this.props.currentUser}</p></span>
+                        <span><p>{this.props.loggedIn ? "Account mode" : "Local mode"}</p></span>
+                        <img src={this.props.darkMode ? 'icon/settingsLight.png' : 'icon/settings.png'} onClick={() => this.setState({optionsPanelOpen: !this.state.optionsPanelOpen})}/>
                     </span>
                 </div>
             </div>

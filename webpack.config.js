@@ -8,7 +8,8 @@ module.exports = {
     devtool: 'inline-source-map',
     output: {
       filename: '[contenthash].js',
-      path: path.resolve(__dirname, 'dist')
+      path: path.resolve(__dirname, 'dist'),
+      clean: true
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js']

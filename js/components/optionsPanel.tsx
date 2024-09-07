@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {setSimple, setLoggedIn, setDarkMode} from '../store/appSlice';
 import { openInTab } from '../helpers';
+import { discordUrl } from '../constants';
 
 type ListItem = {
     icon?: string;
@@ -79,7 +80,7 @@ export class OptionsPanel extends React.Component<OptionsPanelProps>{
             }
         ];
         if(!this.props.open){
-            return <a ref={this.discordLinkRef} href="https://discord.gg/8pjZbD4MYg" style={{display: 'none'}} target="_blank"></a>;
+            return <a ref={this.discordLinkRef} href={discordUrl} style={{display: 'none'}} target="_blank"></a>;
         }
         return <div className={"options-panel" + (darkMode ? ' options-panel-dark' : '')} ref={this.panelRef} ><a ref={this.discordLinkRef} href="https://discord.gg/8pjZbD4MYg" style={{display: 'none'}} target="_blank"></a>
             <ul>

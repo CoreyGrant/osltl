@@ -9,6 +9,7 @@
 .account-login{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 .account-login-buttons{
     display: flex;
@@ -17,4 +18,5 @@
 .account-register{
     display: flex;
     flex-direction:column;
+    width: 100%;
 }

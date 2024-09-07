@@ -29,7 +29,7 @@ function debounce(delay) {
     }
   }
 
-const debouncedUpdateDetails = debounce(5000);
+const debouncedUpdateDetails = debounce(3000);
 const getDetailsFromState = (state) => { 
     state = current(state);
     return ({
@@ -42,13 +42,19 @@ const getDetailsFromState = (state) => {
 const remoteUpdate = (state) => {
     // needs to be in here to avoid circular dep
     var { appApiService } = require('../appApiService');
+    var { store } = require('./store.ts');
 
     const details = getDetailsFromState(state);
     const loggedIn = current(state).loggedIn;
     debouncedUpdateDetails(
         loggedIn 
-            ? () => appApiService.updateUserDetails(details)
-            : () => appLocalStorage.setDetails(details));
+            ? () => {
+                appApiService.updateUserDetails(details);
+                store.dispatch(setNotification("Saved to account"));
+            } : () => {
+                appLocalStorage.setDetails(details);
+                store.dispatch(setNotification("Saved locally"));
+            });
 }
 export const appSlice = createSlice({
   name: 'app',
@@ -145,7 +151,6 @@ export const appSlice = createSlice({
         state.loggedIn = loggedIn;
     },
     setNotification(state, action){
-        console.log("set notification called")
         const notification = action.payload;
         state.notification = notification;
     }

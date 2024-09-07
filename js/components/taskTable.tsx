@@ -9,6 +9,7 @@ import { AppState, addPersonalTask, removePersonalTask, updatePersonalTasks } fr
 
 export type TaskTableProps = {
     filters: Filter;
+    currentUser: boolean;
     darkMode: boolean;
     user: UserDetails;
     simple: boolean;
@@ -285,7 +286,8 @@ export default connect(
         filtersCollapsed: state.app.filtersCollapsed,
         taskList: state.app.taskList,
         personalList: state.app.personalTasks[state.app.currentUser] || [],
-        darkMode: state.app.darkMode
+        darkMode: state.app.darkMode,
+        currentUser: state.app.currentUser
     }),
     {
         addPersonalTask: addPersonalTask,

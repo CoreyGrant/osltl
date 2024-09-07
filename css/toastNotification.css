@@ -1,0 +1,26 @@
+@keyframes show-hide{
+    0%, 100%{
+        opacity: 0;   
+    }
+    10%, 90%{
+        opacity: 1;
+    }
+}
+
+.toast-notification{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+    font-size: 24px;
+    color: rgb(197, 148, 92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: rgb(0, 128, 0);
+    z-index: 1000;
+    animation: show-hide 3s linear 1 forwards;
+}
+.toast-notification>p{margin: 0;}
+

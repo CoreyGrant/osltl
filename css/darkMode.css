@@ -49,3 +49,7 @@ body{
 .options-panel-item:hover{
     background-color: rgb(79, 69, 47);
 }
+
+.app-top-bar-options span{
+    border-color: rgb(162, 144, 97);
+}

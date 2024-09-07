@@ -2,21 +2,7 @@
 *{
     box-sizing: border-box;
 }
-.toast-notification{
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    padding: 10px;
-    font-size: 24px;
-    color: rgb(197, 148, 92);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    background-color: green;
-    z-index: 1000;
-}
-.toast-notification>p{margin: 0;}
+
 #app{
     height: 100vh;
     width: 100vw;
@@ -26,7 +12,9 @@ body{
     height: 100vh;
     overflow-y: hidden;
 }
-
+a{
+    color: lightseagreen;
+}
 .app-top-bar{
     height: 40px;
     position: fixed;
@@ -65,7 +53,22 @@ body{
     flex-direction: row;
 }
 
-
+.app-top-bar-options{
+    display: flex;
+    flex-direction: row;
+}
+.app-top-bar-options span{
+    padding: 4px;
+    border: 2px solid #212529;
+    border-radius: 3px;
+    margin-right: 4px;
+    height: 30px;
+}
+.app-top-bar-options p{
+    margin: 0;
+    line-height: 14px;
+    text-align: center;
+}
 .fake-table-row.completed{
     background-color: rgba(0,128,0,0.5);
 }
@@ -75,7 +78,7 @@ body{
 }
 .form-input-inline{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 .form-input-inline>input{
     margin-right: 4px;
@@ -144,9 +147,25 @@ body{
     }
 }
 
-@media(max-width: 609px){
+@media(max-width: 500px){
     .app-top-bar{
         padding-left: 5px;
         padding-right: 5px;
+    }
+    .app-top-bar-options p{
+        font-size: 12px;
+    }
+    .app-top-bar .app-top-bar-title{
+        font-size: 14px;
+        font-weight: bolder;
+    }
+    .app-top-bar{
+        height: 50px;
+    }
+    .app-top-bar-options span{
+        height: 40px;
+    }
+    .app-container{
+        margin-top: 50px;
     }
 }

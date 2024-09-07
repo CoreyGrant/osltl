@@ -1,6 +1,6 @@
 import { appLocalStorage } from "./storage";
 import { AppUserDetails } from "./types/appUserDetails";
-import {setNotification, setLoggedIn} from './store/appSlice';
+import {setNotification, setLoggedIn, load} from './store/appSlice';
 import { store } from "./store/store";
 
 export class AppApiService{
@@ -38,7 +38,11 @@ export class AppApiService{
         return result;
     }
     async getUserDetails(): Promise<AppUserDetails>{
-        return await fetch(this.baseUrl + '/getUserDetails').then(x => x.json());
+        return await fetch(this.baseUrl + '/getUserDetails').then(x => x.json())
+            .then(x => {
+                console.log("got user details from server", x);
+                return x;
+            });
     }
     async updateUserDetails(userDetails): Promise<boolean>{
         return await fetch(this.baseUrl + '/updateUserDetails', {
@@ -49,7 +53,7 @@ export class AppApiService{
             },
         }).then(x => x.json()).then(x => {
             if(x.result){
-                store.dispatch(setNotification("Saved"));
+                appLocalStorage.setDetails(userDetails);
                 return true;
             } else {
                 return false;

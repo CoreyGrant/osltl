@@ -1,3 +1,4 @@
+import { store } from "./store/store";
 import { AppUserDetails } from "./types/appUserDetails";
 
 export interface IStorage{
@@ -52,6 +53,12 @@ export class AppLocalStorage implements IStorage{
     }
     getDarkMode(){
         return (window.localStorage.getItem("darkMode") || "false") == "true";
+    }
+    setNotFirstLoad(){
+        window.localStorage.setItem('notFirstLoad', 'true');
+    }
+    getNotFirstLoad(){
+        return (window.localStorage.getItem('notFirstLoad') == "true");
     }
 }
 

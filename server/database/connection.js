@@ -1,5 +1,5 @@
 const mysql = require('mysql2/promise');
-const mySqlPassword = process.env["osltl-mysql-password"] || "testpassword"; 
+const mySqlPassword = process.env["osltl-mysql-password"] || "testpassword";
 
 const pool = mysql.createPool({
     host: 'localhost',

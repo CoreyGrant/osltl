@@ -187,3 +187,8 @@
         width: 16px;
     }
 }
+@media(max-width: 500px){
+    .task-table{
+        height: calc(100vh - 193px);
+    }
+}
