@@ -17,7 +17,7 @@ export type AppState = {
     darkMode: boolean;
     lastUpdated?: Date;
     loggedIn: boolean;
-    notification: string;
+    notifications: string[];
 }
 function debounce(delay) {
     let timer
@@ -69,7 +69,7 @@ export const appSlice = createSlice({
     darkMode: false,
     lastUpdated: undefined,
     loggedIn: undefined,
-    notification: undefined
+    notifications: []
   } as AppState,
   reducers: {
     load(state, action){
@@ -123,14 +123,14 @@ export const appSlice = createSlice({
     },
     addPersonalTask(state, action){
         const personalTask = action.payload;
-        console.log("reducer adding task", personalTask);
+        //console.log("reducer adding task", personalTask);
         state.personalTasks[state.currentUser].push(personalTask);
         // update data store with new personal task list
         remoteUpdate(state);
     },
     removePersonalTask(state, action){
         const personalTask = action.payload;
-        console.log("reducer removing task", personalTask);
+        //console.log("reducer removing task", personalTask);
         const personalList = state.personalTasks[state.currentUser]; 
         personalList.splice(personalList.indexOf(personalTask), 1);
         // update data store with new personal task list
@@ -152,7 +152,13 @@ export const appSlice = createSlice({
     },
     setNotification(state, action){
         const notification = action.payload;
-        state.notification = notification;
+        //console.log("setting notification", notification);
+        state.notifications.push(notification);
+    },
+    removeNotification(state, action){
+        const notification = action.payload;
+        state.notifications = state.notifications.filter(x => x !== notification);
+        //console.log("removed notification", notification);
     }
   }
 });
@@ -171,6 +177,7 @@ export const {
     load,
     loadUserDetails,
     setLoggedIn,
-    setNotification
+    setNotification,
+    removeNotification
 } = appSlice.actions;
 

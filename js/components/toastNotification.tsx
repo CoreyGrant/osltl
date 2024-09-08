@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {setNotification} from '../store/appSlice';
-import { ReadableByteStreamControllerCallback } from 'stream/web';
+import {setNotification, removeNotification} from '../store/appSlice';
 
 export type ToastNotificationProps = {
-    notification: string;
+    notifications: string[];
     setNotification: (pl) => void;
+    removeNotification: (pl) => void;
 }
 export type ToastNotificationState = {
 }
@@ -16,34 +16,29 @@ export class ToastNotification extends React.Component<ToastNotificationProps, T
         }
     }
     componentDidUpdate(oldProps){
-        if(this.props.notification != oldProps.notification && this.props.notification){
-            setTimeout(() => {
-                this.props.setNotification(undefined);
-                //this.setState({hiding: false});
-            }, 5000);
-            // this.setState({showing: true});
-            // setTimeout(() => this.setState({showing: false}), 5000);
-            // setTimeout(() => this.setState({hiding: true}), 25000);
-        }
+        const newNotifications = this.props.notifications.filter(x => oldProps.notifications.indexOf(x) === -1);
+        //console.log("new notifications", newNotifications)
+        if(newNotifications.length){
+            for(var nn of newNotifications){
+                setTimeout(() => {
+                    this.props.removeNotification(nn);
+                }, 5000);
+            }}
     }
     render(): React.ReactNode {
-        let extraClass = "";
-        if(this.state.showing){
-            extraClass += " show";
-        }
-        if(this.state.hiding){
-            extraClass += " hide";
-        }
-        return this.props.notification 
-            ? <div className={"toast-notification" + extraClass}>
-                <p>{this.props.notification}</p>
+        return (this.props.notifications && this.props.notifications.length)
+            ? <div className="toast-notifications">
+                {this.props.notifications.map(n => <div className={"toast-notification"}>
+                    <p>{n}</p>
+                </div>)}
             </div>
             : undefined;
     }
 }
 
 export default connect((state) => ({
-    notification: state.app.notification
+    notifications: state.app.notifications
 }), {
-    setNotification
+    setNotification,
+    removeNotification
 })(ToastNotification)

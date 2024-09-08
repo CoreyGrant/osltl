@@ -3,7 +3,7 @@ const {logDebug} = require('../logger');
 
 module.exports = {
     register(req, res){
-        console.log(req.body);
+        //console.log(req.body);
         const {emailAddress, password} = req.body;
         userDb.createUser(emailAddress, password).then(x => {
             res.status(200).send({result: x});

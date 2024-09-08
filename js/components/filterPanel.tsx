@@ -114,7 +114,7 @@ export class FilterPanel extends React.Component<FilterPanelProps, FilterPanelSt
     }
     filterKeyChange(val){
         var filters = {...this.props.filters};
-        filters.order.key = val;
+        filters.order = {...filters.order, key: val}
         this.props.updateFilters(filters);
     }
     filterDescValue(){
@@ -123,7 +123,7 @@ export class FilterPanel extends React.Component<FilterPanelProps, FilterPanelSt
     }
     filterDescChange(){
         var filters = {...this.props.filters};
-        filters.order.desc = !filters.order.desc;
+        filters.order = {...filters.order, desc: !filters.order.desc};
         this.props.updateFilters(filters);
     }
     clearOrdering(){
@@ -359,7 +359,7 @@ export class TabbedFilterPanel extends React.Component<TabbedFilterPanelProps, F
     }
     filterKeyChange(val){
         var filters = {...this.props.filters};
-        filters.order.key = val;
+        filters.order = {...filters.order, key: val};
         this.props.updateFilters(filters);
     }
     filterDescValue(){
@@ -368,7 +368,7 @@ export class TabbedFilterPanel extends React.Component<TabbedFilterPanelProps, F
     }
     filterDescChange(){
         var filters = {...this.props.filters};
-        filters.order.desc = !filters.order.desc;
+        filters.order = {...filters.order, desc: !filters.order.desc};
         this.props.updateFilters(filters);
     }
     clearOrdering(){

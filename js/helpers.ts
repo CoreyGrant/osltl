@@ -4,8 +4,6 @@ export function openInTab(href){
     link.href = href;
     link.target = "_blank";
     document.body.append(link);
-    var event = new Event('click');
-    var result = link.dispatchEvent(event);
-    console.log(result);
-    //link.remove();
+    var result = link.click();
+    link.remove();
 }

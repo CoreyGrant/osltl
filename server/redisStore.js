@@ -1,7 +1,6 @@
-const RedisStore = require("connect-redis");
+const {default: RedisStore} = require("connect-redis");
 const {createClient} = require("redis")
 const redisUrl = process.env["osltl_redis_connectionstring"]
-
 
 // Initialize client.
 let redisClient = createClient({
@@ -15,4 +14,4 @@ let redisStore = new RedisStore({
   prefix: "osltl:"
 })
 
-export default redisStore;
+module.exports = redisStore;

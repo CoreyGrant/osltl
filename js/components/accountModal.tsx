@@ -175,7 +175,7 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
         const emailAddress = this.state.rEmailAddress;
         const password = this.state.rPassword;
         const confirmPassword = this.state.rConfirmPassword;
-        console.log(this.state);
+        //console.log(this.state);
         if(!emailAddress || !emailAddress.length){
             this.setState({rEmailAddressError: "Please enter an email address"});
             return;

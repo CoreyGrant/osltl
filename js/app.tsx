@@ -9,7 +9,7 @@ import { UserDetails } from './types/user';
 import {Task} from './types/task';
 import UserDetailsModal from './components/userDetails';
 import {connect} from 'react-redux';
-import {AppState as AppStoreState, updatePersonalTasks, setSimple, setDarkMode, load, loadUserDetails, setLoggedIn} from './store/appSlice';
+import {AppState as AppStoreState, updatePersonalTasks, setSimple, setDarkMode, load, loadUserDetails, setLoggedIn, setNotification} from './store/appSlice';
 import UserSelectModal from './components/userSelectModal';
 import AccountModal from './components/accountModal';
 import { appLocalStorage } from './storage';
@@ -30,6 +30,7 @@ export type AppProps = {
     setDarkMode: (pl) => void;
     load: (pl) => void;
     loadUserDetails: (pl) => void;
+    setNotification: (pl) => void;
     lastUpdated?: Date;
     loggedIn: boolean;
     setLoggedIn: (pl) => void;
@@ -60,21 +61,30 @@ export class App extends React.Component<AppProps, AppState>{
                     .then(x => {
                         this.props.load(x)
                         appLocalStorage.setDetails(x);
-                        var keys = Object.keys(x.personalTasks || {});
-                        this.loadUserDetails(keys);
                     });
             } else {
                 appLocalStorage.getDetails()
                     .then(x => {
-                        console.log("loading local", x);
                         this.props.load(x)
-                        var keys = Object.keys(x.personalTasks);
-                        this.loadUserDetails(keys);
                     });
             }
         } else{
             
         }
+        var oldUsers = Object.keys(oldProps.personalTasks || {});
+        var newUsers = Object.keys(this.props.personalTasks || {});
+        if(!this.arrayEquals(oldUsers, newUsers)){
+            this.loadUserDetails(newUsers);
+        }
+    }
+    arrayEquals(a, b){
+        if(a.length !== b.length){return false;}
+        for(var item of a){
+            if(b.indexOf(item) === -1){
+                return false;
+            }
+        }
+        return true;
     }
     componentDidMount(){
         // check to see if user has used the app before
@@ -103,6 +113,7 @@ export class App extends React.Component<AppProps, AppState>{
                 return {...p, [keys[i]]: c};
             }, {});
             this.props.loadUserDetails(allUserDetails);
+            this.props.setNotification("User details updated");
         })
     }
     render(){
@@ -147,10 +158,10 @@ export class App extends React.Component<AppProps, AppState>{
                 loginClick={() => {this.loginClick()}}/>
             {this.props.darkMode ? <link rel="stylesheet" href="css/darkMode.css"/> : null}
             <div className="app-top-bar">
-                <span className="app-top-bar-title">OLT: Oldschool League Tasks</span>
+                <span className="app-top-bar-title">OSLTL</span>
                 <div className="app-top-bar-right">
                     <span className="app-top-bar-options">
-                        <span onClick={() => this.setState({userModalOpen: true})} style={{cursor: "pointer"}}><p>User: {this.props.currentUser}</p></span>
+                        {this.props.currentUser && <span onClick={() => this.setState({userModalOpen: true})} style={{cursor: "pointer"}}><p>User: {this.props.currentUser}</p></span>}
                         <span><p>{this.props.loggedIn ? "Account mode" : "Local mode"}</p></span>
                         <img src={this.props.darkMode ? 'icon/settingsLight.png' : 'icon/settings.png'} onClick={() => this.setState({optionsPanelOpen: !this.state.optionsPanelOpen})}/>
                     </span>
@@ -195,5 +206,6 @@ export default connect((state: any, b) => ({
     setDarkMode: setDarkMode,
     load,
     loadUserDetails,
-    setLoggedIn
+    setLoggedIn,
+    setNotification
 })(App);

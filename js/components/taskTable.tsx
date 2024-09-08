@@ -258,7 +258,7 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                             return Object.keys(user.skills).some(usk => user.skills[usk] >= anyThreshold);
                         } else if(sk == "Base"){
                             const baseThrehold = x.skills[sk];
-                            console.log(task, baseThrehold, user.skills);
+                            //console.log(task, baseThrehold, user.skills);
                             return Object.keys(user.skills).every(usk => user.skills[usk] >= baseThrehold);     
                         } else if(sk == "Total"){
                             return x.skills[sk] <= Object.values(user.skills).reduce((p, c) => p + c, 0);

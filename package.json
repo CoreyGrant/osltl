@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack --watch",
     "start-server": "node server/server.js --mode production",
-    "start-server-dev": "node server/server.js",
+    "start-server-dev": "node server/server.js --mode development",
     "build": "webpack --mode production"
   },
   "author": "",

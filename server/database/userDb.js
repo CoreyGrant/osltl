@@ -29,7 +29,6 @@ class UserDb{
                 'SELECT * FROM userDetails where userId = ?', [userId]
             );
             var row = rows[0];
-            console.log(row,row["simple"][0], row["darkMode"][0]);
             return {
                 personalTasks: JSON.parse(row["personalTasks"] || {}),
                 currentUser: row["currentUser"],

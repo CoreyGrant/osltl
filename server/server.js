@@ -19,20 +19,28 @@ const { getUserDetails } = require('./endpoints/getUserDetails');
 const {logDebug} = require('./logger');
 const bodyParser = require('body-parser');
 const { loggedIn } = require('./endpoints/loggedIn');
-const redisStore = require('./redisStore');
+
+const app = express();
 
 const isProduction = app.get('env') === "production";
-var app = express();
-
-var sess = {
+let sess;
+if(isProduction){
+  const redisStore = require('./redisStore');
+  sess = {
     secret: 'osltl_sec_1423',
     cookie: {
-      secure: isProduction ? true : undefined
+      secure: true
     },
-    store: isProduction ? redisStore : undefined,
-    resave: isProduction ? false : undefined,
-    saveUninitialized: isProduction ? false : undefined,
-};
+    store: redisStore,
+    resave: false,
+    saveUninitialized: false,
+  };
+} else {
+  sess = {
+    secret: 'osltl_sec_1423',
+    cookie: {},
+  };
+}
 
 app.use(bodyParser.json())
 app.use(session(sess))
