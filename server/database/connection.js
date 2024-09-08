@@ -1,11 +1,13 @@
 const mysql = require('mysql2/promise');
 const mySqlPassword = process.env["osltl-mysql-password"] || "testpassword";
-
+const mySqlUser = process.env["osltl-mysql-user"] || "root";
+const mySqlHost = process.env["osltl-mysql-host"] || "localhost";
+const mySqlDatabase = process.env["osltl-mysql-database"] || 'osltl';
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
+    host: mySqlHost,
+    user: mySqlUser,
     password: mySqlPassword,
-    database: 'osltl',
+    database: mySqlDatabase,
     waitForConnections: true,
     connectionLimit: 10,
     maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`

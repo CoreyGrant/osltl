@@ -48,11 +48,20 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
             },
             {
                 headerDisplay: () => <b>Points - {this.difficultySum()}</b>,
-                display: (t) => <span><img src={"icon/" + t.diff + "Task.webp"} style={{marginRight: "4px"}}/>{diffVals[t.diff]}</span>
+                display: (t) => <span>
+                    <img 
+                        src={"icon/" + t.diff + "Task.webp"} 
+                        style={{marginRight: "4px"}}/>{diffVals[t.diff]}
+                </span>
             },
             {
                 headerDisplay: () => <b>{this.props.personalList.length}</b>,
-                display: (t) => <input type="checkbox" onChange={() => this.updatePersonalList(t.id)} checked={this.props.personalList.indexOf(t.id) > -1} className="personal-checkbox" disabled={!this.props.currentUser}/>
+                display: (t) => <input 
+                    type="checkbox" 
+                    onChange={() => this.updatePersonalList(t.id)} 
+                    checked={this.props.personalList.indexOf(t.id) > -1} 
+                    className="personal-checkbox" 
+                    disabled={!this.props.currentUser}/>
             },
             {
                 headerDisplay: () => <></>,
@@ -88,15 +97,26 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                     {
                         if(!Array.isArray(ar)){
                             var showDivider = !(ari + 1 === a.areas.length);
-                            return <div className="row-detail-area">
-                                <img className="row-detail-area-img" src={"icon/" + ar + "Area.webp"} style={{marginRight: "4px"}} title={ar}></img>{ar}
+                            return <div 
+                                className="row-detail-area">
+                                <img 
+                                    className="row-detail-area-img" 
+                                    src={"icon/" + ar + "Area.webp"} 
+                                    style={{marginRight: "4px"}} 
+                                    title={ar}/>{ar}
                                 {showDivider && <p className="row-detail-area-divider">/</p>}
                             </div>    
                         } else {
                             return ar.map((subAr, subAri) => {
                                 var showSummer = !(subAri + 1 === ar.length);
-                                return <div style={{display: "flex", flexDirection: 'row'}} className="row-detail-area-and">
-                                <img className="row-detail-area-img" src={"icon/" + subAr + "Area.webp"} style={{marginRight: "4px"}} title={subAr}></img>{subAr}
+                                return <div 
+                                    style={{display: "flex", flexDirection: 'row'}} 
+                                    className="row-detail-area-and">
+                                <img 
+                                    className="row-detail-area-img" 
+                                    src={"icon/" + subAr + "Area.webp"} 
+                                    style={{marginRight: "4px"}} 
+                                    title={subAr}/>{subAr}
                                 {showSummer && <p className="row-detail-area-divider">+</p>}
                             </div>
                             })
@@ -105,16 +125,27 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 </div>
                 <div className="row-detail-reqs">
                 {Object.keys(a?.skills || {}).map(x => <span className="row-detail-skills">
-                    <img src={"icon/" + x.replace(" ", "") + ".webp"} title={x} style={{marginRight: "4px"}}></img>{a.skills[x]}
+                    <img 
+                        src={"icon/" + x.replace(" ", "") + ".webp"} 
+                        title={x} 
+                        style={{marginRight: "4px"}}/>{a.skills[x]}
                 </span>)}
-                {a?.quests?.map(x => <span className="row-detail-quest">
-                    <img src="icon/Quest.png" title={x} style={{marginRight: "4px"}}></img>{x}
+                {a?.quests?.map(x => <span 
+                    className="row-detail-quest">
+                    <img 
+                        src="icon/Quest.png" 
+                        title={x} 
+                        style={{marginRight: "4px"}}/>{x}
                 </span>)}
                 {a?.diary?.map(x => <span className="row-detail-diary">
-                    <img src="icon/Diary.webp" title={x} style={{marginRight: "4px"}}></img>{x}
+                    <img src="icon/Diary.webp" 
+                        title={x} 
+                        style={{marginRight: "4px"}}/>{x}
                 </span>)}
                 {Object.keys(a?.kourend || {}).map(x => <span className="row-detail-kourend">
-                    <img src={"icon/Favour.webp"} title={x} style={{marginRight: "4px"}}></img>{x} {a.kourend[x]}%
+                    <img src={"icon/Favour.webp"} 
+                        title={x} 
+                        style={{marginRight: "4px"}}/>{x} {a.kourend[x]}%
                 </span>)}
                 </div>
             </div>
@@ -220,7 +251,7 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 var canComplete = reqs.some(x => {
                     const skills = Object.keys(x.skills || {});
                     const quests = x.quests || [];
-                    const diaries = x.diaries || [];
+                    const diaries = x.diary || [];
                     var skillsOk = skills.every(sk => {
                         if(sk == "Any"){
                             const anyThreshold = x.skills[sk];
