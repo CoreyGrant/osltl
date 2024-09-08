@@ -4,13 +4,13 @@
     right: 10px;
     width: 250px;
     z-index: 1000;
-    background-color: rgb(162, 144, 97);
-    border: 1px solid rgb(33, 37, 41);
+    background-color: var(--osrs-color);
+    border: 1px solid var(--osrs-text-color);
 }
 .list-divider{
     height: 0;
     width: 100%;
-    border-bottom: 1px solid rgb(33, 37, 41);
+    border-bottom: 1px solid var(--osrs-text-color);
 }
 .options-panel>ul{
     width: 100%;
@@ -40,7 +40,7 @@
     width: calc(100% - 40px);
 }
 .options-panel-item:hover{
-    background-color: rgb(79, 69, 47);
+    background-color: var(--osrs-dark-color);
 }
 .options-panel-item-icon>img{
     height: 24px;

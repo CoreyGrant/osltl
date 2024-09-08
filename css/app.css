@@ -8,7 +8,8 @@
     width: 100vw;
 }
 body{
-    background-color: rgb(162, 144, 97);
+    background-color: var(--osrs-color);
+    color: var(--osrs-text-color);
     height: 100vh;
     overflow-y: hidden;
 }
@@ -16,7 +17,7 @@ a{
     color: lightseagreen;
 }
 .app-top-bar{
-    height: 40px;
+    height: var(--top-bar-size);
     position: fixed;
     top: 0;
     width: 100%;
@@ -27,8 +28,8 @@ a{
     padding-left: 10px;
     padding-top: 4px;
     margin-left: -6px;
-    border-bottom: 3px solid rgb(79, 69, 47);
-    box-shadow: 2px solid rgb(79, 69, 47); 
+    border-bottom: 3px solid var(--osrs-dark-color);
+    box-shadow: 2px solid var(--osrs-dark-color); 
 }
 .app-top-bar-right{
     display: flex;
@@ -38,14 +39,14 @@ a{
 }
 .app-top-bar .app-top-bar-title{
     font-size: 28px;
-    color: rgb(109, 66, 17);
+    color: var(--osrs-semi-dark-color);
     font-weight: bolder;
     margin-top:-6px;
 }
 
 /*Desktop*/
 .app-container{
-    margin-top: 40px;
+    margin-top: var(--top-bar-size);
     padding: 6px;
     height: 100%;
     overflow-y: hidden;
@@ -59,7 +60,7 @@ a{
 }
 .app-top-bar-options span{
     padding: 4px;
-    border: 2px solid #212529;
+    border: 2px solid var(--osrs-text-color);
     border-radius: 3px;
     margin-right: 4px;
     height: 30px;
@@ -70,7 +71,7 @@ a{
     text-align: center;
 }
 .fake-table-row.completed{
-    background-color: rgba(0,128,0,0.5);
+    background-color: var(--osrs-green);
 }
 .form-input{
     display: flex;
@@ -88,12 +89,15 @@ a{
     width: 32px;
     cursor: pointer;
 }
-.app-text-input{
-    background-color:rgb(162, 144, 97);
-    color: rgb(33,37,41);
+input[type="text"],
+input[type="password"]{
+    background-color:var(--osrs-color);
+    color: var(--osrs-text-color);
+    border: 1px solid var(--osrs-dark-color);
 }
-.app-text-input:focus-visible{
-    outline: 2px solid rgb(79, 69, 47);
+input[type="text"]:focus-visible,
+input[type="password"]:focus-visible{
+    outline: 2px solid var(--osrs-dark-color);
 }
 .error-message{
     color: red;
@@ -103,19 +107,19 @@ a{
     transform: rotate(180deg);
 }
 .btn.btn-primary{
-    background-color: rgb(197, 148, 92);
-    border-color: rgb(197, 148, 92);
+    background-color: var(--osrs-semi-light-color);
+    border-color: var(--osrs-semi-light-color);
 }
 .btn.btn-primary:hover{
-    background-color: rgb(69, 59, 37);
-    border-color: rgb(69, 59, 37);
+    background-color: var(--osrs-semi-dark-color);
+    border-color: var(--osrs-semi-dark-color);
 }
 /*Tablet*/
 @media(max-width: 1085px){
-    .app-top-bar .app-top-bar-title{
+    /* .app-top-bar .app-top-bar-title{
         font-size: 24px;
         font-weight: bolder;
-    }
+    } */
     .app-container{
         margin-top: 40px;
         display: flex;
@@ -132,40 +136,34 @@ a{
     *{
         font-size: 0.8rem;
     }
-    .app-top-bar .app-top-bar-title{
+    /* .app-top-bar .app-top-bar-title{
         font-size: 20px;
         font-weight: bolder;
-    }
+    } */
     .app-container{
         display: flex;
         flex-direction: column;
     }
-    .app-top-bar-options>img{
+    /* .app-top-bar-options>img{
         height: 20px;
         width: 20px;
         margin-top: 0;
-    }
+    } */
 }
 
 @media(max-width: 500px){
-    .app-top-bar{
+    /* .app-top-bar{
         padding-left: 5px;
         padding-right: 5px;
     }
     .app-top-bar-options p{
         font-size: 12px;
-    }
-    .app-top-bar .app-top-bar-title{
+    } */
+    /* .app-top-bar .app-top-bar-title{
         font-size: 14px;
         font-weight: bolder;
-    }
-    .app-top-bar{
-        height: 50px;
-    }
-    .app-top-bar-options span{
-        height: 40px;
-    }
-    .app-container{
-        margin-top: 50px;
+    } */
+    .app-top-bar-options > span > p{
+        font-size: 1rem;
     }
 }

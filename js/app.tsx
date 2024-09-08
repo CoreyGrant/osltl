@@ -76,6 +76,10 @@ export class App extends React.Component<AppProps, AppState>{
         if(!this.arrayEquals(oldUsers, newUsers)){
             this.loadUserDetails(newUsers);
         }
+        if(this.props.darkMode !== oldProps.darkMode){    
+            const darkModeCss = document.getElementById('dark-mode-css');
+            if(darkModeCss){ darkModeCss.remove(); }
+        }
     }
     arrayEquals(a, b){
         if(a.length !== b.length){return false;}
@@ -113,11 +117,13 @@ export class App extends React.Component<AppProps, AppState>{
                 return {...p, [keys[i]]: c};
             }, {});
             this.props.loadUserDetails(allUserDetails);
-            this.props.setNotification("User details updated");
+            this.props.setNotification("OSRS account details updated");
         })
     }
     render(){
-        return <div className={"app-container" + (this.props.darkMode ? " dark-mode" : "")}>
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const classAddition = (this.props.darkMode ? " dark-mode" : "") + (isMobile ? " mobile" : "")
+        return <div className={"app-container" + classAddition}>
             <ToastNotification/>
             <FirstLoadModal 
                 open={this.state.firstLoadModalOpen}

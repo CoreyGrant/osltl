@@ -1,4 +1,4 @@
-body{
+/* body{
     background-color: #212529;
     color: rgb(162, 144, 97);
 }
@@ -52,4 +52,9 @@ body{
 
 .app-top-bar-options span{
     border-color: rgb(162, 144, 97);
+} */
+
+:root{
+    --osrs-color: rgb(33, 37, 41);
+    --osrs-text-color: rgb(162, 144, 97);
 }

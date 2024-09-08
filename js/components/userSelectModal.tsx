@@ -43,13 +43,16 @@ class UserSelectModal extends React.Component<UserSelectModalProps, UserSelectMo
                 </div>}
                 {this.state.addingUser ? 
                 <div className="user-select-adding">
-                    <div className="user-select-adding-input">
-                        <input type="text" 
+                    <div className="form-input">
+                        <label htmlFor="new-username">Username</label>
+                        <input type="text" id="new-username"
                             onChange={(e) => this.setState({addingUsername: e.target.value})} 
                             value={this.state.addingUsername}/>
                         {this.state.errorMessage && <span className="error-message">{this.state.errorMessage}</span>}
                     </div>
-                    <button onClick={() => this.addNewUser()} className="btn btn-primary">Add</button>
+                    <div className="user-select-adding-add">
+                        <button onClick={() => this.addNewUser()} className="btn btn-primary">Add</button>
+                    </div>
                 </div> : null}
             </div>
         </Modal>

@@ -1,7 +1,7 @@
 .modal-overlay{
     height: 100vh;
     width: 100vw;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,10 +21,10 @@
     padding: 8px;
     display: flex;
     flex-direction: column;
-    background-color: rgb(79, 69, 47);
-    color: rgb(230, 230, 230);
+    background-color: var(--osrs-color);
+    color: var(--osrs-text-color);
     border-radius: 8px;
-    border: 2px solid rgb(230,230,230);
+    border: 2px solid var(--osrs-text-color);
 }
 .modal-close{
     position:absolute;
@@ -46,7 +46,7 @@
     margin-left: -8px;
     display: flex;
     justify-content: center;
-    border-bottom: 4px solid rgb(230, 230, 230);
+    border-bottom: 4px solid var(--osrs-text-color);
 }
 .modal-body{
     height: calc(100% - 60px);

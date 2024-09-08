@@ -29,6 +29,7 @@ export type AccountModalState = {
     lPasswordError: string;
     loginError?: string;
     registerError?: string;
+    loginSync: boolean;
 };
 
 export class AccountModal extends React.Component<AccountModalProps, AccountModalState>{
@@ -46,7 +47,8 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
             rPasswordError: undefined,
             lPasswordError: undefined,
             loginError: undefined,
-            registerError: undefined
+            registerError: undefined,
+            loginSync: false
         }
     }
     componentDidUpdate(oldProps){
@@ -83,9 +85,6 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
             <div className="account-modal">
             {this.state.registering ? undefined : <div className="account-login">
                 <h1>Login</h1>
-                <div className="account-register-prompt">   
-                    <p>An account allows all settings and your personal task list(s) to be saved for use on multiple devices/platforms</p>
-                </div>
                 <div className="form-input">
                     <label htmlFor="acc-log-em">Email address</label>
                     <input type="text" className="account-login-email" id="acc-log-em" {...getInputProps("lEmailAddress")}/>
@@ -102,13 +101,15 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                 </div>
                 <p>WARNING - this will set your account to everything set locally, only select if you have made changes while logged out. If you are logging into an existing account on a new device, this will wipe everything saved.</p>
                 {this.state.loginError && <p className="error-message">{this.state.loginError}</p>}
-                <div className="account-login-buttons">
-                    <button className="btn btn-primary" onClick={() => this.login()}>Login</button>
-                    <button className="btn btn-primary" onClick={() => this.setState({registering: true})}>Register an account</button>
-                </div>
+                <button className="btn btn-primary" onClick={() => this.login()}>Login</button>
+                <p className="account-login-register-text">You can register for an account.</p>
+                <button className="btn btn-primary" onClick={() => this.setState({registering: true})}>Register an account</button>
             </div>}
             {this.state.registering ? <div className="account-register">
                 <h1>Register</h1>
+                <div className="account-register-prompt">   
+                    <p>An account allows all settings and your personal task list(s) to be saved for use on multiple devices/platforms</p>
+                </div>
                 <div className="form-input">
                     <label htmlFor="acc-reg-em">Email address</label>
                     <input type="text" className="account-register-email" id="acc-reg-em" {...getInputProps("rEmailAddress")}/>
@@ -125,7 +126,7 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                 </div>
                 <button className="btn btn-primary" onClick={() => this.register()}>Register</button>
                 {this.state.registerError && <p className="error-message">{this.state.registerError}</p>}
-                <p>Already have an account?</p>
+                <p className="account-register-already-text">Already have an account?</p>
                 <button className="btn btn-primary" onClick={() => this.setState({registering: false})}>Switch to login</button>
             </div> : undefined}
             </div>

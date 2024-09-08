@@ -1,0 +1,10 @@
+:root{
+    --top-bar-size: 40px;
+    --osrs-color: rgb(162, 144, 97);
+    --osrs-semi-light-color: rgb(197, 148, 92);
+    --osrs-semi-dark-color: rgb(109, 66, 17);
+    --osrs-dark-color: rgb(79, 69, 47);
+    --osrs-text-color: rgb(33, 37, 41);
+    --osrs-green: rgba(0, 128, 0, 0.5);
+    --osrs-white: rgb(230,230,230);
+}

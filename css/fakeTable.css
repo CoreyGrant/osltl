@@ -10,7 +10,7 @@
     width: calc(100% - 8px);
     display: flex;
     flex-direction: row;
-    border-bottom: 4px solid black;
+    border-bottom: 4px solid var(--osrs-text-color);
 }
 
 .fake-table-body{
@@ -30,7 +30,7 @@
     flex-direction: row;
 }
 .fake-table-th{
-    border: 1px solid black;
+    border: 1px solid var(--osrs-text-color);
     border-collapse: collapse;
     display: flex;
     justify-content: center;
@@ -38,16 +38,22 @@
 }
 
 .fake-table-td{
-    border: 1px solid black;
+    border: 1px solid var(--osrs-text-color);
     border-collapse: collapse;
     display: flex;
     align-items: center;
     padding: 2px 4px;
 }
+
+/* Mobile table has no scrollbar displacing */
+.mobile .fake-table-head{
+    width: 100%;
+}
+
 @media(max-width: 1085px){
-    .fake-table-head{
+    /* .fake-table-head{
         width: 100%;
-    }
+    } */
     .fake-table img{
         width: 18px;
         height: 18px;
