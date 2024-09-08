@@ -76,10 +76,6 @@ export class App extends React.Component<AppProps, AppState>{
         if(!this.arrayEquals(oldUsers, newUsers)){
             this.loadUserDetails(newUsers);
         }
-        if(this.props.darkMode !== oldProps.darkMode){    
-            const darkModeCss = document.getElementById('dark-mode-css');
-            if(darkModeCss){ darkModeCss.remove(); }
-        }
     }
     arrayEquals(a, b){
         if(a.length !== b.length){return false;}
@@ -109,6 +105,10 @@ export class App extends React.Component<AppProps, AppState>{
                 this.props.loadUserDetails(allUserDetails);
             });
         });
+        setTimeout(() => {
+            const darkModeCss = document.getElementById('dark-mode-css');
+            if(darkModeCss){ darkModeCss.remove(); }
+        }, 8000);
     }
     loadUserDetails(keys){
         Promise.all(keys.map(k => userDetailsService.getDetails(k)))
