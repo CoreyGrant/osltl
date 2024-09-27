@@ -6,7 +6,7 @@ const redisPassword = process.env["osltl_redis_password"]
 const redisPort = process.env["osltl_redis_port"]
 // Initialize client.
 let redisClient = createClient({
-    url: redisUrl,
+    host: redisUrl,
     port: redisPort,
     password: redisPassword
 })
