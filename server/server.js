@@ -19,7 +19,7 @@ const { getUserDetails } = require('./endpoints/getUserDetails');
 const {logDebug} = require('./logger');
 const bodyParser = require('body-parser');
 const { loggedIn } = require('./endpoints/loggedIn');
-
+const port = process.env.port || 8001;
 const app = express();
 
 const isProduction = app.get('env') === "production";
@@ -68,6 +68,6 @@ app.get('/getUserDetails', getUserDetails);
 
 app.get('/loggedIn', loggedIn);
 
-app.listen(8001, () =>{
-  console.log("Server started");
+app.listen(port, () =>{
+  console.log("Server started listening on port " + port);
 })
