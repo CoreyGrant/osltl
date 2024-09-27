@@ -15,8 +15,8 @@ console.log(url);
 let redisClient = createClient({
     url: url
 });
+redisClient.on('error', (err) => console.error(err));
 redisClient.connect().catch(console.error)
-
 // Initialize store.
 let redisStore = new RedisStore({
   client: redisClient,
