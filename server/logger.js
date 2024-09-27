@@ -1,4 +1,4 @@
-const envSev = process.env["osltl-sev"] || 0
+const envSev = process.env["osltl_sev"] || 0
 
 function log(message, sev){
     if(sev <= envSev){
