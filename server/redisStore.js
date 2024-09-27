@@ -1,10 +1,14 @@
 const {default: RedisStore} = require("connect-redis");
 const {createClient} = require("redis")
 const redisUrl = process.env["osltl_redis_connectionstring"]
-
+const redisUsername = process.env["osltl_redis_username"]
+const redisPassword = process.env["osltl_redis_password"]
+const redisPort = process.env["osltl_redis_port"]
 // Initialize client.
 let redisClient = createClient({
-    url: redisUrl
+    url: redisUrl,
+    port: redisPort,
+    password: redisPassword
 })
 redisClient.connect().catch(console.error)
 
