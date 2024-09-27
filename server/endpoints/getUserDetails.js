@@ -1,12 +1,17 @@
 const {userDb} = require("../database/userDb");
-const {logDebug} = require('../logger');
+const {logDebug, logProd} = require('../logger');
 
 module.exports = { 
     getUserDetails(req, res){
-        if(!req.session.userId){res.status(500).send({}); return;}
+        logProd("Getting user details")
+        if(!req.session.userId){
+            logProd("No user id")
+            res.status(500).send({}); 
+            return;
+        }
+        logProd("User id: " + req.session.userId);
         userDb.getUserDetails(req.session.userId)
             .then(x => {
-                //console.log("getting user details", x);
                 res.status(200).send(x);
             });
     }
