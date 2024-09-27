@@ -10,7 +10,7 @@ console.log(redisUsername)
 console.log(redisUrl)
 console.log(redisPassword)
 console.log(redisPort);
-const url = `redis://${redisUsername}:${redisPassword}@${redisUrl}:${redisPort}`;
+const url = `rediss://${redisUsername}:${redisPassword}@${redisUrl}:${redisPort}`;
 console.log(url);
 let redisClient = createClient({
     url: url
