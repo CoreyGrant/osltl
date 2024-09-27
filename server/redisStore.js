@@ -10,7 +10,7 @@ console.log(redisUsername)
 console.log(redisUrl)
 console.log(redisPassword)
 console.log(redisPort);
-let redisClient = createClient({
+let redisClient = createClient(redisPort, redisUrl, {
     host: redisUrl,
     port: redisPort,
     password: redisPassword
