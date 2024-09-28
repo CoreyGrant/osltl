@@ -3,7 +3,7 @@ const {logDebug, logProd} = require('../logger');
 
 module.exports = { 
     getUserDetails(req, res){
-        logProd("Getting user details", req.session);
+        logProd("Getting user details" + JSON.stringify(req.session));
         if(!req.session.userId){
             logProd("No user id")
             res.status(500).send({}); 
