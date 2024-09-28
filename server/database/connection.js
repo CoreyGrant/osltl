@@ -4,12 +4,12 @@ const mySqlUser = process.env["osltl_mysql_user"] || "root";
 const mySqlHost = process.env["osltl_mysql_host"] || "localhost";
 const mySqlDatabase = process.env["osltl_mysql_database"] || 'osltl';
 const mySqlPort = process.env["osltl_mysql_port"]
-console.log("mysql")
-console.log(mySqlPassword)
-console.log(mySqlUser)
-console.log(mySqlHost)
-console.log(mySqlDatabase) 
-console.log(mySqlPort)
+// console.log("mysql")
+// console.log(mySqlPassword)
+// console.log(mySqlUser)
+// console.log(mySqlHost)
+// console.log(mySqlDatabase) 
+// console.log(mySqlPort)
 const pool = mysql.createPool({
     host: mySqlHost,
     user: mySqlUser,
