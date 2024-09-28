@@ -20,7 +20,9 @@ redisClient.connect().catch(console.error)
 // Initialize store.
 let redisStore = new RedisStore({
   client: redisClient,
-  prefix: "osltl:"
+  prefix: "osltl:",
+  resave: false,
+  saveUninitialized: false,
 })
 
 module.exports = redisStore;
