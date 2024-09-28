@@ -10,7 +10,7 @@ module.exports = {
         userDb.tryLogin(emailAddress, password).then(userId => {
             if(userId){
                 logProd("Login succeeded with user id " + userId);
-                req.session.userId = userId;
+                req.session.cookie.userId = userId;
                 res.status(200).send({result: true});
             } else {
                 logProd("Login failed");
