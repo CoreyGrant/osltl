@@ -3,7 +3,7 @@ import {Modal, ModalProps} from './taskDetails';
 import { appApiService } from '../appApiService';
 import {connect} from 'react-redux';
 import { AppState, load, setLoggedIn, setNotification } from '../store/appSlice';
-import { store } from '../store/store';
+import {passwordHelper} from '../../shared/password';
 
 export type AccountModalProps = ModalProps & {
     setLoggedIn: (pl) => void;
@@ -113,19 +113,19 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                 <div className="form-input">
                     <label htmlFor="acc-reg-em">Email address</label>
                     <input type="text" className="account-register-email" id="acc-reg-em" {...getInputProps("rEmailAddress")}/>
-                    {this.state.rEmailAddressError && <span className="error-message">{this.state.rEmailAddressError}</span>}
+                    {this.state.rEmailAddressError && <span className="error-message" dangerouslySetInnerHTML={{__html: this.state.rEmailAddressError}}></span>}
                 </div>
                 <div className="form-input">
                     <label htmlFor='acc-reg-pas'>Password</label>
                     <input type="password" className="account-register-password" id="acc-reg-pas" {...getInputProps("rPassword")}/>
-                    {this.state.rPasswordError && <span className="error-message">{this.state.rPasswordError}</span>}
+                    {this.state.rPasswordError && <span className="error-message" dangerouslySetInnerHTML={{__html: this.state.rPasswordError}}></span>}
                 </div>
                 <div className="form-input">
                     <label htmlFor="acc-reg-cpas">Confirm password</label>
                     <input type="password" className="account-register-confirm-password" id="acc-reg-cpas" {...getInputProps("rConfirmPassword")}/>
                 </div>
                 <button className="btn btn-primary" onClick={() => this.register()}>Register</button>
-                {this.state.registerError && <p className="error-message">{this.state.registerError}</p>}
+                {this.state.registerError && <p className="error-message" dangerouslySetInnerHTML={{__html: this.state.registerError}}></p>}
                 <p className="account-register-already-text">Already have an account?</p>
                 <button className="btn btn-primary" onClick={() => this.setState({registering: false})}>Switch to login</button>
             </div> : undefined}
@@ -185,6 +185,11 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
             this.setState({rPasswordError: "Please enter a password"});
             return;
         }
+        const passwordErrors = passwordHelper.validate(password);
+        if(passwordErrors.length){
+            this.setState({rPasswordError: passwordErrors.join('<br/>')});
+            return;
+        }
         if(password !== confirmPassword){
             this.setState({rPasswordError: "Password must match confirm password"});
             return;
@@ -193,7 +198,14 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
             .then(res => {
                 if(res){
                     // get local details, push to server
-                    this.setState({lEmailAddress: emailAddress, lPassword: password, rEmailAddress: "", rPassword: "", rConfirmPassword: ""}, () => {
+                    this.setState({
+                        lEmailAddress: emailAddress,
+                        lPassword: password,
+                        rEmailAddress: "",
+                        rPassword: "",
+                        rConfirmPassword: "",
+                        rPasswordError: "",
+                        rEmailAddressError: ""}, () => {
                         const loginRes =  appApiService.login(emailAddress, password)
                         if(loginRes){
                             loginRes.then(() => {
@@ -219,7 +231,9 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                         rEmailAddress: "", 
                         rPassword: "", 
                         rConfirmPassword: "",
-                        registerError: "Registration failed"
+                        registerError: "Registration failed",
+                        rEmailAddressError: "",
+                        rPasswordError: ""
                     });
                 }
             })

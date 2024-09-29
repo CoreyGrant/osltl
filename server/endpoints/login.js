@@ -7,11 +7,10 @@ module.exports = {
         // store the id in session
         const {emailAddress, password} = req.body;
         logProd("Logging in for " + emailAddress);
-        userDb.tryLogin(emailAddress, password).then(userId => {
+        userDb.tryLogin(emailAddress.toLowerCase(), password).then(userId => {
             if(userId){
                 logProd("Login succeeded with user id " + userId);
                 req.session.userId = userId;
-                req.session.save();
                 res.status(200).send({result: true});
             } else {
                 logProd("Login failed");
