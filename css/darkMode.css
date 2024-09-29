@@ -59,4 +59,5 @@
     --osrs-text-color: rgb(162, 144, 97);
     --osrs-semi-dark-color: rgb(197, 148, 92);
     --osrs-semi-light-color: rgb(109, 66, 17);
+    --osrs-error-color: rgb(255, 0, 0);
 }

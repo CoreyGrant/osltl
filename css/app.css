@@ -100,7 +100,7 @@ input[type="password"]:focus-visible{
     outline: 2px solid var(--osrs-dark-color);
 }
 .error-message{
-    color: red;
+    color: var(--osrs-error-color);
     font-size: 12px;
 }
 .app-top-bar-dark-toggle-dark{

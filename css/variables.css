@@ -7,4 +7,5 @@
     --osrs-text-color: rgb(33, 37, 41);
     --osrs-green: rgba(0, 128, 0, 0.5);
     --osrs-white: rgb(230,230,230);
+    --osrs-error-color: rgb(100, 0, 0);
 }
