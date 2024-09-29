@@ -22,6 +22,7 @@ export type OptionsPanelProps = {
     manageUsers: () => void;
     refreshData: () => void;
     loginClick: () => void;
+    viewTour: () => void;
 };
 export class OptionsPanel extends React.Component<OptionsPanelProps>{
     mouseoutEvent;
@@ -46,37 +47,47 @@ export class OptionsPanel extends React.Component<OptionsPanelProps>{
         const {loggedIn, darkMode, simple} = this.props;
         const listItems: ListItem[] = [
             {
+                icon: darkMode ? 'viewTourLight.png' : 'viewTour.png',
+                text: 'Take the tour',
+                onClick: () => {this.props.viewTour(); this.props.onClose();}
+            },
+            {
                 icon: darkMode ? 'simpleLight.png' : 'simple.png',
                 text: simple ? 'Detailed' : 'Simple',
-                onClick: () => this.props.setSimple(!this.props.simple)
+                onClick: () => {this.props.setSimple(!this.props.simple); this.props.onClose();}
             },
             {
                 icon: darkMode ? 'darkModeLight.png' : 'darkMode.png',
                 text: darkMode ? 'Light mode' : 'Dark mode',
-                onClick: () => this.props.setDarkMode(!this.props.darkMode)
+                onClick: () => {this.props.setDarkMode(!this.props.darkMode); this.props.onClose();}
             },
             {divider: true},
             {
                 icon: darkMode ? 'userLight.png' : 'user.png',
                 text: 'Manage users',
-                onClick: () => this.props.manageUsers()
+                onClick: () => {this.props.manageUsers(); this.props.onClose();}
             },
             {
                 icon: darkMode ? 'refreshLight.png' : 'refresh.png',
                 text: 'Refresh data',
-                onClick: () => this.props.refreshData()
+                onClick: () => {this.props.onClose(); this.props.refreshData();}
             },
             {
                 icon: darkMode ? 'chatLight.png' : 'chat.png',
                 text: 'Discord',
                 onClick: () => {
-                    this.discordLinkRef.current.click();}
+                    this.discordLinkRef.current.click();
+                    this.props.onClose()
+                }
             },
             {divider: true},
             {
                 icon: darkMode ? 'userLight.png' : 'user.png',
                 text: loggedIn ? 'Logout' : 'Login',
-                onClick: () => this.props.loginClick()
+                onClick: () => {
+                    this.props.loginClick()
+                    this.props.onClose();
+                }
             }
         ];
         if(!this.props.open){

@@ -26,6 +26,10 @@
     border-radius: 8px;
     border: 2px solid var(--osrs-text-color);
 }
+.modal.modal-fullscreen{
+    max-height: 95%;
+    max-width: 95%;
+}
 .modal-close{
     position:absolute;
     top: -4px;

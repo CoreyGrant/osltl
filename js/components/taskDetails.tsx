@@ -64,21 +64,26 @@ export class TaskDetails extends React.Component<TaskDetailsProps>{
     }
 }
 
-export type ModalProps = {onClose: () => void; open: boolean; title?: string;}
+export type ModalProps = {
+    onClose: () => void;
+    open: boolean; title?: string;
+    fullscreen?: boolean;
+}
 export class Modal extends React.Component<ModalProps>{
     constructor(props){
         super(props);
     }
     render(){
-        return this.props.open ? <div class="modal-overlay" onClick={() => this.props.onClose()}>
-             <div class="modal" onClick={(e) => e.stopPropagation()}>
-                <div class="modal-header">
+        const fullClass = "modal" + (this.props.fullscreen ? ' modal-fullscreen' : "");
+        return this.props.open ? <div className="modal-overlay" onClick={() => this.props.onClose()}>
+             <div className={fullClass} onClick={(e) => e.stopPropagation()}>
+                <div className="modal-header">
                     {this.props.title ? <h1>{this.props.title}</h1> : null}
-                    <span class="modal-close" onClick={() => this.props.onClose()}>
+                    <span className="modal-close" onClick={() => this.props.onClose()}>
                         <img src="icon/close.svg"/>
                     </span>
                 </div>
-                <div class="modal-body">
+                <div className="modal-body">
                     {this.props.children}
                 </div>
              </div>

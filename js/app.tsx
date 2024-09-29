@@ -17,6 +17,7 @@ import { appApiService } from './appApiService';
 import ToastNotification from './components/toastNotification';
 import OptionsPanel from './components/optionsPanel'
 import FirstLoadModal from './components/firstLoadModal';
+import { Tour } from './components/tour';
 
 export type AppProps = {
     personalTasks: {[username: string]: number[]};
@@ -41,6 +42,8 @@ export type AppState = {
     accountModalOpen: boolean;
     optionsPanelOpen: boolean;
     firstLoadModalOpen: boolean;
+    tourModalOpen: boolean;
+    loginDefault: boolean;
 };
 export class App extends React.Component<AppProps, AppState>{
     constructor(props){
@@ -51,6 +54,7 @@ export class App extends React.Component<AppProps, AppState>{
             accountModalOpen: false,
             optionsPanelOpen: false,
             firstLoadModalOpen: false,
+            tourModalOpen: false,
             loginDefault: true,
         }
     }
@@ -125,6 +129,10 @@ export class App extends React.Component<AppProps, AppState>{
         const classAddition = (this.props.darkMode ? " dark-mode" : "") + (isMobile ? " mobile" : "")
         return <div className={"app-container" + classAddition}>
             <ToastNotification/>
+            <Tour
+                open={this.state.tourModalOpen}
+                onClose={() => this.setState({tourModalOpen: false})}
+            />
             <FirstLoadModal 
                 open={this.state.firstLoadModalOpen}
                 onClose={() => {
@@ -141,6 +149,10 @@ export class App extends React.Component<AppProps, AppState>{
                     () => this.setState({firstLoadModalOpen: false, accountModalOpen: true, loginDefault: false},
                         () => {appLocalStorage.setNotFirstLoad()}
                     )
+                }
+                tourModalClick={
+                    () => this.setState({tourModalOpen: true, firstLoadModalOpen: false},
+                        () => {appLocalStorage.setNotFirstLoad()})
                 }
                 />
             <UserDetailsModal
@@ -161,7 +173,8 @@ export class App extends React.Component<AppProps, AppState>{
                 onClose={() => this.setState({optionsPanelOpen: false})}
                 manageUsers={() => this.manageUsers()}
                 refreshData={() => this.loadUserDetails(Object.keys(this.props.personalTasks || {}))}
-                loginClick={() => {this.loginClick()}}/>
+                loginClick={() => {this.loginClick()}}
+                viewTour={() => this.setState({tourModalOpen: true})}/>
             {this.props.darkMode ? <link rel="stylesheet" href="css/darkMode.css"/> : null}
             <div className="app-top-bar">
                 <span className="app-top-bar-title">OSLTL</span>

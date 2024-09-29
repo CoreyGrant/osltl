@@ -110,6 +110,9 @@ input[type="password"]:focus-visible{
     background-color: var(--osrs-semi-light-color);
     border-color: var(--osrs-semi-light-color);
 }
+.btn-margin{
+    margin-right: 6px;
+}
 .btn.btn-primary:hover{
     background-color: var(--osrs-semi-dark-color);
     border-color: var(--osrs-semi-dark-color);

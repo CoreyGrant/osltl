@@ -35,6 +35,7 @@ module.exports = {
       new CopyPlugin({
         patterns: [
           { from: "icon", to: "icon" },
+          { from: "images", to: "images" },
           { from: 'favicon.ico'},
           { from: 'css', to: 'css'}
         ],
