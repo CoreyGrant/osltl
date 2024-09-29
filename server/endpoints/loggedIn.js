@@ -5,7 +5,7 @@ module.exports = {
         logProd("Checking if logged in");
         if(req.session && req.session.userId){
             logProd("User id: " + req.session.userId);
-            res.status(200).send({result: true});
+            res.status(200).send({result: true, userId: req.session.userId});
         } else {
             logProd("Not logged in");
             res.status(200).send({result: false});

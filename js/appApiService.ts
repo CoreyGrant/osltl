@@ -2,10 +2,11 @@ import { appLocalStorage } from "./storage";
 import { AppUserDetails } from "./types/appUserDetails";
 import {setNotification, setLoggedIn, load} from './store/appSlice';
 import { store } from "./store/store";
+import {socketClient} from './socket';
 
 export class AppApiService{
     private baseUrl: string = "";
-    async login(emailAddress, password): Promise<boolean>{
+    async login(emailAddress, password): Promise<{result: boolean; userId: number;}>{
         var result = await fetch(this.baseUrl + '/login', {
             method: "POST", 
             body: JSON.stringify({emailAddress, password}),
@@ -13,7 +14,12 @@ export class AppApiService{
                 "Content-Type": "application/json",
             }})
             .then(x => x.json())
-            .then(x => x.result)
+            .then(x => {
+                if(x.result){
+                    socketClient.connect(x.userId);
+                }
+                return x.result;
+            })
             .catch(x => false);
         return result;
     }
@@ -64,7 +70,12 @@ export class AppApiService{
     async loggedIn(): Promise<boolean>{
         return await fetch(this.baseUrl + "/loggedIn")
             .then(x => x.json())
-            .then(x => x.result)
+            .then(x => {
+                if(x.result){
+                    socketClient.connect(x.userId);
+                }
+                return x.result
+            })
             .catch(x => false)
     }
 }

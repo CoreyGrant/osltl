@@ -19,10 +19,12 @@ const { getUserDetails } = require('./endpoints/getUserDetails');
 const {logDebug} = require('./logger');
 const bodyParser = require('body-parser');
 const { loggedIn } = require('./endpoints/loggedIn');
+const { SocketServer } = require('./socket');
 
 const port = process.env.port || 8001;
 const app = express();
-
+const server = require('http').createServer(app);
+const socketServer = new SocketServer(server);
 const isProduction = app.get('env') === "production";
 
 let sess;
@@ -64,12 +66,12 @@ app.post('/logout', logout);
 
 app.post('/register', register);
 
-app.put('/updateUserDetails', updateUserDetails);
+app.put('/updateUserDetails', updateUserDetails(socketServer));
 
 app.get('/getUserDetails', getUserDetails);
 
 app.get('/loggedIn', loggedIn);
 
-app.listen(port, () =>{
+server.listen(port, () =>{
   console.log("Server started listening on port " + port);
 })

@@ -11,7 +11,10 @@ module.exports = {
             if(userId){
                 logProd("Login succeeded with user id " + userId);
                 req.session.userId = userId;
-                res.status(200).send({result: true});
+                res.status(200).send({
+                    result: true,
+                    userId
+                });
             } else {
                 logProd("Login failed");
                 res.status(500).send({result: false});
