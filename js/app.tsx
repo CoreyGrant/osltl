@@ -160,7 +160,7 @@ export class App extends React.Component<AppProps, AppState>{
                 open={this.state.optionsPanelOpen}
                 onClose={() => this.setState({optionsPanelOpen: false})}
                 manageUsers={() => this.manageUsers()}
-                refreshData={() => {}}
+                refreshData={() => this.loadUserDetails(Object.keys(this.props.personalTasks || {}))}
                 loginClick={() => {this.loginClick()}}/>
             {this.props.darkMode ? <link rel="stylesheet" href="css/darkMode.css"/> : null}
             <div className="app-top-bar">
