@@ -15,6 +15,9 @@ export class SocketClient{
                 });
         });
     }
+    disconnect(){
+        this.client.disconnect();
+    }
 }
 
 export const socketClient = new SocketClient();

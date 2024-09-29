@@ -28,6 +28,7 @@ export class AppApiService{
             .then(x => {
                 store.dispatch(setNotification("Logged out"));
                 store.dispatch(setLoggedIn(false));
+                socketClient.disconnect()
             });
     }
     async register(emailAddress, password): Promise<boolean>{
