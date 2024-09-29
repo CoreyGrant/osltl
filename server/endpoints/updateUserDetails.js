@@ -3,13 +3,13 @@ const {logDebug, logProd} = require('../logger');
 
 module.exports = { 
     updateUserDetails(req, res){
-        if(!req.session.cookie.userId){
+        if(!req.session.userId){
             res.status(500).send({result: false}); return;
         }
-        logProd("Updating user details for user id " + req.session.cookie.userId);
+        logProd("Updating user details for user id " + req.session.userId);
         var body = req.body;
         //console.log("updating details", body);
-        userDb.setUserDetails(body, req.session.cookie.userId)
+        userDb.setUserDetails(body, req.session.userId)
             .then(() => {
                 res.status(200).send({result: true});
             })

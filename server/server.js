@@ -7,7 +7,7 @@
 // updateUserDetails
 
 // will want a debouncing mechanism for updating the server so it doesn't get spammed
-
+require('./nodeenv');
 const express = require('express');
 const session = require('express-session');
 const path = require("path");
@@ -19,17 +19,19 @@ const { getUserDetails } = require('./endpoints/getUserDetails');
 const {logDebug} = require('./logger');
 const bodyParser = require('body-parser');
 const { loggedIn } = require('./endpoints/loggedIn');
+
 const port = process.env.port || 8001;
 const app = express();
 
 const isProduction = app.get('env') === "production";
+
 let sess;
 if(isProduction){
   const redisStore = require('./redisStore');
   sess = {
     secret: 'osltl_sec_1423',
     cookie: {
-      secure: true
+      maxAge: 864000000
     },
     store: redisStore,
     resave: false,
