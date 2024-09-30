@@ -13,7 +13,7 @@ export enum TourStep{
     Simple = 5,
     DarkMode = 6,
 }
-export type TourProps = ModalProps & {};
+export type TourProps = {};
 export type TourState = {
     step: TourStep;
 }
@@ -27,7 +27,7 @@ export class Tour extends React.Component<TourProps, TourState>{
     }
     render(){
         // A modal will open and explain the application, with a series of gifs to show how it works
-        return <Modal {...this.props} onClose={() => this.onCloseOverride()} title="OSLTL tour" fullscreen={true}>
+        return <Modal onClose={() => this.onCloseOverride()} title="OSLTL tour" fullscreen={true}>
             <div className="tour-container">
                 <div className="tour-text">
                     {this.getTourText()}
@@ -105,6 +105,5 @@ export class Tour extends React.Component<TourProps, TourState>{
     }
     onCloseOverride(){
         this.setState({step: 0});
-        this.props.onClose();
     }
 }

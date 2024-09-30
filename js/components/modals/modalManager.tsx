@@ -13,10 +13,10 @@ export class ModalManager{
     register(type: AppModal, modal: any){
         this._modals.set(type, modal);
     }
-    current(){
+    current(): React.ReactNode | undefined{
         var currentModal = store.getState().modal.current;
         if(currentModal){
-            return this._modals.get(currentModal);
+            return this._modals.get(currentModal)();
         }
     }
 }

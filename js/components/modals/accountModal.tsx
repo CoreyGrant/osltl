@@ -5,11 +5,14 @@ import {connect} from 'react-redux';
 import { AppState, load, setLoggedIn, setNotification } from '../../store/appSlice';
 import {passwordHelper} from '../../../shared/password';
 import {Filter} from '../../types/filter';
+import {closeModal } from '../../store/modalSlice';
+import { RootState } from '../../store/store';
 
-export type AccountModalProps = ModalProps & {
+export type AccountModalProps = {
     setLoggedIn: (pl) => void;
     setNotification: (pl) => void;
     load: (pl) => void;
+    closeModal: () => void;
     darkMode: boolean;
     simple: boolean;
     filters: Filter;
@@ -72,13 +75,12 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
             registerError: undefined,
             loginSync: false,
         });
-        this.props.onClose();
     }
     render(){
         const getInputProps = (key: KeyOfAccountModalState) => {
             return {
                 value: this.state[key],
-                onChange: (e) => this.setState({[key]: e.target.value})
+                onChange: (e) => this.setState({[key]: e.target.value} as any)
             } as {value: string; onChange: (e: any) => void;};
         }
         return <Modal title={"Account"} onClose={() => this.onClose()}>
@@ -151,7 +153,7 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                         appApiService.updateUserDetails().then(() => {        
                             this.props.setNotification("Logged in");
                             this.props.setLoggedIn(true);
-                            this.props.onClose();
+                            this.props.closeModal();
                         });
                     } else {
                         appApiService.getUserDetails().then(x => {
@@ -159,7 +161,7 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                         });
                         this.props.setNotification("Logged in");
                         this.props.setLoggedIn(true);
-                        this.props.onClose();
+                        this.props.closeModal();
                     }
                 } else {
                     this.setState({loginError: 'Login failed. Please check details and try again.'})
@@ -205,7 +207,8 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                             loginRes.then(() => {
                                 appApiService.updateUserDetails().then(() => {
                                     this.props.setLoggedIn(true);
-                                    this.props.onClose();
+                                    this.onClose();
+                                    this.props.closeModal();
                                 });
                             })
                         }
@@ -228,7 +231,7 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
     }
 }
 
-export default connect((state: any) => {
+export default connect((state: RootState) => {
     const appState: AppState = state.app;
     return {
         darkMode: appState.darkMode,
@@ -240,5 +243,6 @@ export default connect((state: any) => {
 }, {
     setLoggedIn,
     load,
-    setNotification
+    setNotification,
+    closeModal
 })(AccountModal);

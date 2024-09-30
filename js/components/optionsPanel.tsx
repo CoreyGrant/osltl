@@ -115,7 +115,7 @@ export class OptionsPanel extends React.Component<OptionsPanelProps>{
     }
 }
 
-export default connect((state) =>({
+export default connect((state: any) =>({
     loggedIn: state.app.loggedIn,
     simple: state.app.simple,
     darkMode: state.app.darkMode

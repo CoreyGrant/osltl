@@ -1,14 +1,16 @@
 import React from 'react';
-import { ModalProps}, Modal from '../shared/modal';
+import Modal, { ModalProps} from '../shared/modal';
 import {connect} from 'react-redux';
 import { addUser } from '../../store/appSlice';
 import { discordUrl } from '../../constants';
+import { RootState } from '../../store/store';
 
-export type FirstLoadModalProps = ModalProps & {
+export type FirstLoadModalProps = {
     addUser: (pl) => void;
     loginClick: () => void;
     registerClick: () => void;
     tourModalClick: () => void;
+    onClose: () => void;
 };
 export type FirstLoadModalState = {
     username: string;
@@ -21,7 +23,7 @@ export class FirstLoadModal extends React.Component<FirstLoadModalProps, FirstLo
         };
     }
     render(){
-        return <Modal {...this.props} title="Welcome to OSLTL">
+        return <Modal onClose={() => this.props.onClose()} title="Welcome to OSLTL">
             <div className="first-load-modal">
                 <h3>The old school leagues task list</h3>
                 <div className="first-load-modal-username">
@@ -73,7 +75,7 @@ export class FirstLoadModal extends React.Component<FirstLoadModalProps, FirstLo
     }
 }
 
-export default connect((state) => ({
+export default connect((state: RootState) => ({
 
 }), {
     addUser

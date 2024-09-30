@@ -1,14 +1,15 @@
 import React from 'react';
 import Modal, { ModalProps } from '../shared/modal';
 import {connect} from 'react-redux';
-import { AppState, addUser, removeUser, setCurrentUser } from '../../store/appSlice';
+import { addUser, removeUser, setCurrentUser } from '../../store/appSlice';
+import { RootState } from '../../store/store';
 
 export type UserSelectModalState = {
     addingUser: boolean;
     addingUsername: string;
     errorMessage?: string;
 }
-export type UserSelectModalProps = ModalProps & {
+export type UserSelectModalProps = {
     users: string[];
     currentUser: string;
     addUser: (pl) => void;
@@ -25,7 +26,7 @@ class UserSelectModal extends React.Component<UserSelectModalProps, UserSelectMo
         }
     }
     render(){
-        return <Modal {...this.props}>
+        return <Modal title="Manage users">
             <div className="user-select">
                 <div className="user-select-list">
                     {this.props.users.map(u => {
@@ -78,7 +79,7 @@ class UserSelectModal extends React.Component<UserSelectModalProps, UserSelectMo
     }
 }
 
-export default connect((state: any) => ({
+export default connect((state: RootState) => ({
     users: Object.keys(state.app.personalTasks),
     currentUser: state.app.currentUser
 }), {

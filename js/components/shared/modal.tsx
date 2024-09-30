@@ -24,11 +24,11 @@ export class Modal extends React.Component<ModalProps>{
     }
     render(){
         const fullClass = "modal" + (this.props.fullscreen ? ' modal-fullscreen' : "");
-        return <div className="modal-overlay" onClick={() => this.closeModal()}>
+        return <div className="modal-overlay" onClick={() => this.modalClose()}>
              <div className={fullClass} onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
                     {this.props.title ? <h1>{this.props.title}</h1> : null}
-                    <span className="modal-close" onClick={() => this.closeModal()}>
+                    <span className="modal-close" onClick={() => this.modalClose()}>
                         <img src="icon/close.svg"/>
                     </span>
                 </div>

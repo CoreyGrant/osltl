@@ -1,15 +1,15 @@
 import React from 'react';
 import { UserDetails } from '../../types/user';
-import { ModalProps }, Modal from '../shared/modal';
+import Modal, { ModalProps } from '../shared/modal';
 import { orderedSkills } from '../skillFilter';
 import {connect} from 'react-redux';
 import {AppState} from '../../store/appSlice';
 
-export type UserDetailsModalProps = ModalProps & {
+export type UserDetailsModalProps = {
     user: UserDetails;
     username: string;
 }
-class UserDetailsModal<UserDetailsModalProps> extends React.Component{
+class UserDetailsModal extends React.Component<UserDetailsModalProps>{
     constructor(props){
         super(props);
     }
@@ -20,7 +20,7 @@ class UserDetailsModal<UserDetailsModalProps> extends React.Component{
         const diaries = user.diaries;
         const quests = user.quests;
         const username: string = this.props.username;
-        return <Modal {...this.props} title={username}>
+        return <Modal title={username}>
             <div className="user-details">
                 <div className="user-details-panel">
                     <div className="user-details-skills">

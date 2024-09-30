@@ -3,9 +3,12 @@ import { Filter } from '../types/filter';
 import { UserDetails } from '../types/user';
 import { FakeTableDatum, FakeTable } from './fakeTable';
 import { Task, diffVals } from '../types/task';
-import { TaskDetails } from './modals/taskDetails';
+import TaskDetails from './modals/taskDetails';
 import {connect} from 'react-redux';
 import { AppState, addPersonalTask, removePersonalTask, updatePersonalTasks } from '../store/appSlice';
+import { modalManager } from './modals/modalManager';
+import { AppModal } from './shared/modal';
+import { openModal } from '../store/modalSlice';
 
 export type TaskTableProps = {
     filters: Filter;
@@ -18,6 +21,7 @@ export type TaskTableProps = {
     addPersonalTask: (pl) => void;
     removePersonalTask: (pl) => void;
     updatePersonalTasks: (pl) => void;
+    openModal: (pl) => void;
     filtersCollapsed: boolean;
 };
 export type TaskTableState = {currentTaskIndices: number[], selectedTask: Task};
@@ -31,6 +35,8 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
     }
     componentDidMount(){
         this.updateFilters();
+        modalManager.register(AppModal.TaskDetails, () => <TaskDetails 
+            task={this.state.selectedTask}/>)
     }
     render(){
         const schema: FakeTableDatum[] = [
@@ -69,7 +75,7 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                     <img 
                         className="row-detail-info"
                         src={this.props.darkMode ? "icon/infoLight.webp" : "icon/info.webp"} 
-                        onClick={() => this.setState({selectedTask: t})}/>
+                        onClick={() => this.setState({selectedTask: t}, () => this.props.openModal(AppModal.TaskDetails))}/>
             }
         ];
         const data = this.state.currentTaskIndices.map(x => this.props.taskList[x]);
@@ -81,10 +87,6 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                     schema={schema} 
                     rowClasses={rowClasses}></FakeTable>
             </div>
-            <TaskDetails 
-                open={!!this.state.selectedTask} 
-                onClose={() => this.setState({selectedTask: null})}
-                task={this.state.selectedTask}/>
         </>
     }
     renderDetails(t){
@@ -323,5 +325,6 @@ export default connect(
     {
         addPersonalTask: addPersonalTask,
         removePersonalTask: removePersonalTask,
-        updatePersonalTasks: updatePersonalTasks
+        updatePersonalTasks: updatePersonalTasks,
+        openModal
     })(TaskTable)

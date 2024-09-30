@@ -1,13 +1,11 @@
 import React from 'react';
 import { Task, diffVals } from '../../types/task';
-import { UserDetails } from '../../types/user';
 import Modal, {ModalProps} from '../shared/modal';
 
-export type TaskDetailsProps = ModalProps & {
+export type TaskDetailsProps = {
     task: Task;
-    user: UserDetails;
 }
-export class TaskDetails extends React.Component<TaskDetailsProps>{
+export default class TaskDetails extends React.Component<TaskDetailsProps>{
     constructor(props){
         super(props);
     }
