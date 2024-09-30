@@ -7,18 +7,20 @@ import TaskTable from './components/taskTable';
 import { userDetailsService } from './userDetailsService';
 import { UserDetails } from './types/user';
 import {Task} from './types/task';
-import UserDetailsModal from './components/userDetails';
+import UserDetailsModal from './components/modals/userDetails';
 import {connect} from 'react-redux';
 import {AppState as AppStoreState, updatePersonalTasks, setSimple, setDarkMode, load, loadUserDetails, setLoggedIn, setNotification} from './store/appSlice';
-import UserSelectModal from './components/userSelectModal';
-import AccountModal from './components/accountModal';
+import UserSelectModal from './components/modals/userSelectModal';
+import AccountModal from './components/modals/accountModal';
 import { appLocalStorage } from './storage';
 import { appApiService } from './appApiService';
-import ToastNotification from './components/toastNotification';
+import ToastNotification from './components/shared/toastNotification';
 import OptionsPanel from './components/optionsPanel'
-import FirstLoadModal from './components/firstLoadModal';
-import { Tour } from './components/tour';
-
+import FirstLoadModal from './components/modals/firstLoadModal';
+import { Tour } from './components/modals/tour';
+import { modalManager } from './components/modals/modalManager';
+import { AppModal } from './components/shared/modal';
+import {openModal} from '../store/modalSlice';
 export type AppProps = {
     personalTasks: {[username: string]: number[]};
     darkMode: boolean;
@@ -35,6 +37,7 @@ export type AppProps = {
     lastUpdated?: Date;
     loggedIn: boolean;
     setLoggedIn: (pl) => void;
+    openModal: (pl) => void;
 };
 export type AppState = {
     userModalOpen: boolean;
@@ -91,6 +94,30 @@ export class App extends React.Component<AppProps, AppState>{
         return true;
     }
     componentDidMount(){
+        modalManager.register(
+            AppModal.Tour,
+            <Tour/>
+        );
+        modalManager.register(
+            AppModal.FirstLoad,
+            <FirstLoadModal 
+                onClose={() => appLocalStorage.setNotFirstLoad();}
+                loginClick={() => {
+                    this.setState({loginDefault: true})
+                    this.props.openModal(AppModal.Account)
+                    appLocalStorage.setNotFirstLoad()
+                }}
+                registerClick={
+                    () => this.setState({firstLoadModalOpen: false, accountModalOpen: true, loginDefault: false},
+                        () => {appLocalStorage.setNotFirstLoad()}
+                    )
+                }
+                tourModalClick={
+                    () => this.setState({tourModalOpen: true, firstLoadModalOpen: false},
+                        () => {appLocalStorage.setNotFirstLoad()})
+                }
+                />
+        );
         // check to see if user has used the app before
         const notFirstLoad = appLocalStorage.getNotFirstLoad();
         if(!notFirstLoad){
@@ -129,32 +156,7 @@ export class App extends React.Component<AppProps, AppState>{
         const classAddition = (this.props.darkMode ? " dark-mode" : "") + (isMobile ? " mobile" : "")
         return <div className={"app-container" + classAddition}>
             <ToastNotification/>
-            <Tour
-                open={this.state.tourModalOpen}
-                onClose={() => this.setState({tourModalOpen: false})}
-            />
-            <FirstLoadModal 
-                open={this.state.firstLoadModalOpen}
-                onClose={() => {
-                    this.setState({firstLoadModalOpen: false}, () => {
-                        appLocalStorage.setNotFirstLoad();
-                    })
-                }}
-                loginClick={
-                    () => this.setState({firstLoadModalOpen: false, accountModalOpen: true, loginDefault: true},
-                        () => {appLocalStorage.setNotFirstLoad()}
-                    )
-                }
-                registerClick={
-                    () => this.setState({firstLoadModalOpen: false, accountModalOpen: true, loginDefault: false},
-                        () => {appLocalStorage.setNotFirstLoad()}
-                    )
-                }
-                tourModalClick={
-                    () => this.setState({tourModalOpen: true, firstLoadModalOpen: false},
-                        () => {appLocalStorage.setNotFirstLoad()})
-                }
-                />
+            
             <UserDetailsModal
                 open={this.state.userModalOpen}
                 onClose={() => this.setState({userModalOpen: false})} 
@@ -226,5 +228,6 @@ export default connect((state: any, b) => ({
     load,
     loadUserDetails,
     setLoggedIn,
-    setNotification
+    setNotification,
+    openModal
 })(App);

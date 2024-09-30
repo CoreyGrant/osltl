@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {setNotification, removeNotification} from '../store/appSlice';
+import {setNotification, removeNotification} from '../../store/appSlice';
 
 export type ToastNotificationProps = {
     notifications: string[];

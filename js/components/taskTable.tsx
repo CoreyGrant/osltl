@@ -3,7 +3,7 @@ import { Filter } from '../types/filter';
 import { UserDetails } from '../types/user';
 import { FakeTableDatum, FakeTable } from './fakeTable';
 import { Task, diffVals } from '../types/task';
-import { TaskDetails } from './taskDetails';
+import { TaskDetails } from './modals/taskDetails';
 import {connect} from 'react-redux';
 import { AppState, addPersonalTask, removePersonalTask, updatePersonalTasks } from '../store/appSlice';
 

@@ -1,16 +1,18 @@
 import React from 'react';
-import {Modal, ModalProps} from './taskDetails';
-import { appApiService } from '../appApiService';
+import Modal, {ModalProps} from '../shared/modal';
+import { appApiService } from '../../appApiService';
 import {connect} from 'react-redux';
-import { AppState, load, setLoggedIn, setNotification } from '../store/appSlice';
-import {passwordHelper} from '../../shared/password';
+import { AppState, load, setLoggedIn, setNotification } from '../../store/appSlice';
+import {passwordHelper} from '../../../shared/password';
+import {Filter} from '../../types/filter';
 
 export type AccountModalProps = ModalProps & {
     setLoggedIn: (pl) => void;
+    setNotification: (pl) => void;
     load: (pl) => void;
     darkMode: boolean;
     simple: boolean;
-    filters: Filters;
+    filters: Filter;
     personalTasks: {[username: string]: number[]},
     currentUser: string;
     loginDefault: boolean;
@@ -31,7 +33,7 @@ export type AccountModalState = {
     registerError?: string;
     loginSync: boolean;
 };
-
+type KeyOfAccountModalState = keyof AccountModalState;
 export class AccountModal extends React.Component<AccountModalProps, AccountModalState>{
     constructor(props){
         super(props);
@@ -52,9 +54,7 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
         }
     }
     componentDidUpdate(oldProps){
-        if(oldProps.open !== this.props.open && this.props.open){
-            this.setState({registering: !this.props.loginDefault});
-        }
+        this.setState({registering: !this.props.loginDefault});
     }
     onClose(){
         this.setState({
@@ -75,13 +75,13 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
         this.props.onClose();
     }
     render(){
-        const getInputProps = (key: string) => {
+        const getInputProps = (key: KeyOfAccountModalState) => {
             return {
                 value: this.state[key],
                 onChange: (e) => this.setState({[key]: e.target.value})
-            };
+            } as {value: string; onChange: (e: any) => void;};
         }
-        return <Modal open={this.props.open} onClose={() => this.onClose()} title={"Account"}>
+        return <Modal title={"Account"} onClose={() => this.onClose()}>
             <div className="account-modal">
             {this.state.registering ? undefined : <div className="account-login">
                 <h1>Login</h1>
@@ -96,7 +96,7 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                     {this.state.lPasswordError && <span className="error-message">{this.state.lPasswordError}</span>}
                 </div>
                 <div className="form-input-inline">
-                    <input id="acc-log-sync" type="checkbox" checked={this.state.loginSync} onClick={(e) => this.setState({loginSync: e.target.checked})}/>
+                    <input id="acc-log-sync" type="checkbox" checked={this.state.loginSync} onClick={(e: any) => this.setState({loginSync: e?.target?.checked})}/>
                     <label htmlFor="acc-log-sync">Sync local to account?</label>
                 </div>
                 <p>WARNING - this will set your account to everything set locally, only select if you have made changes while logged out. If you are logging into an existing account on a new device, this will wipe everything saved.</p>
@@ -148,13 +148,7 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                 if(res){
                     if(this.state.loginSync){
                         // we need to send local data to server, rather than load
-                        appApiService.updateUserDetails({
-                            currentUser: this.props.currentUser,
-                            filters: this.props.filters,
-                            darkMode: this.props.darkMode,
-                            simple: this.props.simple,
-                            personalTasks: this.props.personalTasks
-                        }).then(() => {        
+                        appApiService.updateUserDetails().then(() => {        
                             this.props.setNotification("Logged in");
                             this.props.setLoggedIn(true);
                             this.props.onClose();
@@ -209,13 +203,7 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                         const loginRes =  appApiService.login(emailAddress, password)
                         if(loginRes){
                             loginRes.then(() => {
-                                appApiService.updateUserDetails({
-                                    currentUser: this.props.currentUser,
-                                    filters: this.props.filters,
-                                    darkMode: this.props.darkMode,
-                                    simple: this.props.simple,
-                                    personalTasks: this.props.personalTasks
-                                }).then(() => {
+                                appApiService.updateUserDetails().then(() => {
                                     this.props.setLoggedIn(true);
                                     this.props.onClose();
                                 });

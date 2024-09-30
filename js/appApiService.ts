@@ -51,7 +51,15 @@ export class AppApiService{
                 return x;
             });
     }
-    async updateUserDetails(userDetails): Promise<boolean>{
+    async updateUserDetails(): Promise<boolean>{
+        const appState = store.getState().app;
+        const userDetails = {
+            currentUser: appState.currentUser,
+            filters: appState.filters,
+            darkMode: appState.darkMode,
+            simple: appState.simple,
+            personalTasks: appState.personalTasks
+        }
         return await fetch(this.baseUrl + '/updateUserDetails', {
             method: "PUT",
             body: JSON.stringify(userDetails),

@@ -26,6 +26,8 @@ export type OptionsPanelProps = {
 };
 export class OptionsPanel extends React.Component<OptionsPanelProps>{
     mouseoutEvent;
+    panelRef;
+    discordLinkRef;
     constructor(props){
         super(props);
         this.panelRef = React.createRef();

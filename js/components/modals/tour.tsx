@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, ModalProps } from './taskDetails';
+import Modal, { ModalProps } from '../shared/modal';
 
 // the tour will be accessible through the first time modal, and another button somewhere
 // it will demonstrate app features, and explain where everything is

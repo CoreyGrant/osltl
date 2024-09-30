@@ -1,7 +1,7 @@
 import React from 'react';
-import { Modal, ModalProps } from './taskDetails';
+import Modal, { ModalProps } from '../shared/modal';
 import {connect} from 'react-redux';
-import { AppState, addUser, removeUser, setCurrentUser } from '../store/appSlice';
+import { AppState, addUser, removeUser, setCurrentUser } from '../../store/appSlice';
 
 export type UserSelectModalState = {
     addingUser: boolean;

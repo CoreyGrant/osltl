@@ -1,8 +1,8 @@
 import React from 'react';
-import { ModalProps, Modal } from './taskDetails';
+import { ModalProps}, Modal from '../shared/modal';
 import {connect} from 'react-redux';
-import { addUser } from '../store/appSlice';
-import { discordUrl } from '../constants';
+import { addUser } from '../../store/appSlice';
+import { discordUrl } from '../../constants';
 
 export type FirstLoadModalProps = ModalProps & {
     addUser: (pl) => void;

@@ -1,9 +1,9 @@
 import React from 'react';
-import { UserDetails } from '../types/user';
-import { ModalProps, Modal } from './taskDetails';
-import { orderedSkills } from './skillFilter';
+import { UserDetails } from '../../types/user';
+import { ModalProps }, Modal from '../shared/modal';
+import { orderedSkills } from '../skillFilter';
 import {connect} from 'react-redux';
-import {AppState} from '../store/appSlice';
+import {AppState} from '../../store/appSlice';
 
 export type UserDetailsModalProps = ModalProps & {
     user: UserDetails;

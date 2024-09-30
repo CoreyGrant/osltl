@@ -1,6 +1,7 @@
 import React from 'react';
-import { Task, diffVals } from '../types/task';
-import { UserDetails } from '../userDetailsService';
+import { Task, diffVals } from '../../types/task';
+import { UserDetails } from '../../types/user';
+import Modal, {ModalProps} from '../shared/modal';
 
 export type TaskDetailsProps = ModalProps & {
     task: Task;
@@ -15,7 +16,7 @@ export class TaskDetails extends React.Component<TaskDetailsProps>{
         if(!task){return;}
         const reqs = task.reqs;
         return <Modal {...this.props} title={"Task details"}>
-            <div class="task-details">
+            <div className="task-details">
                 <h1>{task.name}</h1>
                 <h3>{task.desc}</h3>
                 <span><img src={"icon/" + task.diff + "Task.webp"}/>{task.diff} ({diffVals[task.diff]})</span>
@@ -64,29 +65,3 @@ export class TaskDetails extends React.Component<TaskDetailsProps>{
     }
 }
 
-export type ModalProps = {
-    onClose: () => void;
-    open: boolean; title?: string;
-    fullscreen?: boolean;
-}
-export class Modal extends React.Component<ModalProps>{
-    constructor(props){
-        super(props);
-    }
-    render(){
-        const fullClass = "modal" + (this.props.fullscreen ? ' modal-fullscreen' : "");
-        return this.props.open ? <div className="modal-overlay" onClick={() => this.props.onClose()}>
-             <div className={fullClass} onClick={(e) => e.stopPropagation()}>
-                <div className="modal-header">
-                    {this.props.title ? <h1>{this.props.title}</h1> : null}
-                    <span className="modal-close" onClick={() => this.props.onClose()}>
-                        <img src="icon/close.svg"/>
-                    </span>
-                </div>
-                <div className="modal-body">
-                    {this.props.children}
-                </div>
-             </div>
-        </div> : undefined;
-    }
-}
