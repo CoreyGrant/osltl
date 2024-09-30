@@ -89,7 +89,7 @@ export class App extends React.Component<AppProps, AppState>{
         modalManager.register(
             AppModal.FirstLoad,
             () => <FirstLoadModal 
-                onClose={() => appLocalStorage.setNotFirstLoad()}
+                onClose={() => this.setState({loginDefault: false}, () => appLocalStorage.setNotFirstLoad())}
                 loginClick={() => this.setState({loginDefault: true}, () => {
                         appLocalStorage.setNotFirstLoad()
                         this.props.openModal(AppModal.Account)
@@ -102,7 +102,7 @@ export class App extends React.Component<AppProps, AppState>{
                 }
                 tourModalClick={() => {
                         appLocalStorage.setNotFirstLoad();
-                        this.props.openModal(AppModal.Account);
+                        this.props.openModal(AppModal.Tour);
                     }
                 }
                 />
