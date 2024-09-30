@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal, {ModalProps} from '../shared/modal';
+import Modal, {AppModal, ModalProps} from '../shared/modal';
 import { appApiService } from '../../appApiService';
 import {connect} from 'react-redux';
 import { AppState, load, setLoggedIn, setNotification } from '../../store/appSlice';
@@ -13,6 +13,7 @@ export type AccountModalProps = {
     setNotification: (pl) => void;
     load: (pl) => void;
     closeModal: () => void;
+    open: boolean;
     darkMode: boolean;
     simple: boolean;
     filters: Filter;
@@ -56,8 +57,10 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
             loginSync: false
         }
     }
-    componentDidUpdate(oldProps){
-        this.setState({registering: !this.props.loginDefault});
+    componentDidMount(): void {
+        if(this.props.open){
+            this.setState({registering: !this.props.loginDefault});
+        }
     }
     onClose(){
         this.setState({
@@ -238,7 +241,8 @@ export default connect((state: RootState) => {
         simple: appState.simple,
         filters: appState.filters,
         personalTasks: appState.personalTasks,
-        currentUser: appState.currentUser
+        currentUser: appState.currentUser,
+        open: state.modal.current == AppModal.Account
     };
 }, {
     setLoggedIn,
