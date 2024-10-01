@@ -23,3 +23,13 @@
     width: 100%;
     object-fit: contain;
 }
+
+@media (max-width: 768px){
+    .tour-container{
+        flex-direction: column;
+    }
+    .tour-text, .tour-gif{
+        height: 50%;
+        width: 100%;
+    }
+}

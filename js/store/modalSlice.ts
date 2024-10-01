@@ -10,7 +10,6 @@ export const modalSlice = createSlice({
             state.current = action.payload;
         },
         closeModal(state){
-            console.log("tried to close modal");
             state.current = undefined;
         }
     }

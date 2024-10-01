@@ -59,3 +59,9 @@
     flex-direction: column;
     justify-content: start;
 }
+
+@media (max-width: 768px){
+    .modal-overlay{
+        padding: 10px;
+    }
+}
