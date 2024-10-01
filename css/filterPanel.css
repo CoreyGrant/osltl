@@ -97,13 +97,14 @@
     height: 20px;
 }
 .single-skill-filter, .single-diff-filter, .single-area-filter{
-    width: 28px;
-    height: 28px;
+    width: 27px;
+    height: 27px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid var(--osrs-text-color);
     border-collapse: collapse;
+    margin: 0.5px;
 }
 .single-skill-filter.selected, .single-diff-filter.selected, .single-area-filter.selected{
     border: 3px solid green;
