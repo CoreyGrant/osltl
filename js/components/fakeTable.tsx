@@ -29,16 +29,26 @@ export class FakeTable extends React.Component<FakeTableProps, FakeTableState>{
         }
         this.fakeTableBodyRef = React.createRef();
     }
+    componentDidUpdate(oldProps){
+        if(oldProps.data != this.props.data){
+            if(this.props.infiniteScroll){
+                this.fakeTableBodyRef.current.scrollTop = 0;
+                this.setState({currentData: this.props.data.slice(0, this.props.infiniteScroll.initialAmount)})
+            } else {
+                this.setState({currentData: this.props.data});
+            }
+        }
+    }
     componentDidMount(){
         if(this.props.infiniteScroll){
             const initialAmount = this.props.infiniteScroll.initialAmount;
             const loadAmount = this.props.infiniteScroll.loadAmount ?? initialAmount;
-            const scrollPercent = (this.props.infiniteScroll.scrollPercent ?? 20)/100;
+            const scrollPercent = (this.props.infiniteScroll.scrollPercent ?? 80)/100;
             const scrollElm = this.fakeTableBodyRef.current;
             const currentData = this.state.currentData;
             const initialCurrentData = currentData.slice(0, initialAmount);
             scrollElm.addEventListener('scroll', () => {
-                const remainingPercent = (scrollElm.scrollHeight - scrollElm.scrollTop)/scrollElm.scrollHeight;
+                const remainingPercent = (scrollElm.scrollTop + scrollElm.clientHeight)/scrollElm.scrollHeight;
                 if(remainingPercent > scrollPercent){
                     const currentDataLength = this.state.currentData.length;
                     const newDataLength = currentDataLength + loadAmount;
