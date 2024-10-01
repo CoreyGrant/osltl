@@ -85,7 +85,8 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 <FakeTable 
                     data={data} 
                     schema={schema} 
-                    rowClasses={rowClasses}></FakeTable>
+                    rowClasses={rowClasses}
+                    infiniteScroll={{initialAmount: 50, loadAmount: 20, scrollPercent: 20}}></FakeTable>
             </div>
         </>
     }
