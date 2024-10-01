@@ -46,7 +46,7 @@
 .row-detail-area-divider{
     margin-left: 4px;
     margin-right: 4px;
-    color:#212529;
+    color:var(--osrs-text-color);
     font-size: 32px;
     font-weight: bolder;
     line-height: 1;

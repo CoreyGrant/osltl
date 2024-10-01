@@ -17,7 +17,7 @@ import { appApiService } from './appApiService';
 import ToastNotification from './components/shared/toastNotification';
 import OptionsPanel from './components/optionsPanel'
 import FirstLoadModal from './components/modals/firstLoadModal';
-import { Tour } from './components/modals/tour';
+import Tour from './components/modals/tour';
 import { modalManager } from './components/modals/modalManager';
 import { AppModal } from './components/shared/modal';
 import {openModal} from './store/modalSlice';

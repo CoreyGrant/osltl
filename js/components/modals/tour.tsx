@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal, { ModalProps } from '../shared/modal';
-
+import {connect} from 'react-redux';
+import { closeModal } from '../../store/modalSlice';
+import { RootState } from '../../store/store';
 // the tour will be accessible through the first time modal, and another button somewhere
 // it will demonstrate app features, and explain where everything is
 
@@ -13,7 +15,9 @@ export enum TourStep{
     Simple = 5,
     DarkMode = 6,
 }
-export type TourProps = {};
+export type TourProps = {
+    closeModal: () => void;
+};
 export type TourState = {
     step: TourStep;
 }
@@ -27,7 +31,7 @@ export class Tour extends React.Component<TourProps, TourState>{
     }
     render(){
         // A modal will open and explain the application, with a series of gifs to show how it works
-        return <Modal onClose={() => this.onCloseOverride()} title="OSLTL tour" fullscreen={true}>
+        return <Modal title="OSLTL tour" fullscreen={true}>
             <div className="tour-container">
                 <div className="tour-text">
                     {this.getTourText()}
@@ -101,9 +105,12 @@ export class Tour extends React.Component<TourProps, TourState>{
         this.setState({step: this.state.step + 1});
     }
     finishClick(){
-        this.onCloseOverride();
-    }
-    onCloseOverride(){
-        this.setState({step: 0});
+        this.props.closeModal();
     }
 }
+
+export default connect((state: RootState) => ({
+    
+}),{
+    closeModal
+})(Tour)

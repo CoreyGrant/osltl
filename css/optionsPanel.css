@@ -29,7 +29,7 @@
 }
 
 .options-panel-item:hover{
-    background-color: var(--osrs-semi-dark-color);
+    background-color: var(--osrs-dark-color);
 }
 .options-panel-item-icon{
     display: flex; 
