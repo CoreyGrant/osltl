@@ -17,9 +17,14 @@ export class AppIcon extends React.Component<AppIconProps>{
     }
     render(){
         let color = this.props.color;
-        const innerProps = this.props.props || {};
+        let innerProps = this.props.props || {};
         if(!color){
             color = this.props.darkMode ? '#a29061' : '#212529';
+        }
+        let className = "app-icon app-icon-" + this.props.size;
+        if(this.props.props && this.props.props.className){
+            className = className + " " + this.props.props.className
+            delete innerProps.className;
         }
         if(this.props.ext === 'svg'){
             let width, height;
@@ -40,11 +45,11 @@ export class AppIcon extends React.Component<AppIconProps>{
                     width = height = 40;
                     break;
             }
-            return <div className={"app-icon app-icon-" + this.props.size} {...innerProps}>
+            return <div className={className} {...innerProps}>
                 <SvgAppIcon name={this.props.name} fill={color} width={width} height={height}/>
             </div>
         } else {
-            return <div className={"app-icon app-icon-" + this.props.size} {...innerProps}>
+            return <div className={className} {...innerProps}>
                 <img src={"icon/" + this.props.name + "." + this.props.ext}/>
             </div>
         }

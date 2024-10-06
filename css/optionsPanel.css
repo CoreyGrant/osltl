@@ -57,7 +57,37 @@
 .app-top-bar-icons{
     display: none;
 }
-
+.inline-options-panel{
+    display: flex;
+    flex-direction: row;
+    padding-left: 4px;
+}
+.inline-options-panel-item{
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+    border: 2px solid var(--osrs-text-color);
+    border-radius: 3px;
+    margin-right: 4px;
+    height: 30px;
+    cursor: pointer;
+}
+.inline-options-panel-item-icon{
+    margin-top: -5px;
+}
+.inline-options-panel-item-text{
+    margin-top: -4px;
+}
+.app-options-icon{display: none;}
+.inline-options-panel{
+    display: flex;
+}
+@media (max-width: 1440px){
+    .inline-options-panel{
+        display: none;
+    }
+    .app-options-icon{display: block;}
+}
 @media (max-width: 768px){
     .options-panel-item-text>span{
         font-size: 14px;
