@@ -1,4 +1,5 @@
 import React from 'react';
+import AppIcon from './shared/appIcon';
 
 export type SkillFilterProps = {
     value: string[];
@@ -17,7 +18,7 @@ export class SkillFilter extends React.Component<SkillFilterProps>{
                 {orderedSkills.map(os =>{ 
                     var selectedClass = this.props.value.indexOf(os) > -1 ? " selected" : "";
                     return <div className={"single-skill-filter" + selectedClass} onClick={() => this.skillClick(os)} title={os}>
-                        <img src={"icon/" + os + ".webp"}></img>
+                        <AppIcon name={os} ext="webp" size="sm"/>
                     </div>
                 })}
             </div>
@@ -25,7 +26,7 @@ export class SkillFilter extends React.Component<SkillFilterProps>{
                 {extraSkills.map(os => {
                     var selectedClass = this.props.value.indexOf(os) >  -1 ? " selected" : "";
                     return <div className={"single-skill-filter" + selectedClass} onClick={() => this.skillClick(os)} title={os}>
-                        <img src={"icon/" + os + (os == "Quest" ? ".png" : ".webp")}></img>
+                        <AppIcon name={os} ext={os == "Quest" ? "png" : "webp"} size="sm"/>
                     </div>
                 })}
             </div>

@@ -9,6 +9,7 @@ import { AppState, addPersonalTask, removePersonalTask, updatePersonalTasks } fr
 import { modalManager } from './modals/modalManager';
 import { AppModal } from './shared/modal';
 import { openModal } from '../store/modalSlice';
+import AppIcon from './shared/appIcon';
 
 export type TaskTableProps = {
     filters: Filter;
@@ -54,10 +55,9 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
             },
             {
                 headerDisplay: () => <b>Points - {this.difficultySum()}</b>,
-                display: (t) => <span>
-                    <img 
-                        src={"icon/" + t.diff + "Task.webp"} 
-                        style={{marginRight: "4px"}}/>{diffVals[t.diff]}
+                display: (t) => <span className="d-flex flex-row">
+                    <AppIcon name={t.diff + "Task"} ext="webp" props={{style: {marginRight: "4px"}}} size="sm"/>
+                    {diffVals[t.diff]}
                 </span>
             },
             {
@@ -72,10 +72,7 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
             {
                 headerDisplay: () => <></>,
                 display: (t) =>
-                    <img 
-                        className="row-detail-info"
-                        src={this.props.darkMode ? "icon/infoLight.webp" : "icon/info.webp"} 
-                        onClick={() => this.setState({selectedTask: t}, () => this.props.openModal(AppModal.TaskDetails))}/>
+                    <AppIcon name="info" ext="svg" size="sm" props={{onClick: () => this.setState({selectedTask: t}, () => this.props.openModal(AppModal.TaskDetails)), style: {cursor: 'pointer'}}} />
             }
         ];
         const data = this.state.currentTaskIndices.map(x => this.props.taskList[x]);
@@ -102,11 +99,8 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                             var showDivider = !(ari + 1 === a.areas.length);
                             return <div 
                                 className="row-detail-area">
-                                <img 
-                                    className="row-detail-area-img" 
-                                    src={"icon/" + ar + "Area.webp"} 
-                                    style={{marginRight: "4px"}} 
-                                    title={ar}/>{ar}
+                                <AppIcon name={ar + "Area"} ext="webp" props={{style: {marginRight: "4px"}}} size="sm"/>
+                                {ar}
                                 {showDivider && <p className="row-detail-area-divider">/</p>}
                             </div>    
                         } else {
@@ -115,11 +109,8 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                                 return <div 
                                     style={{display: "flex", flexDirection: 'row'}} 
                                     className="row-detail-area-and">
-                                <img 
-                                    className="row-detail-area-img" 
-                                    src={"icon/" + subAr + "Area.webp"} 
-                                    style={{marginRight: "4px"}} 
-                                    title={subAr}/>{subAr}
+                                <AppIcon name={subAr + "Area"} ext="webp" props={{style: {marginRight: "4px"}}} size="sm"/>
+                                {subAr}
                                 {showSummer && <p className="row-detail-area-divider">+</p>}
                             </div>
                             })
@@ -128,27 +119,20 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 </div>
                 <div className="row-detail-reqs">
                 {Object.keys(a?.skills || {}).map(x => <span className="row-detail-skills">
-                    <img 
-                        src={"icon/" + x.replace(" ", "") + ".webp"} 
-                        title={x} 
-                        style={{marginRight: "4px"}}/>{a.skills[x]}
+                    <AppIcon name={x.replace(" ", "")} ext="webp" props={{style: {marginRight: '4px'}, title: x}} size="sm"/>
+                    {a.skills[x]}
                 </span>)}
                 {a?.quests?.map(x => <span 
                     className="row-detail-quest">
-                    <img 
-                        src="icon/Quest.png" 
-                        title={x} 
-                        style={{marginRight: "4px"}}/>{x}
+                    <AppIcon name="Quest" ext="png" size="sm" props={{style: {marginRight: "4px"}, title: x}}/>
+                    {x}
                 </span>)}
                 {a?.diary?.map(x => <span className="row-detail-diary">
-                    <img src="icon/Diary.webp" 
-                        title={x} 
-                        style={{marginRight: "4px"}}/>{x}
+                    <AppIcon name="Diary" ext="webp" size="sm" props={{style: {marginRight: "4px"}, title: x}}/>
+                    {x}
                 </span>)}
                 {Object.keys(a?.kourend || {}).map(x => <span className="row-detail-kourend">
-                    <img src={"icon/Favour.webp"} 
-                        title={x} 
-                        style={{marginRight: "4px"}}/>{x} {a.kourend[x]}%
+                    <AppIcon name="Favour" ext="webp" size="sm" props={{style: {marginRight: "4px"}}}/>{x} {a.kourend[x]}%
                 </span>)}
                 </div>
             </div>
@@ -196,6 +180,12 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
             const showComplete = filter.showComplete;
             if(user && user.leagueTasks && user.leagueTasks.length && !showComplete){
                 if(user.leagueTasks.indexOf(task.id) > -1){
+                    return false;
+                }
+            }
+            if(filter.search && filter.search.length){
+                const filterSearch = filter.search.toLowerCase();
+                if(task.name.toLowerCase().indexOf(filterSearch) === -1 && task.desc.toLowerCase().indexOf(filterSearch) === -1){
                     return false;
                 }
             }

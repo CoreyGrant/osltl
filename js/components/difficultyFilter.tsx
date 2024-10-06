@@ -1,4 +1,5 @@
 import React from 'react';
+import AppIcon from './shared/appIcon';
 
 export type DifficultyFilterProps = {
     value: string[];
@@ -13,7 +14,7 @@ export class DifficultyFilter extends React.Component<DifficultyFilterProps>{
             {["Easy", "Medium", "Hard", "Elite", "Master"].map(os => {
                 var selectedClass = this.props.value.indexOf(os) > -1 ? " selected" : "";
                 return <div className={"single-diff-filter" + selectedClass} title={os} onClick={() => this.diffClick(os)}>
-                    <img src={"icon/" + os + "Task.webp"}></img>
+                    <AppIcon name={os + "Task"} ext="webp" size="sm"/>
                 </div>
             })}
         </div>

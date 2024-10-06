@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {setSimple, setLoggedIn, setDarkMode} from '../store/appSlice';
 import { openInTab } from '../helpers';
 import { discordUrl } from '../constants';
+import AppIcon from './shared/appIcon';
 
 type ListItem = {
     icon?: string;
@@ -49,33 +50,33 @@ export class OptionsPanel extends React.Component<OptionsPanelProps>{
         const {loggedIn, darkMode, simple} = this.props;
         const listItems: ListItem[] = [
             {
-                icon: darkMode ? 'viewTourLight.png' : 'viewTour.png',
+                icon: 'tour',
                 text: 'Take the tour',
                 onClick: () => {this.props.viewTour(); this.props.onClose();}
             },
             {
-                icon: darkMode ? 'simpleLight.png' : 'simple.png',
+                icon: 'simple',
                 text: simple ? 'Detailed' : 'Simple',
                 onClick: () => {this.props.setSimple(!this.props.simple); this.props.onClose();}
             },
             {
-                icon: darkMode ? 'darkModeLight.png' : 'darkMode.png',
+                icon: 'darkMode',
                 text: darkMode ? 'Light mode' : 'Dark mode',
                 onClick: () => {this.props.setDarkMode(!this.props.darkMode); this.props.onClose();}
             },
             {divider: true},
             {
-                icon: darkMode ? 'userLight.png' : 'user.png',
+                icon: 'account',
                 text: 'Manage users',
                 onClick: () => {this.props.manageUsers(); this.props.onClose();}
             },
             {
-                icon: darkMode ? 'refreshLight.png' : 'refresh.png',
+                icon: 'refresh',
                 text: 'Refresh data',
                 onClick: () => {this.props.onClose(); this.props.refreshData();}
             },
             {
-                icon: darkMode ? 'chatLight.png' : 'chat.png',
+                icon: 'chat',
                 text: 'Discord',
                 onClick: () => {
                     this.discordLinkRef.current.click();
@@ -84,7 +85,7 @@ export class OptionsPanel extends React.Component<OptionsPanelProps>{
             },
             {divider: true},
             {
-                icon: darkMode ? 'userLight.png' : 'user.png',
+                icon: 'user',
                 text: loggedIn ? 'Logout' : 'Login',
                 onClick: () => {
                     this.props.loginClick()
@@ -105,7 +106,7 @@ export class OptionsPanel extends React.Component<OptionsPanelProps>{
                         className="options-panel-item" 
                         onClick={() => x.onClick && x.onClick()}>
                             <div className="options-panel-item-icon">
-                        {x.icon && <img src={"icon/" + x.icon} />}
+                        {x.icon && <AppIcon name={x.icon} size="lg" ext="svg"/>}
                         </div>
                         <div className="options-panel-item-text"><span>{x.text}</span></div>
                     </li>

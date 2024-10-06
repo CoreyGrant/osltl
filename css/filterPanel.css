@@ -231,8 +231,13 @@
     }
     .general-filter{
         display: flex;
+        flex-direction: column;
+    }
+    .general-filter-checkboxes{
+        margin-top: 10px;
+        display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
     }
     .ordering-filter{
         display: flex;

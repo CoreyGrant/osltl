@@ -4,6 +4,7 @@ import { DifficultyFilter } from './difficultyFilter';
 import { AreaFilter } from './areaFilter';
 import {Filter} from '../types/filter';
 import {connect} from 'react-redux';
+import AppIcon from './shared/appIcon';
 import { AppState, setFiltersCollapsed, updateFilters } from '../store/appSlice';
 
 export type FilterPanelCounts = {
@@ -39,6 +40,10 @@ export class FilterPanel extends React.Component<FilterPanelProps, FilterPanelSt
             </FilterPanelSection>
             <FilterPanelSection title="General" clear={() => this.clearGeneral()} darkMode={this.props.darkMode}>
                 <div className="general-filter">
+                    <div className="form-input">
+                        <label htmlFor="general-filter-search">Search</label>
+                        <input id="general-filter-search" type="search" value={this.generalSearchValue()} onChange={(e) => this.generalSearchChange(e.target.value)}/>
+                    </div>
                     <div className="form-input-inline">
                         <input id="personal-list" type="checkbox" onChange={() => this.generalChange('personal')} checked={this.isChecked('gen', 'personal')}></input>
                         <label htmlFor="personal-list">Personal list ({this.props.personalList.length})</label>
@@ -82,6 +87,13 @@ export class FilterPanel extends React.Component<FilterPanelProps, FilterPanelSt
                 return this.props.filters.showComplete;
             }
         }
+    }
+    generalSearchValue(){
+        return this.props.filters.search;
+    }
+    generalSearchChange(val){
+        const newFilters = {...this.props.filters, search: val};
+        this.props.updateFilters(newFilters);
     }
     skillChange(skillList){
         const newFilters = {...this.props.filters, skills: skillList};
@@ -174,7 +186,7 @@ export class FilterPanelSection extends React.Component<FilterPanelSectionProps,
             {this.state.collapsed ? null : <div className="filter-panel-section-contents">{this.props.children}</div>}
             {this.props.clear && 
                 <div className="filter-panel-clear" onClick={() => this.props.clear()} title="Reset to default">
-                    <img className="filter-panel-reset" src={this.props.darkMode ? "icon/resetLight.png" : "icon/reset.png"}></img>
+                    <AppIcon name="reset" ext="svg" size="xs"/>
                 </div>}
         </div>
     }
@@ -216,7 +228,12 @@ export class Tabs extends React.Component<TabsProps, TabsState>{
         </div>
     }
     collapseChanged(col, cur){
-        this.setState({current: cur});
+        if(this.state.current === cur){
+            col = true;
+            this.setState({current: -1});
+        } else {
+            this.setState({current: cur});
+        }
         this.props.setFiltersCollapsed(col);
     }
 }
@@ -241,7 +258,7 @@ export class TabbedFilterPanel extends React.Component<TabbedFilterPanelProps, F
                 header: <>
                     <p className={"filter-panel-section-title"}>{"Ordering"}</p>
                     <div className="filter-panel-clear" onClick={() => this.clearOrdering()} title="Reset to default">
-                    <img className="filter-panel-reset" src={this.props.darkMode ? "icon/resetLight.png" : "icon/reset.png"}></img>
+                    <AppIcon name="reset" ext="svg" size="xs"/>
                     </div>
                 </>,
                 content: <div className="ordering-filter">
@@ -259,21 +276,27 @@ export class TabbedFilterPanel extends React.Component<TabbedFilterPanelProps, F
                 header: <>
                     <p className={"filter-panel-section-title"}>{"General"}</p>
                     <div className="filter-panel-clear" onClick={() => this.clearGeneral()} title="Reset to default">
-                    <img className="filter-panel-reset" src={this.props.darkMode ? "icon/resetLight.png" : "icon/reset.png"}></img>
+                    <AppIcon name="reset" ext="svg" size="xs"/>
                     </div>
                 </>,
                 content:<div className="general-filter">
-                    <div className="form-input-inline">
-                        <input id="personal-list" type="checkbox" onChange={() => this.generalChange('personal')} checked={this.isChecked('gen', 'personal')}></input>
-                        <label htmlFor="personal-list">Personal list ({this.props.personalList.length})</label>
+                    <div className="form-input">
+                        <label htmlFor="general-filter-search">Search</label>
+                        <input id="general-filter-search" type="search" value={this.generalSearchValue()} onChange={(e) => this.generalSearchChange(e.target.value)}/>
                     </div>
-                    <div className="form-input-inline">
-                        <input id="able-to-complete" type="checkbox" onChange={() => this.generalChange('canComplete')} checked={this.isChecked('gen', 'canComplete')}></input>
-                        <label htmlFor="able-to-complete">Able to complete</label>
-                    </div>
-                    <div className="form-input-inline">
-                        <input id="show-complete" type="checkbox" onChange={() => this.generalChange('showComplete')} checked={this.isChecked('gen', 'showComplete')}></input>
-                        <label htmlFor="show-complete">Show complete</label>
+                    <div className="general-filter-checkboxes">
+                        <div className="form-input-inline">
+                            <input id="personal-list" type="checkbox" onChange={() => this.generalChange('personal')} checked={this.isChecked('gen', 'personal')}></input>
+                            <label htmlFor="personal-list">Personal list ({this.props.personalList.length})</label>
+                        </div>
+                        <div className="form-input-inline">
+                            <input id="able-to-complete" type="checkbox" onChange={() => this.generalChange('canComplete')} checked={this.isChecked('gen', 'canComplete')}></input>
+                            <label htmlFor="able-to-complete">Able to complete</label>
+                        </div>
+                        <div className="form-input-inline">
+                            <input id="show-complete" type="checkbox" onChange={() => this.generalChange('showComplete')} checked={this.isChecked('gen', 'showComplete')}></input>
+                            <label htmlFor="show-complete">Show complete</label>
+                        </div>
                     </div>
                 </div>
             },
@@ -281,7 +304,7 @@ export class TabbedFilterPanel extends React.Component<TabbedFilterPanelProps, F
                 header: <>
                     <p className={"filter-panel-section-title"}>{"Skills"}</p>
                     <div className="filter-panel-clear" onClick={() => this.clearSkills()} title="Reset to default">
-                    <img className="filter-panel-reset" src={this.props.darkMode ? "icon/resetLight.png" : "icon/reset.png"}></img>
+                    <AppIcon name="reset" ext="svg" size="xs"/>
                     </div>
                 </>,
                 content:<SkillFilter
@@ -292,7 +315,7 @@ export class TabbedFilterPanel extends React.Component<TabbedFilterPanelProps, F
                 header: <>
                     <p className={"filter-panel-section-title"}>{"Diff"}</p>
                     <div className="filter-panel-clear" onClick={() => this.clearDiff()} title="Reset to default">
-                    <img className="filter-panel-reset" src={this.props.darkMode ? "icon/resetLight.png" : "icon/reset.png"}></img>
+                    <AppIcon name="reset" ext="svg" size="xs"/>
                     </div>
                 </>,
                 content:<DifficultyFilter
@@ -303,7 +326,7 @@ export class TabbedFilterPanel extends React.Component<TabbedFilterPanelProps, F
                 header: <>
                     <p className={"filter-panel-section-title"}>{"Area"}</p>
                     <div className="filter-panel-clear" onClick={() => this.clearArea()} title="Reset to default">
-                        <img className="filter-panel-reset" src={this.props.darkMode ? "icon/resetLight.png" : "icon/reset.png"}></img>
+                    <AppIcon name="reset" ext="svg" size="xs"/>
                     </div>
                 </>,
                 content:<AreaFilter
@@ -327,6 +350,13 @@ export class TabbedFilterPanel extends React.Component<TabbedFilterPanelProps, F
                 return this.props.filters.showComplete;
             }
         }
+    }
+    generalSearchValue(){
+        return this.props.filters.search;
+    }
+    generalSearchChange(val){
+        const newFilters = {...this.props.filters, search: val};
+        this.props.updateFilters(newFilters);
     }
     skillChange(skillList){
         const newFilters = {...this.props.filters, skills: skillList};

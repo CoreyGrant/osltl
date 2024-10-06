@@ -1,0 +1,31 @@
+.app-icon{
+    position: relative;
+}
+.app-icon>svg, .app-icon>img{
+    width: 100%;
+    height: 100%;
+}
+.app-icon.app-icon-xs{
+    height: 16px;
+    width: 16px;
+}
+
+.app-icon.app-icon-sm{
+    height: 20px;
+    width: 20px;
+}
+
+.app-icon.app-icon-md{
+    height: 24px;
+    width: 24px;
+}
+
+.app-icon.app-icon-lg{
+    height: 30px;
+    width: 30px;
+}
+
+.app-icon.app-icon-xl{
+    height: 40px;
+    width: 40px;
+}

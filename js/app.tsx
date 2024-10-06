@@ -22,6 +22,7 @@ import { modalManager } from './components/modals/modalManager';
 import { AppModal } from './components/shared/modal';
 import {openModal} from './store/modalSlice';
 import { RootState } from './store/store';
+import AppIcon from './components/shared/appIcon';
 export type AppProps = {
     personalTasks: {[username: string]: number[]};
     darkMode: boolean;
@@ -164,7 +165,7 @@ export class App extends React.Component<AppProps, AppState>{
                     <span className="app-top-bar-options">
                         {this.props.currentUser && <span onClick={() => this.props.openModal(AppModal.UserDetails)} style={{cursor: "pointer"}}><p>User: {this.props.currentUser}</p></span>}
                         <span><p>{this.props.loggedIn ? "Account mode" : "Local mode"}</p></span>
-                        <img src={this.props.darkMode ? 'icon/settingsLight.png' : 'icon/settings.png'} onClick={() => this.setState({optionsPanelOpen: !this.state.optionsPanelOpen})}/>
+                        <AppIcon name={'settings'} ext="svg" size="lg" props={{onClick :() => this.setState({optionsPanelOpen: !this.state.optionsPanelOpen})}}/>
                     </span>
                 </div>
             </div>

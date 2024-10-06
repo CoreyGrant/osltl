@@ -3,6 +3,7 @@ export type Filter = {
     personal: boolean;
     canComplete: boolean;
     showComplete: boolean;
+    search: string;
     difficulty: string[];
     areas: string[];
     order?: {

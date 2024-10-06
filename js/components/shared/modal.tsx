@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { closeModal } from '../../store/modalSlice';
+import AppIcon from './appIcon';
 
 export enum AppModal{
     Account = 1,
@@ -29,7 +30,7 @@ export class Modal extends React.Component<ModalProps>{
                 <div className="modal-header">
                     {this.props.title ? <h1>{this.props.title}</h1> : null}
                     <span className="modal-close" onClick={() => this.modalClose()}>
-                        <img src="icon/close.svg"/>
+                        <AppIcon name="close" ext="svg" size="md"/>
                     </span>
                 </div>
                 <div className="modal-body">

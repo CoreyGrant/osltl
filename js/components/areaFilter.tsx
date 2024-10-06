@@ -1,4 +1,5 @@
 import React from 'react';
+import AppIcon from './shared/appIcon';
 
 export type AreaFilterProps = {
     value: string[];
@@ -13,7 +14,7 @@ export class AreaFilter extends React.Component<AreaFilterProps>{
             {["Any", "Asgarnia", "Desert", "Fremennik", "Kandarin", "Karamja", "Kourend", "Misthalin", "Morytania", "Tirannwn", "Wilderness"].map(os => {
                 var selectedClass = this.props.value.indexOf(os) > -1 ? " selected" : "";
                 return <div className={"single-area-filter" + selectedClass} title={os} onClick={() => this.areaClick(os)}>
-                    <img src={"icon/" + os + "Area.webp"}></img>
+                    <AppIcon name={os + "Area"} ext="webp" size="sm"/>
                 </div>
             })}
         </div>

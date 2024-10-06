@@ -90,12 +90,14 @@ a{
     cursor: pointer;
 }
 input[type="text"],
+input[type="search"],
 input[type="password"]{
     background-color:var(--osrs-color);
     color: var(--osrs-text-color);
     border: 1px solid var(--osrs-dark-color);
 }
 input[type="text"]:focus-visible,
+input[type="search"]:focus-visible,
 input[type="password"]:focus-visible{
     outline: 2px solid var(--osrs-dark-color);
 }
