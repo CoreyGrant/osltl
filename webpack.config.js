@@ -1,11 +1,13 @@
+require('./server/nodeenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 var fs = require('fs');
 const CopyPlugin = require("copy-webpack-plugin");
-
-module.exports = {
+var nodeEnv = process.env.NODE_ENV;
+var isProduction = nodeEnv === "production";
+const exp = {
+    mode: nodeEnv,
     entry: './js/index.tsx',
-    devtool: 'inline-source-map',
     output: {
       filename: '[contenthash].js',
       path: path.resolve(__dirname, 'dist'),
@@ -43,3 +45,7 @@ module.exports = {
     ],
     devServer: false
   };
+if(!isProduction){
+  exp.devtool = 'inline-source-map';
+}
+  module.exports = exp;
