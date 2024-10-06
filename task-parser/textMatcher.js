@@ -14,24 +14,49 @@ const perRegex = /^[0-9]+%$/;
 
 function getText($elm){
     // needs to be a smarter replacement for .text() which includes several helper tags and groups data.
-    // <Q> </Q> starts and ends quest name
-    // <A> </A> starts and ends an area name
-    // <S> </S> starts and ends a skill name
-    // <C> </C> starts and ends a coin amount
-    // <I> </I> starts and ends an item name
-    // <D> </D> starts and ends a diary
-    // <K> </K> starts and ends kourend favour
-    
+    // [Q]{} quest name
+    // [A]{} area name
+    // [S]{} skill name
+    // [C]{} coin amount
+    // [I]{} item name
+    // [D]{} diary
+    // [K]{} kourend favour
+
     var output = "";
     var contents = $elm.contents();
-    
+    var nextIsDiary = false;
+    var nextIsQuest = false;
+    var nextIsKourend = false;
     contents.forEach(() => {
         var contentElm = this;
+        var $contentElm = $(contentElm);
         if(contentElm.nodeType == 3){
             output += this.text();
+        } else if($contentElm.attr('data-skill')){
+            output += `[S]{${$contentElm.text()}}`; 
+        } else if($contentElm.is('span.coins')){
+            output += `[C]{${$contentElm.text()}}`;
+        } else if($contentElm.is('span.tbz-region')){
+            var areaName = $contentElm.find('.tbz-name').text();
+            output += `[A]{${areaName}}`;
+        } /*else if($contentElm.) item is HARD */
+        else if($contentElm.find('a[title="Acheivement Diary"]')){
+            nextIsDiary = true;
+        } else if(nextIsDiary){
+            nextIsDiary = false;
+            output += `[D]{${$contentElm.text()}}`;
+        } else if($contentElm.find('a[title="Quests points"]')){
+            nextIsQuest = true;
+        } else if(nextIsQuest){
+            nextIsQuest = false;
+            output += `[Q]{${$contentElm.text()}}`;
+        } else if($contentElm.find('a[title="Kourend Favour"]')){
+            nextIsKourend = true;
+        } else if(nextIsKourend){
+            nextIsKourend = false;
+            output += `[K]{${$contentElm.text()}}`;
         }
-
-    })
+    });
 }
 
 class TextMatcher{
