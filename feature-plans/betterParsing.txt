@@ -1,0 +1,9 @@
+Multiple upgrades to parsing have been added
+However, there are still many issues which will need to be manually fixed
+Easiest way to do this is to also generate a list of tasks which we know have some issue about them.
+Several heuristics to detect this.
+    The same skill being set multiple times
+    The words either/or in the body of the text
+    Can also maintain a manual list of tasks we know need manual changes, via id/name
+
+Also need to remove some set of links which aren't relevant, can maintain a blacklist for these

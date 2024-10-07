@@ -11,7 +11,13 @@
 //}
 const numRegex = /^[0-9]+$/;
 const perRegex = /^[0-9]+%$/;
-
+const panicList = [];
+let panicItem = {
+    id: undefined,
+}
+function panic(reason){
+    panicItem.reason = reason;
+}
 function getText($elm){
     // needs to be a smarter replacement for .text() which includes several helper tags and groups data.
     // [Q]{} quest name
@@ -24,41 +30,62 @@ function getText($elm){
 
     var output = "";
     var contents = $elm.contents();
+    //console.log(contents);
     var nextIsDiary = false;
     var nextIsQuest = false;
     var nextIsKourend = false;
-    contents.forEach(() => {
-        var contentElm = this;
+    contents.each((i, e) => {
+        var contentElm = e;
         var $contentElm = $(contentElm);
+        //console.log(contentElm, $contentElm);
         if(contentElm.nodeType == 3){
-            output += this.text();
+            //console.log("Is plaintext");
+            output += contentElm.textContent.replace(/\s/g, " ");
         } else if($contentElm.attr('data-skill')){
-            output += `[S]{${$contentElm.text()}}`; 
+            //console.log("Is skill");
+            output += ` SKILL ${$contentElm.text()} `; 
+        } else if($contentElm.attr('title')=== "Skills"){
+            output += $contentElm.text();
         } else if($contentElm.is('span.coins')){
-            output += `[C]{${$contentElm.text()}}`;
+            //console.log("Is coins");
+            output += ` COINS ${$contentElm.text()} `;
         } else if($contentElm.is('span.tbz-region')){
+            //console.log("Is area");
             var areaName = $contentElm.find('.tbz-name').text();
-            output += `[A]{${areaName}}`;
+            output += ` AREA ${areaName} `;
         } /*else if($contentElm.) item is HARD */
-        else if($contentElm.find('a[title="Acheivement Diary"]')){
+        else if($contentElm.find('a[title="Achievement Diary"]').length){
+            //console.log("Is Diary icon");
             nextIsDiary = true;
         } else if(nextIsDiary){
+            //console.log("Is Diary");
             nextIsDiary = false;
-            output += `[D]{${$contentElm.text()}}`;
-        } else if($contentElm.find('a[title="Quests points"]')){
+            output += ` DIARY ${$contentElm.text()} `;
+        } else if($contentElm.find('a[title="Quest points"]').length){
+            //console.log("Is Quest icon");
             nextIsQuest = true;
         } else if(nextIsQuest){
+            //console.log("Is Quest");
             nextIsQuest = false;
-            output += `[Q]{${$contentElm.text()}}`;
-        } else if($contentElm.find('a[title="Kourend Favour"]')){
+            output += ` QUEST ${$contentElm.text()} `;
+        } else if($contentElm.find('a[title="Kourend Favour"]').length){
+            //console.log("Is Kourend icon");
             nextIsKourend = true;
         } else if(nextIsKourend){
+            //console.log("Is Kourend");
             nextIsKourend = false;
-            output += `[K]{${$contentElm.text()}}`;
+            output += ` KOUREND ${$contentElm.text()} `;
+        } else if($contentElm.is('a')){
+            if($contentElm.attr('title') === "Combat level" 
+                || $contentElm.attr('title') === "Total level"){
+                output += ` ${$contentElm.text()} `;
+            }else {
+            output += ` LINK ${$contentElm.attr('href')} ${$contentElm.text().replace(/ /g, "_")} `;
+            }
         }
     });
+    return output;
 }
-
 class TextMatcher{
     constructor(rules){
         this.rules = rules;
@@ -357,12 +384,13 @@ function getMatcher(){
     var rules = [
         new TextMatcherRule([ // kourend favour
             new TextMatcherToken("$percent"),
+            new TextMatcherToken("KOUREND"),
             new TextMatcherToken("$string"),
             new TextMatcherToken("favour")
         ], 
         (obj, tvs) => {
             if(!obj.kourend){obj.kourend = {}}
-            obj.kourend[tvs[1]] = tvs[0].replace('%', '');
+            obj.kourend[tvs[2]] = tvs[0].replace('%', '');
         }),
         new TextMatcherRule([ // specific kourend favour
             new TextMatcherToken("$percent"),
@@ -370,31 +398,35 @@ function getMatcher(){
             new TextMatcherToken("each"),
             new TextMatcherToken("type"),
             new TextMatcherToken("of"),
+            new TextMatcherToken("KOUREND"),
             new TextMatcherToken("$string"),
             new TextMatcherToken("favour")
         ], 
         (obj, tvs) => {
             if(!obj.kourend){obj.kourend = {}}
-            obj.kourend[tvs[5]] = tvs[0].replace('%', '');
+            obj.kourend[tvs[6]] = tvs[0].replace('%', '');
         }),
         new TextMatcherRule([ // quests
+            new TextMatcherToken("QUEST"),
             new TextMatcherToken("$fromArr", questNames.map(x => x.split(" ")), true)
         ],
         (obj, tvs) => {
             if(!obj.quests){obj.quests = []}
-            obj.quests.push(tvs[0]);
+            obj.quests.push(tvs[1]);
         }),
         // diaries can have multiple parts to a name, look for them specifically
         new TextMatcherRule([ // diaries
+            new TextMatcherToken("DIARY"),
             new TextMatcherToken("$string"),
             new TextMatcherToken("$string"),
             new TextMatcherToken("Diary"),
         ],
         (obj, tvs) => {
             if(!obj.diary){obj.diary = []}
-            obj.diary.push(tvs[0] + " " + tvs[1]);
+            obj.diary.push(tvs[1] + " " + tvs[2]);
         }),
         new TextMatcherRule([ // kourend & kerbos diary
+            new TextMatcherToken("DIARY"),
             new TextMatcherToken("$string"),
             new TextMatcherToken("Kourend"),
             new TextMatcherToken("&"),
@@ -406,6 +438,7 @@ function getMatcher(){
             obj.diary.push("Kourend & Kerbos " + tvs[1]);
         }),
         new TextMatcherRule([ // Lumbridge & Draynor diary
+            new TextMatcherToken("DIARY"),
             new TextMatcherToken("$string"),
             new TextMatcherToken("Lumbridge"),
             new TextMatcherToken("&"),
@@ -416,7 +449,8 @@ function getMatcher(){
             if(!obj.diary){obj.diary = []}
             obj.diary.push("Lumbridge and Draynor " + tvs[1]);
         }),
-        new TextMatcherRule([ // Western Provinces diary
+        new TextMatcherRule([ // Western Provinces 
+            new TextMatcherToken("DIARY"),
             new TextMatcherToken("$string"),
             new TextMatcherToken("Western"),
             new TextMatcherToken("Provinces"),
@@ -427,56 +461,84 @@ function getMatcher(){
             obj.diary.push("Western Provinces " + tvs[1]);
         }),
         new TextMatcherRule([ // skill number
+            new TextMatcherToken("SKILL"),
             new TextMatcherToken("$number"),
             new TextMatcherToken("$fromArr", skillNames)
         ],
         (obj, tvs) => {
             if(!obj.skills){obj.skills = {}}
-            obj.skills[tvs[1]] = tvs[0];
+            if(obj.skills[tvs[2]]){
+                panic("setting skill twice");
+            }
+            obj.skills[tvs[2]] = tvs[1];
         }),
         new TextMatcherRule([ // area
+            new TextMatcherToken("AREA"),
             new TextMatcherToken("fromArr", areaNames)
         ],
         (obj, tvs) => {
             if(!obj.areas){obj.areas = []}
-            obj.areas.push(tvs[0]);
+            obj.areas.push(tvs[1]);
         }),
         new TextMatcherRule([ // 15 Combat level
+            new TextMatcherToken("SKILL"),
             new TextMatcherToken("$number"),
             new TextMatcherToken("Combat"),
             new TextMatcherToken("level")
         ],
         (obj, tvs) => {
             if(!obj.skills){obj.skills = {}}
-            obj.skills.Combat = tvs[0];
+            obj.skills.Combat = tvs[1];
         }),
         new TextMatcherRule([ // 1500 Total level
+            new TextMatcherToken("SKILL"),
             new TextMatcherToken("$number"),
             new TextMatcherToken("Total"),
             new TextMatcherToken("level")
         ],
         (obj, tvs) => {
             if(!obj.skills){obj.skills = {}}
-            obj.skills.Total = tvs[0];
+            obj.skills.Total = tvs[1];
         }),
         new TextMatcherRule([ // 50 Any skill
+            new TextMatcherToken("SKILL"),
             new TextMatcherToken("$number"),
             new TextMatcherToken("Any"),
             new TextMatcherToken("skill")
         ],
         (obj, tvs) => {
             if(!obj.skills){obj.skills = {}}
-            obj.skills.Any = tvs[0];
+            obj.skills.Any = tvs[1];
         }),
         new TextMatcherRule([ // 50 Every skill
+            new TextMatcherToken("SKILL"),
             new TextMatcherToken("$number"),
             new TextMatcherToken("Every"),
             new TextMatcherToken("skill")
         ],
         (obj, tvs) => {
             if(!obj.skills){obj.skills = {}}
-            obj.skills.Base = tvs[0];
+            obj.skills.Base = tvs[1];
         }),
+        new TextMatcherRule([ // links
+            new TextMatcherToken("LINK"),
+            new TextMatcherToken("$string"),
+            new TextMatcherToken("$string")
+        ],
+        (obj, tvs) => {
+            if(!obj.links){obj.links = []}
+            obj.links.push({text: tvs[2], href: tvs[1]})
+        }),
+        new TextMatcherRule([
+            new TextMatcherToken("COINS"),
+            new TextMatcherToken("$string"),
+        ],
+    (obj, tvs) => {
+        if(obj.coins){
+            panic("settings coins twice");
+        }
+        obj.coins = +tvs[1].replace(/,/g, "");
+    })
     ]
 
     return new TextMatcher(rules);
@@ -485,13 +547,14 @@ function getMatcher(){
 
 (function(){
     var output = [];
+    var plainTextOutput = [];
     var rows = $('tr[data-taskid]');
     var matcher = getMatcher();
     rows.each((i, basicRow) => {
-        //if(i !== 518){return;}
+        //if(i !== 1338){return;}
         var row = $(basicRow);
         var id = row.data('taskid');
-        //if(id !== 421){return;}
+        panicItem.id = id;
         //console.log("id", id);
         // first cell - area
         var firstCell = row.find('td:nth(0)');
@@ -518,7 +581,13 @@ function getMatcher(){
         // acievement diaries have the icon followed by the name of the diary
         // can also pull out other areas
         var fourthCell = row.find("td:nth(3)");
-        var reqs = matcher.exec(fourthCell.text());
+        var fourthCellText = getText(fourthCell);
+        var normalizedFourthCellText = fourthCellText.toLowerCase();
+        if(normalizedFourthCellText.indexOf(" or ") > -1 || normalizedFourthCellText.indexOf(" either ") > -1){
+            panic("Found either/or in text");
+        }
+        plainTextOutput.push({id, details: fourthCellText})
+        var reqs = matcher.exec(fourthCellText);
         if(!reqs.areas){reqs.areas = []}
         reqs.areas.push(area);
         reqs.areas = reqs.areas.filter((x, i) => {
@@ -544,6 +613,15 @@ function getMatcher(){
             diff: diff,
             reqs: reqs
         });
+        if(panicItem.reason){
+            panicList.push({
+                id: id,
+                reason: panicItem.reason,
+                reqs: reqs,
+                raw: fourthCellText
+            });
+            panicItem = {};
+        }
     })
     function trimTags(val){
         return val.replace(/<[\w\d\n\r\t\s_\-="\/%'\(\)#?:;\.&]{0,}>/g, "")
@@ -551,6 +629,7 @@ function getMatcher(){
             .replace("&amp;", "&")
             .replace(/\.\n$/g, "");
     }
-
+    window.plainTextOutput = plainTextOutput;
     window.jsonOutput = output;
+    window.panics = panicList;
 }())

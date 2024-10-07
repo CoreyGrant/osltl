@@ -10,6 +10,12 @@ import { modalManager } from './modals/modalManager';
 import { AppModal } from './shared/modal';
 import { openModal } from '../store/modalSlice';
 import AppIcon from './shared/appIcon';
+import { wikiUrl } from '../constants';
+
+function formatLinkText(txt){
+    var casedText = txt.toLowerCase().replace(/_/g, " ");
+    return casedText.substring(0, 1).toUpperCase() + casedText.substring(1);
+}
 
 export type TaskTableProps = {
     filters: Filter;
@@ -134,6 +140,9 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                 {Object.keys(a?.kourend || {}).map(x => <span className="row-detail-kourend">
                     <AppIcon name="Favour" ext="webp" size="sm" props={{style: {marginRight: "4px"}}}/>{x} {a.kourend[x]}%
                 </span>)}
+                {/*(a?.links || []).map(x => <span className="row-detail-link">
+                    <a href={wikiUrl + x.href} target="_blank">{formatLinkText(x.text)}</a>
+                </span>)*/}
                 </div>
             </div>
         })

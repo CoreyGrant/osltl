@@ -1,0 +1,1381 @@
+[
+  {
+    "id": 691,
+    "reason": "setting skill twice",
+    "reqs": [
+      {
+        "skills": {
+          "Hunter": 25
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": "Either  SKILL  15 Hunter  (with  AREA Kandarin  or  AREA Kourend ) or  SKILL  25 Hunter  (with  AREA Fremennik ) ",
+    "manualReqs": [
+      {
+        "skills": {
+          "Hunter": 15
+        },
+        "areas": [
+          "Kandarin",
+          "Kourend"
+        ]
+      },
+      {
+        "skills": {
+          "Hunter": 25
+        },
+        "areas": [
+          "Fremennik"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 641,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Crafting": 14
+        },
+        "links": [
+          {
+            "text": "Leather",
+            "href": "/w/Leather"
+          },
+          {
+            "text": "Tan_Leather",
+            "href": "/w/Tan_Leather"
+          }
+        ],
+        "diary": [
+          "Fremennik Hard"
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  14 Crafting  LINK /w/Leather Leather : Either  AREA Asgarnia  ( SKILL  40  ),  AREA Kandarin  ( SKILL  40  ),  AREA Kourend ,  AREA Desert , or  AREA Morytania  for easier access. In a worst case scenario,  AREA Fremennik  with  SKILL  78   and    DIARY Fremennik Hard Diary  to cast  LINK /w/Tan_Leather Tan_Leather  when no other options are available. ",
+    "manualReqs": [
+      {
+        "skills": {
+          "Crafting": 40
+        },
+        "areas": [
+          "Asgarnia"
+        ]
+      },
+      {
+        "skills": {
+          "Crafting": 14,
+          "Ranged": 40
+        },
+        "areas": [
+          "Kandarin"
+        ]
+      },
+      {
+        "skills": {
+          "Crafting": 14
+        },
+        "areas": [
+          "Desert",
+          "Kourend",
+          "Morytania"
+        ]
+      },
+      {
+        "skills": {
+          "Crafting": 14,
+          "Magic": 78
+        },
+        "areas": [
+          "Fremennik"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 969,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "coins": 1000,
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": "Purchase a player-owned home previously for  COINS 1,000  or completed the miniquest    QUEST Daddy's Home  "
+  },
+  {
+    "id": 1695,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "quests": [
+          "Icthlarin's Little Helper",
+          "Dragon Slayer II"
+        ],
+        "links": [
+          {
+            "text": "kitten",
+            "href": "/w/Kitten"
+          }
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " AREA Desert  to complete    QUEST Icthlarin's Little Helper  or  AREA Fremennik  to auto completed    QUEST Dragon Slayer II . Talking to a  LINK /w/Kitten kitten  does not complete this task. ",
+    "manualReqs": [
+      {
+        "quests": [
+          "Icthlarin's Little Helper"
+        ],
+        "areas": [
+          "Desert"
+        ]
+      },
+      {
+        "areas": [
+          "Fremennik"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1633,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "links": [
+          {
+            "text": "Necromancer_Tower",
+            "href": "/w/Necromancer"
+          },
+          {
+            "text": "Kourend_Necromancer",
+            "href": "/w/Necromancer_(Great_Kourend)"
+          }
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": "Either  AREA Kandarin  ( LINK /w/Necromancer Necromancer_Tower ) or  AREA Kourend  ( LINK /w/Necromancer_(Great_Kourend) Kourend_Necromancer ) ",
+    "manualReqs": [
+      {
+        "areas": [
+          "Kandarin",
+          "Kourend"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 587,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "links": [
+          {
+            "text": "Seed_dibber",
+            "href": "/w/Seed_dibber"
+          }
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " LINK /w/Seed_dibber Seed_dibber  and either  AREA Asgarnia ,  AREA Morytania ,  AREA Kandarin ,  AREA Kourend , or  AREA Tirannwn  ",
+    "manualReqs": [
+      {
+        "areas": [
+          "Asgarnia",
+          "Morytania",
+          "Kandarin",
+          "Kourend",
+          "Tirannwn"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 664,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "coins": 1000,
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " COINS 1,000  or completion of    QUEST Daddy's Home  "
+  },
+  {
+    "id": 581,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Thieving": 5
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  5 Thieving  AREA Fremennik ,  AREA Kandarin , or  AREA Kourend  ",
+    "manualReqs": [
+      {
+        "skills": {
+          "Thieving": 5
+        },
+        "areas": [
+          "Fremennik",
+          "Kandarin",
+          "Kourend"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1403,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Thieving": 20
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  20 Thieving  AREA Kandarin ,  AREA Kourend , or  AREA Tirannwn  "
+  },
+  {
+    "id": 1407,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Mining": 14,
+          "Fishing": 7,
+          "Combat": 10
+        },
+        "quests": [
+          "Below Ice Mountain"
+        ],
+        "areas": [
+          "Asgarnia"
+        ]
+      }
+    ],
+    "raw": " SKILL  14 Mining Completion of    QUEST Below Ice Mountain . Optional:  SKILL  7 Fishing  or  SKILL  10 Combat level  for additional Barronite shards to repair the hammer. "
+  },
+  {
+    "id": 1694,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Cooking": 10
+        },
+        "areas": [
+          "Asgarnia"
+        ]
+      }
+    ],
+    "raw": " SKILL  10 Cooking , or  AREA Wilderness Partial completion of    QUEST The Knight's Sword  ",
+    "manualReqs": [
+      {
+        "areas": [
+          "Wilderness"
+        ]
+      },
+      {
+        "skills": {
+          "Cooking": 10
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1655,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "quests": [
+          "Below Ice Mountain"
+        ],
+        "areas": [
+          "Kandarin"
+        ]
+      }
+    ],
+    "raw": " AREA Asgarnia  or  AREA Desert  for completion of    QUEST Below Ice Mountain  ",
+    "manualReqs": [
+      {
+        "areas": [
+          "Asgarnia"
+        ],
+        "quests": [
+          "Below Ice Mountain"
+        ]
+      },
+      {
+        "areas": [
+          "Desert"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 690,
+    "reason": "setting skill twice",
+    "reqs": [
+      {
+        "skills": {
+          "Hunter": 67
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": "Either  SKILL  29 Hunter  ( AREA Morytania ),  SKILL  47 Hunter  ( AREA Desert ),  SKILL  59 Hunter  ( AREA Kandarin , or  SKILL  67 Hunter  ( AREA Wilderness ) "
+  },
+  {
+    "id": 676,
+    "reason": "setting skill twice",
+    "reqs": [
+      {
+        "skills": {
+          "Runecraft": 33
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  57 Runecraft  (or  SKILL  33 Runecraft  with  AREA Asgarnia ) "
+  },
+  {
+    "id": 1726,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Herblore": 18
+        },
+        "quests": [
+          "One Small Favour"
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  18 Herblore Partial completion of    QUEST One Small Favour , requiring one of  AREA Fremennik ,  AREA Desert , or  AREA Kandarin  "
+  },
+  {
+    "id": 910,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Defence": 50,
+          "Strength": 50
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  50 Defence ,  SKILL  50 Strength Requires  AREA Kandarin ,  AREA Asgarnia , or  AREA Fremennik  "
+  },
+  {
+    "id": 1341,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Magic": 30,
+          "Attack": 30
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  30 Magic ,  SKILL  30 Attack Requires  AREA Kandarin ,  AREA Asgarnia ,  AREA Wilderness ,  AREA Morytania , or  AREA Desert . a mystic staff will not work as a substitute "
+  },
+  {
+    "id": 936,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Attack": 50,
+          "Slayer": 55
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  50 Attack ,  SKILL  55 Slayer Requires  AREA Fremennik  or  AREA Tirannwn  "
+  },
+  {
+    "id": 689,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "links": [
+          {
+            "text": "horned_graahks",
+            "href": "/w/Horned_graahk"
+          },
+          {
+            "text": "spined_larupia",
+            "href": "/w/Spined_larupia"
+          },
+          {
+            "text": "sabre-toothed_kyatt",
+            "href": "/w/Sabre-toothed_kyatt"
+          }
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": "Either  SKILL  38   ( AREA Karamja ),  SKILL  28   ( AREA Kandarin ), or  SKILL  52   ( AREA Fremennik ) to equipEither  SKILL  41   to trap  LINK /w/Horned_graahk horned_graahks  ( AREA Karamja ),  SKILL  31   to trap  LINK /w/Spined_larupia spined_larupia  ( AREA Kandarin ), or  SKILL  55   to trap  LINK /w/Sabre-toothed_kyatt sabre-toothed_kyatt  ( AREA Fremennik ) "
+  },
+  {
+    "id": 590,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " AREA Asgarnia ,  AREA Morytania ,  AREA Kandarin ,  AREA Kourend , or  AREA Tirannwn  "
+  },
+  {
+    "id": 1691,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Runecraft": 77
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  77 Runecraft Either  AREA Asgarnia  or  AREA Desert  to obtain the essence, alongside either  AREA Morytania  or  AREA Kourend  for access to a blood altar. "
+  },
+  {
+    "id": 589,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Farming": 44
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  44 Farming  AREA Asgarnia ,  AREA Morytania ,  AREA Kandarin ,  AREA Fremennik , or  AREA Kourend  "
+  },
+  {
+    "id": 684,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Firemaking": 49
+        },
+        "links": [
+          {
+            "text": "bullseye_lantern",
+            "href": "/w/Bullseye_lantern#Trailblazer_Reloaded_League"
+          }
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  49 Firemaking Either  AREA Asgarnia ,  AREA Morytania ,  AREA Kandarin ,  AREA Desert , or  AREA Fremennik See  LINK /w/Bullseye_lantern#Trailblazer_Reloaded_League bullseye_lantern  for more details. "
+  },
+  {
+    "id": 704,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Magic": 27,
+          "Crafting": 34,
+          "Mining": 40,
+          "Construction": 44
+        },
+        "links": [
+          {
+            "text": "Amulet_mould",
+            "href": "/w/Amulet_mould"
+          },
+          {
+            "text": "Jade_amulet_(u)",
+            "href": "/w/Jade_amulet_(u)"
+          }
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  27 Magic ,  SKILL  34 Crafting  to create the amulet.  LINK /w/Amulet_mould Amulet_mould  to craft a  LINK /w/Jade_amulet_(u) Jade_amulet_(u)  (requires either  SKILL  40 Mining , a 1/128 drop,  SKILL  44 Construction , or a Trailblazer area unlock). "
+  },
+  {
+    "id": 583,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Thieving": 40
+        },
+        "links": [
+          {
+            "text": "Trickster",
+            "href": "/w/Trickster"
+          }
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  40 Thieving  (can be completed at lower levels depending on luck when pickpocketing NPCs with variable coin amounts, or with the  LINK /w/Trickster Trickster  relic) "
+  },
+  {
+    "id": 740,
+    "reason": "setting skill twice",
+    "reqs": [
+      {
+        "skills": {
+          "Magic": 6
+        },
+        "kourend": {
+          "Arceuus": "60"
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  25 Magic , or  SKILL  6 Magic  with  AREA Kourend  and 60%    KOUREND Arceuus favour  "
+  },
+  {
+    "id": 1127,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Hunter": 83,
+          "Crafting": 80,
+          "Magic": 68
+        },
+        "quests": [
+          "Heroes' Quest"
+        ],
+        "areas": [
+          "Asgarnia"
+        ]
+      }
+    ],
+    "raw": " SKILL  83 Hunter  or both  SKILL  80 Crafting  and  SKILL  68 Magic Completion of    QUEST Heroes' Quest  "
+  },
+  {
+    "id": 1148,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Attack": 99,
+          "Strength": 99
+        },
+        "areas": [
+          "Asgarnia"
+        ]
+      }
+    ],
+    "raw": " SKILL  99 Attack  or  SKILL  99 Strength  or a combined Attack and Strength level of 130 "
+  },
+  {
+    "id": 1147,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Attack": 99,
+          "Strength": 99
+        },
+        "areas": [
+          "Asgarnia"
+        ]
+      }
+    ],
+    "raw": " SKILL  99 Attack  or  SKILL  99 Strength  or a combined Attack and Strength level of 130 "
+  },
+  {
+    "id": 1058,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "quests": [
+          "Underground Pass"
+        ],
+        "skills": {
+          "Magic": 50,
+          "Attack": 50
+        },
+        "areas": [
+          "Kandarin"
+        ]
+      }
+    ],
+    "raw": " AREA Tirannwn  or  AREA Fremennik  for    QUEST Underground Pass ,  SKILL  50 Magic ,  SKILL  50 Attack  "
+  },
+  {
+    "id": 1662,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Mining": 40
+        },
+        "links": [
+          {
+            "text": "Heroes'_Quest",
+            "href": "/w/Heroes%27_Quest"
+          },
+          {
+            "text": "amulet_of_glory",
+            "href": "/w/Amulet_of_glory"
+          },
+          {
+            "text": "Amulet_of_glory_(t4)",
+            "href": "/w/Amulet_of_glory_(t4)"
+          }
+        ],
+        "areas": [
+          "Karamja"
+        ]
+      }
+    ],
+    "raw": " SKILL  40 Mining  AREA Asgarnia  or  AREA Fremennik  for  LINK /w/Heroes%27_Quest Heroes'_Quest  strongly recommended, to obtain a charged  LINK /w/Amulet_of_glory amulet_of_glory  to speed up mining here. Alternatively,  LINK /w/Amulet_of_glory_(t4) Amulet_of_glory_(t4)  can be used. "
+  },
+  {
+    "id": 1253,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Defence": 70,
+          "Attack": 70,
+          "Ranged": 70
+        },
+        "areas": [
+          "Morytania"
+        ]
+      }
+    ],
+    "raw": " SKILL  70 Defence ,  SKILL  70 Attack , or  SKILL  70 Ranged  "
+  },
+  {
+    "id": 1340,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Strength": 60,
+          "Agility": 60
+        },
+        "areas": [
+          "Wilderness"
+        ]
+      }
+    ],
+    "raw": " SKILL  60 Strength  or  SKILL  60 Agility  "
+  },
+  {
+    "id": 746,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Magic": 81
+        },
+        "links": [
+          {
+            "text": "wrath_runes",
+            "href": "/w/Wrath_rune"
+          },
+          {
+            "text": "Fountain_of_Rune",
+            "href": "/w/Fountain_of_Rune"
+          },
+          {
+            "text": "Barbarian_Assault",
+            "href": "/w/Barbarian_Assault"
+          }
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  81 Magic  AREA Fremennik  for access to  LINK /w/Wrath_rune wrath_runes ,  AREA Wilderness  for access to the  LINK /w/Fountain_of_Rune Fountain_of_Rune , or  AREA Kandarin  to use a surge spell inside  LINK /w/Barbarian_Assault Barbarian_Assault  "
+  },
+  {
+    "id": 601,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Woodcutting": 75
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  75 Woodcutting  AREA Kandarin ,  AREA Kourend ,  AREA Tirannwn ,  AREA Desert , or  AREA Wilderness . Can be completed in  AREA Misthalin  with  SKILL  75   "
+  },
+  {
+    "id": 1710,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Crafting": 83,
+          "Fletching": 92,
+          "Smithing": 89,
+          "Woodcutting": 90,
+          "Firemaking": 80
+        },
+        "quests": [
+          "Haunted Mine"
+        ],
+        "links": [
+          {
+            "text": "zombies",
+            "href": "/w/Zombie_(Tarn%27s_Lair)"
+          },
+          {
+            "text": "Tarn's_Lair",
+            "href": "/w/Tarn%27s_Lair"
+          },
+          {
+            "text": "Redwood_logs",
+            "href": "/w/Redwood_logs"
+          }
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  83 Crafting ,  SKILL  92 Fletching  SKILL  89 Smithing  (or completion of    QUEST Haunted Mine  for access to level 61-80  LINK /w/Zombie_(Tarn%27s_Lair) zombies  in  LINK /w/Tarn%27s_Lair Tarn's_Lair ). Either  SKILL  90 Woodcutting  and  AREA Kourend , or  SKILL  80 Firemaking  and  AREA Morytania  for access to  LINK /w/Redwood_logs Redwood_logs  "
+  },
+  {
+    "id": 631,
+    "reason": "setting skill twice",
+    "reqs": [
+      {
+        "skills": {
+          "Slayer": 75
+        },
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  85 Slayer , or  SKILL  75 Slayer  with  AREA Morytania  "
+  },
+  {
+    "id": 585,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Thieving": 75
+        },
+        "links": [
+          {
+            "text": "TzHaar_Fight_Cave",
+            "href": "/w/TzHaar_Fight_Cave"
+          }
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  75 Thieving  AREA Kandarin ,  AREA Kourend ,  AREA Fremennik , or  AREA Tirannwn , or  AREA Karamja  with completion of    LINK /w/TzHaar_Fight_Cave TzHaar_Fight_Cave  "
+  },
+  {
+    "id": 1132,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Hitpoints": 70,
+          "Agility": 70,
+          "Ranged": 70,
+          "Strength": 70
+        },
+        "areas": [
+          "Asgarnia"
+        ]
+      }
+    ],
+    "raw": " SKILL  70 Hitpoints ,  SKILL  70 Agility ,  SKILL  70 Ranged , or  SKILL  70 Strength  "
+  },
+  {
+    "id": 1133,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Hitpoints": 70,
+          "Agility": 70,
+          "Ranged": 70,
+          "Strength": 70
+        },
+        "areas": [
+          "Asgarnia"
+        ]
+      }
+    ],
+    "raw": " SKILL  70 Hitpoints ,  SKILL  70 Agility ,  SKILL  70 Ranged , or  SKILL  70 Strength  "
+  },
+  {
+    "id": 1215,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "diary": [
+          "Hard Desert"
+        ],
+        "skills": {
+          "Herblore": 99
+        },
+        "links": [
+          {
+            "text": "Herblore_cape",
+            "href": "/w/Herblore_cape"
+          }
+        ],
+        "areas": [
+          "Desert"
+        ]
+      }
+    ],
+    "raw": "Either completion of the    DIARY Hard Desert Diary  or  SKILL  99 Herblore  and  AREA Asgarnia  for  LINK /w/Herblore_cape Herblore_cape  ",
+    "manualReqs": [
+      {
+        "areas": [
+          "Desert"
+        ],
+        "diary": [
+          "Hard Desert"
+        ]
+      },
+      {
+        "areas": [
+          [
+            "Asgarnia",
+            "Desert"
+          ]
+        ],
+        "skills": {
+          "Herblore": 99
+        }
+      }
+    ]
+  },
+  {
+    "id": 1022,
+    "reason": "setting skill twice",
+    "reqs": [
+      {
+        "skills": {
+          "Fishing": 43,
+          "Hunter": 35
+        },
+        "links": [
+          {
+            "text": "Fishing_Trawler",
+            "href": "/w/Fishing_Trawler"
+          },
+          {
+            "text": "aerial_fishing",
+            "href": "/w/Aerial_fishing"
+          }
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  34 Fishing Either  AREA Kandarin  to access the  LINK /w/Fishing_Trawler Fishing_Trawler  or  AREA Kourend  to access  LINK /w/Aerial_fishing aerial_fishing  (also requires  SKILL  43 Fishing  and  SKILL  35 Hunter ) "
+  },
+  {
+    "id": 1473,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Magic": 92
+        },
+        "kourend": {
+          "Arceuus": "60"
+        },
+        "areas": [
+          "Kourend"
+        ]
+      }
+    ],
+    "raw": " SKILL  92 Magic Completion of    QUEST A Kingdom Divided , 60%    KOUREND Arceuus favour ,  AREA Fremennik  for Wrath Runes,  AREA Kandarin  for Barbarian Assault (Attacker role runes), or  AREA Wilderness  for Fountain of Rune "
+  },
+  {
+    "id": 1683,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "links": [
+          {
+            "text": "Shaikahan_bones",
+            "href": "/w/Shaikahan_bones"
+          },
+          {
+            "text": "marinated_j'_bones",
+            "href": "/w/Marinated_j%27_bones"
+          }
+        ],
+        "areas": [
+          "Misthalin"
+        ]
+      }
+    ],
+    "raw": " LINK /w/Shaikahan_bones Shaikahan_bones  or  LINK /w/Marinated_j%27_bones marinated_j'_bones  "
+  },
+  {
+    "id": 1258,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Slayer": 75,
+          "Strength": 50,
+          "Attack": 50,
+          "Defence": 50
+        },
+        "areas": [
+          "Morytania"
+        ]
+      }
+    ],
+    "raw": " SKILL  75 Slayer ,  SKILL  50 Strength , either  SKILL  50 Attack  or  SKILL  50 Defence  "
+  },
+  {
+    "id": 1254,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Defence": 70,
+          "Attack": 70,
+          "Ranged": 70
+        },
+        "areas": [
+          "Morytania"
+        ]
+      }
+    ],
+    "raw": " SKILL  70 Defence , one of  SKILL  70 Attack  or  SKILL  70 Ranged  "
+  },
+  {
+    "id": 1090,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Attack": 60,
+          "Woodcutting": 61,
+          "Firemaking": 85,
+          "Fishing": 75,
+          "Cooking": 85,
+          "Mining": 61,
+          "Smithing": 85,
+          "Slayer": 91
+        },
+        "links": [
+          {
+            "text": "smouldering_stone",
+            "href": "/w/Smouldering_stone"
+          },
+          {
+            "text": "Cerberus",
+            "href": "/w/Cerberus"
+          }
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  60 Attack , and one pair of  SKILL  61 Woodcutting  and  SKILL  85 Firemaking ,  SKILL  75 Fishing  and  SKILL  85 Cooking , or  SKILL  61 Mining  and  SKILL  85 Smithing A  LINK /w/Smouldering_stone smouldering_stone , most likely from  LINK /w/Cerberus Cerberus  (requires  SKILL  91 Slayer  and  AREA Asgarnia ) "
+  },
+  {
+    "id": 594,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Farming": 91
+        },
+        "links": [
+          {
+            "text": "Fairy's_Flight",
+            "href": "/w/Fairy%27s_Flight"
+          }
+        ],
+        "quests": [
+          "Tree Gnome Village"
+        ],
+        "areas": [
+          "Any"
+        ]
+      }
+    ],
+    "raw": " SKILL  91 Farming  AREA Kandarin  or  LINK /w/Fairy%27s_Flight Fairy's_Flight  for completion of    QUEST Tree Gnome Village  "
+  },
+  {
+    "id": 1134,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Hitpoints": 70,
+          "Agility": 70,
+          "Ranged": 70,
+          "Strength": 70
+        },
+        "areas": [
+          "Asgarnia"
+        ]
+      }
+    ],
+    "raw": " SKILL  70 Hitpoints ,  SKILL  70 Agility ,  SKILL  70 Ranged , or  SKILL  70 Strength  "
+  },
+  {
+    "id": 1125,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Attack": 75,
+          "Hitpoints": 70,
+          "Agility": 70,
+          "Ranged": 70,
+          "Strength": 70
+        },
+        "areas": [
+          "Asgarnia"
+        ]
+      }
+    ],
+    "raw": " SKILL  75 Attack , one of  SKILL  70 Hitpoints ,  SKILL  70 Agility ,  SKILL  70 Ranged , or  SKILL  70 Strength  "
+  },
+  {
+    "id": 1122,
+    "reason": "setting skill twice",
+    "reqs": [
+      {
+        "skills": {
+          "Slayer": 91,
+          "Defence": 75,
+          "Magic": 75,
+          "Runecraft": 60,
+          "Attack": 75,
+          "Ranged": 75
+        },
+        "areas": [
+          "Asgarnia"
+        ]
+      }
+    ],
+    "raw": " SKILL  91 Slayer ,  SKILL  75 Defence ,  SKILL  60 Magic ,  SKILL  60 Runecraft , and one of  SKILL  75 Attack ,  SKILL  75 Ranged , or  SKILL  75 Magic Eternal Boots also require  AREA Desert  "
+  },
+  {
+    "id": 1697,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Herblore": 91
+        },
+        "areas": [
+          "Fremennik"
+        ]
+      }
+    ],
+    "raw": " SKILL  91 Herblore Must be 3-dose or 4-dose potions "
+  },
+  {
+    "id": 1805,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "links": [
+          {
+            "text": "Captain_Daerkin",
+            "href": "/w/Captain_Daerkin"
+          },
+          {
+            "text": "Captain_Ninto",
+            "href": "/w/Captain_Ninto"
+          }
+        ],
+        "areas": [
+          "Kandarin"
+        ]
+      }
+    ],
+    "raw": "Either  AREA Desert  for  LINK /w/Captain_Daerkin Captain_Daerkin  or  AREA Asgarnia  for  LINK /w/Captain_Ninto Captain_Ninto  "
+  },
+  {
+    "id": 1707,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Cooking": 84,
+          "Fishing": 82
+        },
+        "links": [
+          {
+            "text": "Piscarilius_favour",
+            "href": "/w/Piscarilius_favour"
+          },
+          {
+            "text": "Skotizo",
+            "href": "/w/Skotizo"
+          }
+        ],
+        "areas": [
+          "Kourend"
+        ]
+      }
+    ],
+    "raw": " SKILL  84 Cooking Either  SKILL  82 Fishing  and 100%  LINK /w/Piscarilius_favour Piscarilius_favour , or killing  LINK /w/Skotizo Skotizo  a bunch for raw anglerfish drops "
+  },
+  {
+    "id": 1611,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "links": [
+          {
+            "text": "Arctic_pine_logs",
+            "href": "/w/Arctic_pine_logs"
+          },
+          {
+            "text": "redwood_logs",
+            "href": "/w/Redwood_logs"
+          }
+        ],
+        "areas": [
+          "Misthalin"
+        ]
+      }
+    ],
+    "raw": " AREA Fremennik  for  LINK /w/Arctic_pine_logs Arctic_pine_logs ,  AREA Morytania  or  AREA Kourend  for  LINK /w/Redwood_logs redwood_logs  "
+  },
+  {
+    "id": 1251,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Defence": 75,
+          "Slayer": 75
+        },
+        "links": [
+          {
+            "text": "God_Wars_Dungeon",
+            "href": "/w/God_Wars_Dungeon"
+          },
+          {
+            "text": "Bandos_boots",
+            "href": "/w/Bandos_boots"
+          },
+          {
+            "text": "Armadylean_guard",
+            "href": "/w/Armadylean_guard"
+          },
+          {
+            "text": "Bandosian_guard",
+            "href": "/w/Bandosian_guard"
+          }
+        ],
+        "areas": [
+          "Morytania"
+        ]
+      }
+    ],
+    "raw": " SKILL  75 Defence ,  SKILL  75 Slayer  AREA Asgarnia  for access to  LINK /w/God_Wars_Dungeon God_Wars_Dungeon  (This can technically be bypassed with the 1/2,000,000  LINK /w/Bandos_boots Bandos_boots  drop from an  LINK /w/Armadylean_guard Armadylean_guard  or  LINK /w/Bandosian_guard Bandosian_guard ) "
+  },
+  {
+    "id": 1753,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Attack": 80,
+          "Ranged": 80,
+          "Agility": 70
+        },
+        "links": [
+          {
+            "text": "The_Gauntlet",
+            "href": "/w/The_Gauntlet"
+          }
+        ],
+        "areas": [
+          "Tirannwn"
+        ]
+      }
+    ],
+    "raw": "Either  SKILL  80 Attack  or  SKILL  80 Ranged  and  SKILL  70 Agility Completion of    LINK /w/The_Gauntlet The_Gauntlet  "
+  },
+  {
+    "id": 1872,
+    "reason": "setting skill twice",
+    "reqs": [
+      {
+        "skills": {
+          "Fletching": 95,
+          "Hunter": 83
+        },
+        "areas": [
+          "Tirannwn"
+        ]
+      }
+    ],
+    "raw": " SKILL  53 Fletching , either  SKILL  83 Hunter  or  SKILL  95 Fletching  to obtain the darts "
+  },
+  {
+    "id": 1587,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Ranged": 80,
+          "Defence": 80,
+          "Crafting": 90
+        },
+        "quests": [
+          "Beneath Cursed Sands"
+        ],
+        "links": [
+          {
+            "text": "God_Wars_Dungeon",
+            "href": "/w/God_Wars_Dungeon"
+          },
+          {
+            "text": "Armadyl_helmet",
+            "href": "/w/Armadyl_helmet"
+          },
+          {
+            "text": "Armadylean_guard",
+            "href": "/w/Armadylean_guard"
+          },
+          {
+            "text": "Bandosian_guard",
+            "href": "/w/Bandosian_guard"
+          }
+        ],
+        "areas": [
+          "Desert"
+        ]
+      }
+    ],
+    "raw": " SKILL  80 Ranged ,  SKILL  80 Defence ,  SKILL  90 Crafting Completion of    QUEST Beneath Cursed Sands ,  AREA Asgarnia  for access to  LINK /w/God_Wars_Dungeon God_Wars_Dungeon  (This can technically be bypassed with the 1/2,000,000  LINK /w/Armadyl_helmet Armadyl_helmet  drop from an  LINK /w/Armadylean_guard Armadylean_guard  or  LINK /w/Bandosian_guard Bandosian_guard ), yet is practically impossible due to this drop being required 8 times "
+  },
+  {
+    "id": 1360,
+    "reason": "Found either/or in text",
+    "reqs": [
+      {
+        "skills": {
+          "Hunter": 83,
+          "Crafting": 80,
+          "Magic": 68
+        },
+        "quests": [
+          "Heroes' Quest"
+        ],
+        "areas": [
+          "Wilderness"
+        ]
+      }
+    ],
+    "raw": " SKILL  83 Hunter  or both  SKILL  80 Crafting  and  SKILL  68 Magic Completion of    QUEST Heroes' Quest  "
+  },
+  {
+    "id": 1338,
+    "reason": "setting skill twice",
+    "reqs": [
+      {
+        "skills": {
+          "Defence": 75,
+          "Prayer": 90,
+          "Smithing": 85
+        },
+        "links": [
+          {
+            "text": "Abbot_Langley",
+            "href": "/w/Abbot_Langley"
+          }
+        ],
+        "areas": [
+          "Wilderness"
+        ]
+      }
+    ],
+    "raw": " SKILL  75 Defence ,  SKILL  85 Prayer , either  AREA Asgarnia  for access to  LINK /w/Abbot_Langley Abbot_Langley  or  SKILL  90 Prayer  and  SKILL  85 Smithing  to craft it "
+  }
+]

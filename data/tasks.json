@@ -106,6 +106,7 @@
     "diff": "Easy",
     "reqs": [
       {
+        "coins": 1000,
         "areas": [
           "Any"
         ]
@@ -187,6 +188,7 @@
     "diff": "Easy",
     "reqs": [
       {
+        "coins": 2,
         "areas": [
           "Any"
         ]
@@ -299,6 +301,7 @@
     "diff": "Easy",
     "reqs": [
       {
+        "coins": 1,
         "areas": [
           "Any"
         ]
@@ -331,6 +334,12 @@
         "skills": {
           "Woodcutting": 1
         },
+        "links": [
+          {
+            "text": "axe",
+            "href": "/w/Axe"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -634,6 +643,7 @@
     "diff": "Easy",
     "reqs": [
       {
+        "coins": 1000,
         "areas": [
           "Any"
         ]
@@ -698,6 +708,13 @@
         "skills": {
           "Defence": 5
         },
+        "coins": 650,
+        "links": [
+          {
+            "text": "store",
+            "href": "/w/Slayer_Equipment_(shop)"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -732,6 +749,12 @@
           "Defence": 30,
           "Fletching": 42
         },
+        "links": [
+          {
+            "text": "Willow_logs",
+            "href": "/w/Willow_logs"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -978,6 +1001,12 @@
     "diff": "Easy",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "pickaxe",
+            "href": "/w/Pickaxe"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -994,6 +1023,12 @@
         "skills": {
           "Mining": 30
         },
+        "links": [
+          {
+            "text": "pickaxe",
+            "href": "/w/Pickaxe"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -1147,6 +1182,12 @@
     "diff": "Easy",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Farmer's_Fortune",
+            "href": "/w/Farmer%27s_Fortune"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -1160,6 +1201,7 @@
     "diff": "Easy",
     "reqs": [
       {
+        "coins": 1000,
         "areas": [
           "Any"
         ]
@@ -1173,6 +1215,12 @@
     "diff": "Easy",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "rake",
+            "href": "/w/Rake"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -1343,6 +1391,16 @@
     "diff": "Easy",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Scaly_blue_dragonhide",
+            "href": "/w/Scaly_blue_dragonhide"
+          },
+          {
+            "text": "knife",
+            "href": "/w/Knife"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -1509,6 +1567,12 @@
         "skills": {
           "Crafting": 16
         },
+        "links": [
+          {
+            "text": "Chisel",
+            "href": "/w/Chisel"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -1538,6 +1602,13 @@
     "diff": "Easy",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Logs",
+            "href": "/w/Logs"
+          }
+        ],
+        "coins": 100,
         "areas": [
           "Any"
         ]
@@ -1687,6 +1758,16 @@
     "diff": "Easy",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "cabbage",
+            "href": "/w/Cabbage_(Draynor_Manor)"
+          },
+          {
+            "text": "Draynor_Manor",
+            "href": "/w/Draynor_Manor"
+          }
+        ],
         "areas": [
           "Asgarnia"
         ]
@@ -1883,7 +1964,7 @@
   {
     "id": 1221,
     "name": "Complete The Golem",
-    "desc": "Complete   The Golem  quest",
+    "desc": "Complete   The Golem quest",
     "diff": "Easy",
     "reqs": [
       {
@@ -1962,6 +2043,12 @@
     "diff": "Easy",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Rope",
+            "href": "/w/Rope"
+          }
+        ],
         "areas": [
           "Desert"
         ]
@@ -2370,7 +2457,7 @@
   {
     "id": 1509,
     "name": "Complete Fishing Contest",
-    "desc": "Complete the   Fishing Contest  Quest",
+    "desc": "Complete the   Fishing Contest Quest",
     "diff": "Easy",
     "reqs": [
       {
@@ -2386,7 +2473,7 @@
   {
     "id": 1064,
     "name": "Complete Monk's Friend",
-    "desc": "Complete the   Monk's Friend  quest",
+    "desc": "Complete the   Monk's Friend quest",
     "diff": "Easy",
     "reqs": [
       {
@@ -2399,7 +2486,7 @@
   {
     "id": 1068,
     "name": "Complete Sea Slug",
-    "desc": "Complete the   Sea Slug  quest",
+    "desc": "Complete the   Sea Slug quest",
     "diff": "Easy",
     "reqs": [
       {
@@ -2675,6 +2762,7 @@
     "diff": "Easy",
     "reqs": [
       {
+        "coins": 875,
         "areas": [
           "Karamja"
         ]
@@ -2759,9 +2847,6 @@
         "skills": {
           "Thieving": 20
         },
-        "quests": [
-          "Queen of Thieves"
-        ],
         "areas": [
           "Kourend"
         ]
@@ -2828,10 +2913,20 @@
   {
     "id": 0,
     "name": "Complete Client of Kourend",
-    "desc": "Complete the   Client of Kourend  quest",
+    "desc": "Complete the   Client of Kourend quest",
     "diff": "Easy",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "23_November",
+            "href": "/w/23_November"
+          },
+          {
+            "text": "2023",
+            "href": "/w/2023"
+          }
+        ],
         "areas": [
           "Kourend"
         ]
@@ -2908,7 +3003,7 @@
   {
     "id": 5,
     "name": "Complete Tale Of The Righteous",
-    "desc": "Complete the   Tale of the Righteous  quest",
+    "desc": "Complete the   Tale of the Righteous quest",
     "diff": "Easy",
     "reqs": [
       {
@@ -3077,6 +3172,12 @@
     "diff": "Easy",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Ring_of_charos",
+            "href": "/w/Ring_of_charos"
+          }
+        ],
         "quests": [
           "Garden of Tranquillity"
         ],
@@ -3093,6 +3194,12 @@
     "diff": "Easy",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Lonely_tree",
+            "href": "undefined"
+          }
+        ],
         "areas": [
           "Misthalin"
         ]
@@ -3118,7 +3225,7 @@
   {
     "id": 815,
     "name": "Complete Gertrude's Cat",
-    "desc": "Complete the   Gertrude's Cat  quest",
+    "desc": "Complete the   Gertrude's Cat quest",
     "diff": "Easy",
     "reqs": [
       {
@@ -3131,7 +3238,7 @@
   {
     "id": 813,
     "name": "Complete Romeo & Juliet",
-    "desc": "Complete the   Romeo & Juliet  Quest",
+    "desc": "Complete the   Romeo & Juliet Quest",
     "diff": "Easy",
     "reqs": [
       {
@@ -3144,7 +3251,7 @@
   {
     "id": 809,
     "name": "Complete Sheep Shearer",
-    "desc": "Complete the   Sheep Shearer  quest",
+    "desc": "Complete the   Sheep Shearer quest",
     "diff": "Easy",
     "reqs": [
       {
@@ -3199,7 +3306,7 @@
   {
     "id": 812,
     "name": "Complete Vampyre Slayer",
-    "desc": "Complete the   Vampyre Slayer  quest",
+    "desc": "Complete the   Vampyre Slayer quest",
     "diff": "Easy",
     "reqs": [
       {
@@ -3333,6 +3440,12 @@
     "diff": "Easy",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "cup_of_tea",
+            "href": "/w/Cup_of_tea"
+          }
+        ],
         "areas": [
           "Misthalin"
         ]
@@ -3346,6 +3459,12 @@
     "diff": "Easy",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "balls_of_wool",
+            "href": "/w/Ball_of_wool"
+          }
+        ],
         "areas": [
           "Misthalin"
         ]
@@ -3985,8 +4104,18 @@
     "reqs": [
       {
         "skills": {
-          "Slayer": 150
+          "Slayer": 5
         },
+        "links": [
+          {
+            "text": "Bigger_and_Badder",
+            "href": "/w/Bigger_and_Badder"
+          },
+          {
+            "text": "Slayer_reward_points",
+            "href": "/w/Slayer_reward_point"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -4066,8 +4195,18 @@
     "reqs": [
       {
         "skills": {
-          "Slayer": 150
+          "Slayer": 5
         },
+        "links": [
+          {
+            "text": "Bigger_and_Badder",
+            "href": "/w/Bigger_and_Badder"
+          },
+          {
+            "text": "Slayer_reward_points",
+            "href": "/w/Slayer_reward_point"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -4134,8 +4273,18 @@
     "reqs": [
       {
         "skills": {
-          "Slayer": 150
+          "Slayer": 5
         },
+        "links": [
+          {
+            "text": "Bigger_and_Badder",
+            "href": "/w/Bigger_and_Badder"
+          },
+          {
+            "text": "Slayer_reward_points",
+            "href": "/w/Slayer_reward_point"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -4551,6 +4700,12 @@
           "Woodcutting": 35,
           "Hunter": 50
         },
+        "links": [
+          {
+            "text": "Bees_on_a_stick",
+            "href": "/w/Bees_on_a_stick"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -4788,8 +4943,14 @@
     "reqs": [
       {
         "skills": {
-          "Slayer": 150
+          "Slayer": 5
         },
+        "links": [
+          {
+            "text": "Bigger_and_Badder",
+            "href": "/w/Bigger_and_Badder"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -5087,6 +5248,20 @@
     "diff": "Medium",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "horned_graahks",
+            "href": "/w/Horned_graahk"
+          },
+          {
+            "text": "spined_larupia",
+            "href": "/w/Spined_larupia"
+          },
+          {
+            "text": "sabre-toothed_kyatt",
+            "href": "/w/Sabre-toothed_kyatt"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -5246,6 +5421,12 @@
           "Fletching": 35,
           "Woodcutting": 30
         },
+        "links": [
+          {
+            "text": "Willow_logs",
+            "href": "/w/Willow_logs"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -5260,9 +5441,18 @@
     "reqs": [
       {
         "skills": {
-          "Fletching": 52,
-          "Slayer": 300
+          "Fletching": 52
         },
+        "links": [
+          {
+            "text": "Broader_Fletching",
+            "href": "/w/Broader_Fletching"
+          },
+          {
+            "text": "Slayer_reward_points",
+            "href": "/w/Slayer_reward_point"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -5415,6 +5605,12 @@
         "skills": {
           "Firemaking": 49
         },
+        "links": [
+          {
+            "text": "bullseye_lantern",
+            "href": "/w/Bullseye_lantern#Trailblazer_Reloaded_League"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -5450,6 +5646,16 @@
           "Mining": 40,
           "Construction": 44
         },
+        "links": [
+          {
+            "text": "Amulet_mould",
+            "href": "/w/Amulet_mould"
+          },
+          {
+            "text": "Jade_amulet_(u)",
+            "href": "/w/Jade_amulet_(u)"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -5514,6 +5720,12 @@
         "skills": {
           "Thieving": 40
         },
+        "links": [
+          {
+            "text": "Trickster",
+            "href": "/w/Trickster"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -5742,6 +5954,15 @@
     "diff": "Medium",
     "reqs": [
       {
+        "quests": [
+          "Great Brain Robbery"
+        ],
+        "links": [
+          {
+            "text": "god_book",
+            "href": "/w/God_book"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -5884,7 +6105,7 @@
   {
     "id": 1142,
     "name": "Complete A Porcine of Interest",
-    "desc": "Complete the   A Porcine of Interest  quest",
+    "desc": "Complete the   A Porcine of Interest quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -5897,7 +6118,7 @@
   {
     "id": 1769,
     "name": "Complete Below Ice Mountain",
-    "desc": "Complete   Below Ice Mountain  quest",
+    "desc": "Complete   Below Ice Mountain quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -5910,7 +6131,7 @@
   {
     "id": 806,
     "name": "Complete Death to the Dorgeshuun",
-    "desc": "Complete the   Death to the Dorgeshuun  quest. Can be done without Asgarnia unlocked, see Trailblazer notes on Death to the Dorgeshuun",
+    "desc": "Complete the   Death to the Dorgeshuun quest. Can be done without Asgarnia unlocked, see Trailblazer notes on Death to the Dorgeshuun",
     "diff": "Medium",
     "reqs": [
       {
@@ -5956,7 +6177,7 @@
   {
     "id": 804,
     "name": "Complete The Lost Tribe",
-    "desc": "Complete   The Lost Tribe  quest",
+    "desc": "Complete   The Lost Tribe quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -6014,6 +6235,12 @@
         "skills": {
           "Runecraft": 35
         },
+        "links": [
+          {
+            "text": "chaos_altar",
+            "href": "/w/Chaos_altar"
+          }
+        ],
         "areas": [
           "Asgarnia"
         ]
@@ -6148,9 +6375,6 @@
         "skills": {
           "Ranged": 28
         },
-        "quests": [
-          "Lost Tribe"
-        ],
         "areas": [
           "Asgarnia"
         ]
@@ -6336,6 +6560,12 @@
         "skills": {
           "Magic": 60
         },
+        "links": [
+          {
+            "text": "Mage_Training_Arena",
+            "href": "/w/Mage_Training_Arena"
+          }
+        ],
         "areas": [
           "Desert"
         ]
@@ -6393,7 +6623,7 @@
   {
     "id": 1220,
     "name": "Complete Shadow of the Storm",
-    "desc": "Complete the   Shadow of the Storm  quest",
+    "desc": "Complete the   Shadow of the Storm quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -6401,7 +6631,6 @@
           "Crafting": 30
         },
         "quests": [
-          "Golem",
           "Demon Slayer"
         ],
         "areas": [
@@ -6413,7 +6642,7 @@
   {
     "id": 1765,
     "name": "Complete Sleeping Giants",
-    "desc": "Complete   Sleeping Giants  quest",
+    "desc": "Complete   Sleeping Giants quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -6429,7 +6658,7 @@
   {
     "id": 1210,
     "name": "Complete Spirits of the Elid",
-    "desc": "Complete the   Spirits of the Elid  quest",
+    "desc": "Complete the   Spirits of the Elid quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -6574,6 +6803,12 @@
         "skills": {
           "Runecraft": 27
         },
+        "links": [
+          {
+            "text": "Portal",
+            "href": "undefined"
+          }
+        ],
         "areas": [
           "Desert"
         ]
@@ -6847,8 +7082,11 @@
     "diff": "Medium",
     "reqs": [
       {
-        "quests": [
-          "Spirits of the Elid"
+        "links": [
+          {
+            "text": "Spirits_of_the_Elid",
+            "href": "/w/Spirits_of_the_Elid"
+          }
         ],
         "areas": [
           "Desert"
@@ -7016,7 +7254,7 @@
   {
     "id": 953,
     "name": "Complete Royal Trouble",
-    "desc": "Complete the   Royal Trouble  quest",
+    "desc": "Complete the   Royal Trouble quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -7079,7 +7317,7 @@
   {
     "id": 948,
     "name": "Complete Throne of Miscellania",
-    "desc": "Complete the   Throne of Miscellania  quest",
+    "desc": "Complete the   Throne of Miscellania quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -7115,9 +7353,6 @@
         "skills": {
           "Slayer": 60
         },
-        "quests": [
-          "Fremennik Exiles"
-        ],
         "areas": [
           "Fremennik"
         ]
@@ -7363,7 +7598,7 @@
   {
     "id": 1067,
     "name": "Complete Elemental Workshop II",
-    "desc": "Complete the   Elemental Workshop II  quest",
+    "desc": "Complete the   Elemental Workshop II quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -7461,7 +7696,7 @@
   {
     "id": 1066,
     "name": "Complete Tower of Life",
-    "desc": "Complete the   Tower of Life  quest",
+    "desc": "Complete the   Tower of Life quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -7764,6 +7999,12 @@
     "diff": "Medium",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Malignius_Mortifer",
+            "href": "/w/Malignius_Mortifer"
+          }
+        ],
         "areas": [
           "Kandarin"
         ]
@@ -8003,8 +8244,19 @@
         "skills": {
           "Mining": 40
         },
-        "quests": [
-          "Heroes' Quest"
+        "links": [
+          {
+            "text": "Heroes'_Quest",
+            "href": "/w/Heroes%27_Quest"
+          },
+          {
+            "text": "amulet_of_glory",
+            "href": "/w/Amulet_of_glory"
+          },
+          {
+            "text": "Amulet_of_glory_(t4)",
+            "href": "/w/Amulet_of_glory_(t4)"
+          }
         ],
         "areas": [
           "Karamja"
@@ -8083,6 +8335,15 @@
         "skills": {
           "Magic": 78
         },
+        "kourend": {
+          "Arceuus": "60"
+        },
+        "links": [
+          {
+            "text": "Farmer's_Fortune",
+            "href": "/w/Farmer%27s_Fortune"
+          }
+        ],
         "areas": [
           "Kourend"
         ]
@@ -8108,7 +8369,7 @@
   {
     "id": 1767,
     "name": "Complete Getting Ahead",
-    "desc": "Complete   Getting Ahead  quest",
+    "desc": "Complete   Getting Ahead quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -8286,6 +8547,12 @@
         "skills": {
           "Magic": 44
         },
+        "links": [
+          {
+            "text": "Arceuus_favour",
+            "href": "/w/Arceuus_favour"
+          }
+        ],
         "areas": [
           "Kourend"
         ]
@@ -8427,6 +8694,9 @@
         "skills": {
           "Thieving": 49
         },
+        "kourend": {
+          "Piscarilius": "75"
+        },
         "areas": [
           "Kourend"
         ]
@@ -8459,6 +8729,16 @@
     "diff": "Medium",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Ancient_tablet",
+            "href": "/w/Ancient_tablet"
+          },
+          {
+            "text": "Chambers_of_Xeric",
+            "href": "/w/Chambers_of_Xeric"
+          }
+        ],
         "areas": [
           "Kourend"
         ]
@@ -8555,7 +8835,7 @@
   {
     "id": 820,
     "name": "Complete a Soul's Bane",
-    "desc": "Complete the   A Soul's Bane  quest",
+    "desc": "Complete the   A Soul's Bane quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -8588,6 +8868,12 @@
         "skills": {
           "Mining": 50
         },
+        "links": [
+          {
+            "text": "Kudos",
+            "href": "/w/Kudos"
+          }
+        ],
         "areas": [
           "Misthalin"
         ]
@@ -8597,7 +8883,7 @@
   {
     "id": 808,
     "name": "Complete Demon Slayer",
-    "desc": "Complete the   Demon Slayer  quest",
+    "desc": "Complete the   Demon Slayer quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -8610,7 +8896,7 @@
   {
     "id": 801,
     "name": "Complete Rune Mysteries",
-    "desc": "Complete the   Rune Mysteries  quest",
+    "desc": "Complete the   Rune Mysteries quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -8782,7 +9068,7 @@
   {
     "id": 810,
     "name": "Drink From the Tears of Guthix",
-    "desc": "Drink from the Tears of Guthix  in the Lumbridge Swamp Caves",
+    "desc": "Drink from the Tears of Guthix in the Lumbridge Swamp Caves",
     "diff": "Medium",
     "reqs": [
       {
@@ -8944,6 +9230,7 @@
     "reqs": [
       {
         "skills": {
+          "Combat": 40,
           "Total": 500
         },
         "areas": [
@@ -8955,7 +9242,7 @@
   {
     "id": 1294,
     "name": "Achieve 100% Shades of Mort'Ton Sanctity",
-    "desc": "Achieve 100% Sanctity during the Shades of Mort'ton  minigame",
+    "desc": "Achieve 100% Sanctity during the Shades of Mort'ton minigame",
     "diff": "Medium",
     "reqs": [
       {
@@ -8976,9 +9263,19 @@
     "reqs": [
       {
         "skills": {
-          "Slayer": 400,
+          "Slayer": 58,
           "Crafting": 55
         },
+        "links": [
+          {
+            "text": "Malevolent_Masquerade",
+            "href": "/w/Malevolent_Masquerade"
+          },
+          {
+            "text": "Slayer_reward_points",
+            "href": "/w/Slayer_reward_point"
+          }
+        ],
         "areas": [
           "Morytania"
         ]
@@ -9036,7 +9333,7 @@
   {
     "id": 1292,
     "name": "Complete A Taste of Hope",
-    "desc": "Complete the   A Taste of Hope  quest",
+    "desc": "Complete the   A Taste of Hope quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -9056,7 +9353,7 @@
   {
     "id": 1290,
     "name": "Complete Ghosts Ahoy",
-    "desc": "Complete the   Ghosts Ahoy  quest",
+    "desc": "Complete the   Ghosts Ahoy quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -9064,6 +9361,16 @@
           "Agility": 25,
           "Cooking": 20
         },
+        "links": [
+          {
+            "text": "23_November",
+            "href": "/w/23_November"
+          },
+          {
+            "text": "2023",
+            "href": "/w/2023"
+          }
+        ],
         "areas": [
           "Morytania"
         ]
@@ -9073,7 +9380,7 @@
   {
     "id": 1288,
     "name": "Complete Haunted Mine",
-    "desc": "Complete the   Haunted Mine  quest",
+    "desc": "Complete the   Haunted Mine quest",
     "diff": "Medium",
     "reqs": [
       {
@@ -9338,6 +9645,28 @@
     "diff": "Medium",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Big_bass",
+            "href": "/w/Big_bass"
+          },
+          {
+            "text": "crawling_hand",
+            "href": "/w/Crawling_hand_(item)"
+          },
+          {
+            "text": "Kbd_heads",
+            "href": "/w/Kbd_heads"
+          },
+          {
+            "text": "Kq_head",
+            "href": "/w/Kq_head"
+          },
+          {
+            "text": "Vorkath's_head",
+            "href": "/w/Vorkath%27s_head"
+          }
+        ],
         "skills": {
           "Fishing": 46,
           "Slayer": 5
@@ -9738,6 +10067,16 @@
     "diff": "Medium",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "gold_ring",
+            "href": "/w/Gold_ring"
+          },
+          {
+            "text": "Wilderness_Volcano",
+            "href": "/w/Wilderness_Volcano"
+          }
+        ],
         "areas": [
           "Wilderness"
         ]
@@ -10134,6 +10473,12 @@
         "skills": {
           "Construction": 77
         },
+        "links": [
+          {
+            "text": "Stonemason",
+            "href": "/w/Stonemason"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -10198,6 +10543,20 @@
         "skills": {
           "Magic": 81
         },
+        "links": [
+          {
+            "text": "wrath_runes",
+            "href": "/w/Wrath_rune"
+          },
+          {
+            "text": "Fountain_of_Rune",
+            "href": "/w/Fountain_of_Rune"
+          },
+          {
+            "text": "Barbarian_Assault",
+            "href": "/w/Barbarian_Assault"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -10430,6 +10789,12 @@
         "skills": {
           "Cooking": 10
         },
+        "links": [
+          {
+            "text": "Bake_Pie",
+            "href": "/w/Bake_Pie"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -10462,6 +10827,12 @@
         "skills": {
           "Cooking": 10
         },
+        "links": [
+          {
+            "text": "Bake_Pie",
+            "href": "/w/Bake_Pie"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -10530,6 +10901,20 @@
         "quests": [
           "Haunted Mine"
         ],
+        "links": [
+          {
+            "text": "zombies",
+            "href": "/w/Zombie_(Tarn%27s_Lair)"
+          },
+          {
+            "text": "Tarn's_Lair",
+            "href": "/w/Tarn%27s_Lair"
+          },
+          {
+            "text": "Redwood_logs",
+            "href": "/w/Redwood_logs"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -10544,8 +10929,18 @@
     "reqs": [
       {
         "skills": {
-          "Slayer": 150
+          "Slayer": 5
         },
+        "links": [
+          {
+            "text": "Bigger_and_Badder",
+            "href": "/w/Bigger_and_Badder"
+          },
+          {
+            "text": "Slayer_reward_points",
+            "href": "/w/Slayer_reward_point"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -10560,7 +10955,7 @@
     "reqs": [
       {
         "skills": {
-          "Slayer": 150
+          "Slayer": 5
         },
         "areas": [
           "Any"
@@ -10754,7 +11149,7 @@
     "reqs": [
       {
         "skills": {
-          "Slayer": 150,
+          "Slayer": 5,
           "Attack": 30,
           "Magic": 30
         },
@@ -10974,6 +11369,12 @@
         "skills": {
           "Fletching": 80
         },
+        "links": [
+          {
+            "text": "tree_patch",
+            "href": "/w/Tree_patch"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -11344,6 +11745,12 @@
         "skills": {
           "Thieving": 75
         },
+        "links": [
+          {
+            "text": "TzHaar_Fight_Cave",
+            "href": "/w/TzHaar_Fight_Cave"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -11369,7 +11776,7 @@
   {
     "id": 1768,
     "name": "Complete Land of the Goblins",
-    "desc": "Complete   Land of the Goblins  quest",
+    "desc": "Complete   Land of the Goblins quest",
     "diff": "Hard",
     "reqs": [
       {
@@ -11668,6 +12075,12 @@
         "skills": {
           "Defence": 60
         },
+        "links": [
+          {
+            "text": "Warriors'_Guild",
+            "href": "/w/Warriors%27_Guild"
+          }
+        ],
         "areas": [
           "Asgarnia"
         ]
@@ -11853,7 +12266,7 @@
   {
     "id": 1522,
     "name": "The Frozen Door",
-    "desc": "Complete the mini-quest   'The Frozen Door '",
+    "desc": "Complete the mini-quest   'The Frozen Door'",
     "diff": "Hard",
     "reqs": [
       {
@@ -11987,7 +12400,7 @@
   {
     "id": 1766,
     "name": "Complete Beneath Cursed Sands",
-    "desc": "Complete   Beneath Cursed Sands  quest",
+    "desc": "Complete   Beneath Cursed Sands quest",
     "diff": "Hard",
     "reqs": [
       {
@@ -13040,9 +13453,6 @@
           "Ranged": 47,
           "Agility": 45
         },
-        "quests": [
-          "Eyes of Glouphrie"
-        ],
         "areas": [
           "Kandarin"
         ]
@@ -13224,6 +13634,16 @@
           "Fishing": 43,
           "Hunter": 35
         },
+        "links": [
+          {
+            "text": "Fishing_Trawler",
+            "href": "/w/Fishing_Trawler"
+          },
+          {
+            "text": "aerial_fishing",
+            "href": "/w/Aerial_fishing"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -13274,9 +13694,6 @@
           "Magic": 62,
           "Slayer": 56
         },
-        "quests": [
-          "Path of Glouphrie"
-        ],
         "areas": [
           "Kandarin"
         ]
@@ -13452,6 +13869,12 @@
     "diff": "Hard",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "TzHaar_Fight_Cave",
+            "href": "/w/TzHaar_Fight_Cave"
+          }
+        ],
         "areas": [
           "Karamja"
         ]
@@ -13500,6 +13923,12 @@
         "skills": {
           "Defence": 60
         },
+        "links": [
+          {
+            "text": "TzHaar_Fight_Cave",
+            "href": "/w/TzHaar_Fight_Cave"
+          }
+        ],
         "areas": [
           "Karamja"
         ]
@@ -13635,8 +14064,11 @@
     "diff": "Hard",
     "reqs": [
       {
-        "diary": [
-          "Elite Karamja"
+        "links": [
+          {
+            "text": "Elite_Karamja_Diary",
+            "href": "/w/Elite_Karamja_Diary"
+          }
         ],
         "areas": [
           "Karamja"
@@ -13660,7 +14092,7 @@
   {
     "id": 960,
     "name": "Take a Shortcut Across the Shilo Village River",
-    "desc": "Take a shortcut across the Shilo Village  river",
+    "desc": "Take a shortcut across the Shilo Village river",
     "diff": "Hard",
     "reqs": [
       {
@@ -13925,9 +14357,9 @@
         "skills": {
           "Magic": 92
         },
-        "quests": [
-          "Kingdom Divided"
-        ],
+        "kourend": {
+          "Arceuus": "60"
+        },
         "areas": [
           "Kourend"
         ]
@@ -14089,10 +14521,20 @@
     "reqs": [
       {
         "skills": {
-          "Slayer": 150,
+          "Slayer": 5,
           "Attack": 30,
           "Magic": 30
         },
+        "links": [
+          {
+            "text": "Bigger_and_Badder",
+            "href": "/w/Bigger_and_Badder"
+          },
+          {
+            "text": "Slayer_reward_points",
+            "href": "/w/Slayer_reward_point"
+          }
+        ],
         "areas": [
           "Kourend"
         ]
@@ -14110,6 +14552,12 @@
           "Hunter": 35,
           "Fishing": 43
         },
+        "links": [
+          {
+            "text": "Barbarian_Fishing",
+            "href": "/w/Barbarian_Fishing"
+          }
+        ],
         "areas": [
           "Kourend"
         ]
@@ -14180,8 +14628,11 @@
           "Attack": 80,
           "Defence": 80
         },
-        "quests": [
-          "Dragon Slayer II"
+        "links": [
+          {
+            "text": "Dragon_Slayer_II",
+            "href": "/w/Dragon_Slayer_II"
+          }
         ],
         "areas": [
           "Kourend"
@@ -14492,6 +14943,7 @@
     "reqs": [
       {
         "skills": {
+          "Combat": 40,
           "Total": 500
         },
         "areas": [
@@ -14540,6 +14992,16 @@
     "diff": "Hard",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Shaikahan_bones",
+            "href": "/w/Shaikahan_bones"
+          },
+          {
+            "text": "marinated_j'_bones",
+            "href": "/w/Marinated_j%27_bones"
+          }
+        ],
         "areas": [
           "Misthalin"
         ]
@@ -14582,7 +15044,7 @@
   {
     "id": 1289,
     "name": "Complete Sins of the Father",
-    "desc": "Complete the   Sins of the Father  quest",
+    "desc": "Complete the   Sins of the Father quest",
     "diff": "Hard",
     "reqs": [
       {
@@ -14596,8 +15058,7 @@
           "Magic": 49
         },
         "quests": [
-          "Vampyre Slayer",
-          "Taste of Hope"
+          "Vampyre Slayer"
         ],
         "areas": [
           "Morytania"
@@ -15005,6 +15466,12 @@
         "quests": [
           "Sins of the Father"
         ],
+        "links": [
+          {
+            "text": "Hallowed_Sepulchre",
+            "href": "/w/Hallowed_Sepulchre"
+          }
+        ],
         "areas": [
           "Morytania"
         ]
@@ -15058,6 +15525,12 @@
         },
         "quests": [
           "Sins of the Father"
+        ],
+        "links": [
+          {
+            "text": "Hallowed_Sepulchre",
+            "href": "/w/Hallowed_Sepulchre"
+          }
         ],
         "areas": [
           "Morytania"
@@ -16160,7 +16633,7 @@
     "reqs": [
       {
         "skills": {
-          "Slayer": 150
+          "Slayer": 5
         },
         "areas": [
           "Any"
@@ -16345,7 +16818,7 @@
     "reqs": [
       {
         "skills": {
-          "Slayer": 150
+          "Slayer": 5
         },
         "areas": [
           "Any"
@@ -16366,6 +16839,12 @@
         },
         "quests": [
           "Dragon Slayer II"
+        ],
+        "links": [
+          {
+            "text": "Myths'_Guild_Armoury",
+            "href": "/w/Myths%27_Guild_Armoury"
+          }
         ],
         "areas": [
           "Any"
@@ -16441,7 +16920,7 @@
     "reqs": [
       {
         "skills": {
-          "Slayer": 300,
+          "Slayer": 5,
           "Crafting": 75
         },
         "areas": [
@@ -16467,6 +16946,16 @@
           "Smithing": 85,
           "Slayer": 91
         },
+        "links": [
+          {
+            "text": "smouldering_stone",
+            "href": "/w/Smouldering_stone"
+          },
+          {
+            "text": "Cerberus",
+            "href": "/w/Cerberus"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -16480,6 +16969,16 @@
     "diff": "Elite",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Tombs_of_Amascut",
+            "href": "/w/Tombs_of_Amascut"
+          },
+          {
+            "text": "Awowogei",
+            "href": "/w/Awowogei"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -18330,6 +18829,12 @@
         "skills": {
           "Farming": 91
         },
+        "links": [
+          {
+            "text": "Fairy's_Flight",
+            "href": "/w/Fairy%27s_Flight"
+          }
+        ],
         "quests": [
           "Tree Gnome Village"
         ],
@@ -18708,6 +19213,12 @@
           "Magic": 90,
           "Crafting": 80
         },
+        "links": [
+          {
+            "text": "Dagannoth_Kings",
+            "href": "/w/Dagannoth_Kings"
+          }
+        ],
         "areas": [
           "Asgarnia"
         ]
@@ -18895,6 +19406,12 @@
         },
         "quests": [
           "Beneath Cursed Sands"
+        ],
+        "links": [
+          {
+            "text": "Ava's_assembler",
+            "href": "/w/Ava%27s_assembler"
+          }
         ],
         "areas": [
           "Desert"
@@ -19276,8 +19793,15 @@
           "Prayer": 70,
           "Slayer": 95
         },
-        "diary": [
-          "Hard Morytania"
+        "links": [
+          {
+            "text": "hydra_tail",
+            "href": "/w/Hydra_tail"
+          },
+          {
+            "text": "Hard_Morytania_Diary",
+            "href": "/w/Morytania_Diary#Hard"
+          }
         ],
         "areas": [
           "Fremennik"
@@ -19358,9 +19882,6 @@
         "skills": {
           "Defence": 70
         },
-        "quests": [
-          "Fremennik Exiles"
-        ],
         "areas": [
           "Fremennik"
         ]
@@ -19635,6 +20156,16 @@
     "diff": "Elite",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Captain_Daerkin",
+            "href": "/w/Captain_Daerkin"
+          },
+          {
+            "text": "Captain_Ninto",
+            "href": "/w/Captain_Ninto"
+          }
+        ],
         "areas": [
           "Kandarin"
         ]
@@ -19913,6 +20444,12 @@
     "diff": "Elite",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "TzHaar_Fight_Cave",
+            "href": "/w/TzHaar_Fight_Cave"
+          }
+        ],
         "areas": [
           "Karamja"
         ]
@@ -19929,6 +20466,16 @@
         "skills": {
           "Thieving": 90
         },
+        "links": [
+          {
+            "text": "Mor_Ul_Rek",
+            "href": "/w/Mor_Ul_Rek"
+          },
+          {
+            "text": "Fire_Cape",
+            "href": "/w/Fire_Cape"
+          }
+        ],
         "areas": [
           "Karamja"
         ]
@@ -20119,7 +20666,7 @@
   {
     "id": 1770,
     "name": "Complete A Kingdom Divided",
-    "desc": "Complete   A Kingdom Divided  quest",
+    "desc": "Complete   A Kingdom Divided quest",
     "diff": "Elite",
     "reqs": [
       {
@@ -20133,10 +20680,6 @@
           "Magic": 35
         },
         "quests": [
-          "Depths of Despair",
-          "Queen of Thieves",
-          "Ascent of Arceuus",
-          "Forsaken Tower",
           "Tale of the Righteous"
         ],
         "areas": [
@@ -20156,6 +20699,16 @@
           "Cooking": 84,
           "Fishing": 82
         },
+        "links": [
+          {
+            "text": "Piscarilius_favour",
+            "href": "/w/Piscarilius_favour"
+          },
+          {
+            "text": "Skotizo",
+            "href": "/w/Skotizo"
+          }
+        ],
         "areas": [
           "Kourend"
         ]
@@ -20216,6 +20769,20 @@
           "Attack": 78,
           "Fishing": 55
         },
+        "links": [
+          {
+            "text": "God_Wars_Dungeon",
+            "href": "/w/God_Wars_Dungeon"
+          },
+          {
+            "text": "Barbarian_Training",
+            "href": "/w/Barbarian_Training"
+          },
+          {
+            "text": "miniquest",
+            "href": "/w/Miniquest"
+          }
+        ],
         "areas": [
           "Kourend"
         ]
@@ -20268,6 +20835,12 @@
         "skills": {
           "Magic": 80
         },
+        "links": [
+          {
+            "text": "Mage_Training_Arena",
+            "href": "/w/Mage_Training_Arena"
+          }
+        ],
         "areas": [
           "Kourend"
         ]
@@ -20369,6 +20942,16 @@
           "Magic": 90,
           "Crafting": 80
         },
+        "links": [
+          {
+            "text": "Dagannoth_Kings",
+            "href": "/w/Dagannoth_Kings"
+          },
+          {
+            "text": "Desert_Treasure_II",
+            "href": "/w/Desert_Treasure_II"
+          }
+        ],
         "areas": [
           "Kourend"
         ]
@@ -20415,6 +20998,12 @@
     "diff": "Elite",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Chambers_of_Xeric/Challenge_Mode",
+            "href": "/w/Chambers_of_Xeric/Challenge_Mode"
+          }
+        ],
         "areas": [
           "Kourend"
         ]
@@ -20444,6 +21033,16 @@
         "skills": {
           "Mining": 50
         },
+        "links": [
+          {
+            "text": "Kudos",
+            "href": "/w/Kudos"
+          },
+          {
+            "text": "Volcanic_Mine",
+            "href": "/w/Volcanic_Mine"
+          }
+        ],
         "areas": [
           "Misthalin"
         ]
@@ -20487,6 +21086,16 @@
     "diff": "Elite",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "watermelons",
+            "href": "/w/Watermelon"
+          },
+          {
+            "text": "raw_summer_pie",
+            "href": "/w/Raw_summer_pie"
+          }
+        ],
         "areas": [
           "Misthalin"
         ]
@@ -20564,6 +21173,16 @@
     "diff": "Elite",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Arctic_pine_logs",
+            "href": "/w/Arctic_pine_logs"
+          },
+          {
+            "text": "redwood_logs",
+            "href": "/w/Redwood_logs"
+          }
+        ],
         "areas": [
           "Misthalin"
         ]
@@ -20633,6 +21252,16 @@
           "Magic": 90,
           "Crafting": 80
         },
+        "links": [
+          {
+            "text": "Dagannoth_Kings",
+            "href": "/w/Dagannoth_Kings"
+          },
+          {
+            "text": "Desert_Treasure_II",
+            "href": "/w/Desert_Treasure_II"
+          }
+        ],
         "areas": [
           "Misthalin"
         ]
@@ -20679,6 +21308,12 @@
     "diff": "Elite",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Theatre_of_Blood/Hard_Mode",
+            "href": "/w/Theatre_of_Blood/Hard_Mode"
+          }
+        ],
         "areas": [
           "Morytania"
         ]
@@ -20692,6 +21327,12 @@
     "diff": "Elite",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "Theatre_of_Blood/Hard_Mode",
+            "href": "/w/Theatre_of_Blood/Hard_Mode"
+          }
+        ],
         "areas": [
           "Morytania"
         ]
@@ -21027,6 +21668,24 @@
           "Defence": 75,
           "Slayer": 75
         },
+        "links": [
+          {
+            "text": "God_Wars_Dungeon",
+            "href": "/w/God_Wars_Dungeon"
+          },
+          {
+            "text": "Bandos_boots",
+            "href": "/w/Bandos_boots"
+          },
+          {
+            "text": "Armadylean_guard",
+            "href": "/w/Armadylean_guard"
+          },
+          {
+            "text": "Bandosian_guard",
+            "href": "/w/Bandosian_guard"
+          }
+        ],
         "areas": [
           "Morytania"
         ]
@@ -21145,6 +21804,12 @@
           "Smithing": 70,
           "Hunter": 80
         },
+        "links": [
+          {
+            "text": "Dusuri's_Star_Shop",
+            "href": "/w/Dusuri%27s_Star_Shop"
+          }
+        ],
         "areas": [
           "Tirannwn"
         ]
@@ -21388,6 +22053,12 @@
           "Ranged": 80,
           "Agility": 70
         },
+        "links": [
+          {
+            "text": "The_Gauntlet",
+            "href": "/w/The_Gauntlet"
+          }
+        ],
         "areas": [
           "Tirannwn"
         ]
@@ -21463,9 +22134,6 @@
         "skills": {
           "Smithing": 89
         },
-        "quests": [
-          "Tourist Trap"
-        ],
         "areas": [
           "Tirannwn"
         ]
@@ -21495,6 +22163,12 @@
         "skills": {
           "Construction": 80
         },
+        "links": [
+          {
+            "text": "marble_blocks",
+            "href": "/w/Marble_block"
+          }
+        ],
         "areas": [
           "Wilderness"
         ]
@@ -21975,6 +22649,12 @@
         "quests": [
           "Dragon Slayer II"
         ],
+        "links": [
+          {
+            "text": "Myths'_Guild_Armoury",
+            "href": "/w/Myths%27_Guild_Armoury"
+          }
+        ],
         "areas": [
           "Any"
         ]
@@ -22114,6 +22794,24 @@
         },
         "quests": [
           "Beneath Cursed Sands"
+        ],
+        "links": [
+          {
+            "text": "God_Wars_Dungeon",
+            "href": "/w/God_Wars_Dungeon"
+          },
+          {
+            "text": "Armadyl_helmet",
+            "href": "/w/Armadyl_helmet"
+          },
+          {
+            "text": "Armadylean_guard",
+            "href": "/w/Armadylean_guard"
+          },
+          {
+            "text": "Bandosian_guard",
+            "href": "/w/Bandosian_guard"
+          }
         ],
         "areas": [
           "Desert"
@@ -22314,6 +23012,12 @@
     "diff": "Master",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "The_Inferno",
+            "href": "/w/The_Inferno"
+          }
+        ],
         "areas": [
           "Karamja"
         ]
@@ -22353,6 +23057,12 @@
     "diff": "Master",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "The_Inferno",
+            "href": "/w/The_Inferno"
+          }
+        ],
         "areas": [
           "Karamja"
         ]
@@ -22498,6 +23208,16 @@
     "diff": "Master",
     "reqs": [
       {
+        "links": [
+          {
+            "text": "6_December",
+            "href": "/w/6_December"
+          },
+          {
+            "text": "2023",
+            "href": "/w/2023"
+          }
+        ],
         "areas": [
           "Morytania"
         ]
@@ -22514,6 +23234,12 @@
         "skills": {
           "Attack": 80
         },
+        "links": [
+          {
+            "text": "The_Gauntlet",
+            "href": "/w/The_Gauntlet"
+          }
+        ],
         "areas": [
           "Tirannwn"
         ]
@@ -22613,6 +23339,12 @@
           "Prayer": 90,
           "Smithing": 85
         },
+        "links": [
+          {
+            "text": "Abbot_Langley",
+            "href": "/w/Abbot_Langley"
+          }
+        ],
         "areas": [
           "Wilderness"
         ]

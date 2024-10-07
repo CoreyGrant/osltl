@@ -41,6 +41,10 @@
     /* border: 1px solid grey; */
     border-radius: 3px;
 }
+.row-detail-link{
+    margin-left: 4px;
+    margin-right: 4px;
+}
 .row-detail-area-and{
 }
 .row-detail-area-divider{
