@@ -320,6 +320,12 @@
         },
         "areas": [
           "Any"
+        ],
+        "links": [
+          {
+            "href": "/w/Steel_axe",
+            "text": "Steel_axe"
+          }
         ]
       }
     ]
@@ -1539,7 +1545,9 @@
           "Thieving": 20
         },
         "areas": [
-          "Any"
+          "Kandarin",
+          "Kourend",
+          "Tirannwn"
         ]
       }
     ]
@@ -3197,7 +3205,7 @@
         "links": [
           {
             "text": "Lonely_tree",
-            "href": "undefined"
+            "href": "#mapFullscreen"
           }
         ],
         "areas": [
@@ -6806,7 +6814,7 @@
         "links": [
           {
             "text": "Portal",
-            "href": "undefined"
+            "href": "#mapFullscreen"
           }
         ],
         "areas": [

@@ -6,7 +6,9 @@
 (async function(){
 const puppeteer = require('puppeteer');
 const fs = require('fs');
-const textMatcherText = fs.readFileSync('./textMatcher.js', {encoding: 'utf8'});
+const path = require('path');
+function getPath(p){return path.join(__dirname, p)}
+const textMatcherText = fs.readFileSync(getPath('./textMatcher.js'), {encoding: 'utf8'});
 const browser = await puppeteer.launch({headless: true});
 const page = await browser.newPage();
 // load the wiki page
@@ -30,12 +32,12 @@ const panics = await page.evaluate(() => {
 await browser.close();
 
 // write the parsed and raw data
-fs.writeFileSync('../data/parsedTasks.json', JSON.stringify(jsonOutput, null, 2));
-fs.writeFileSync('../data/detailsRaw.json', JSON.stringify(plainTextOutput, null, 2));
+fs.writeFileSync(getPath('../data/parsedTasks.json'), JSON.stringify(jsonOutput, null, 2));
+fs.writeFileSync(getPath('../data/detailsRaw.json'), JSON.stringify(plainTextOutput, null, 2));
 
 // Load parsed and manual data
-var fileJson = JSON.parse(fs.readFileSync('../data/parsedTasks.json'));
-var manualJson = JSON.parse(fs.readFileSync('../data/manualTasks.json'));
+var fileJson = JSON.parse(fs.readFileSync(getPath('../data/parsedTasks.json')));
+var manualJson = JSON.parse(fs.readFileSync(getPath('../data/manualTasks.json')));
 
 // perform manual replacement
 for(var task of fileJson){
@@ -50,9 +52,9 @@ for(var task of fileJson){
 }
 
 // write out panics
-fs.writeFileSync('../data/panicList.json', JSON.stringify(panics, null, 2));
+fs.writeFileSync(getPath('../data/panicList.json'), JSON.stringify(panics, null, 2));
 
 // write the combined task list;
-fs.writeFileSync("../data/tasks.json", JSON.stringify(fileJson, null, 2));
+fs.writeFileSync(getPath("../data/tasks.json"), JSON.stringify(fileJson, null, 2));
 
 }());

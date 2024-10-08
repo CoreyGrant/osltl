@@ -3171,7 +3171,7 @@
         "links": [
           {
             "text": "Lonely_tree",
-            "href": "undefined"
+            "href": "#mapFullscreen"
           }
         ],
         "areas": [
@@ -6780,7 +6780,7 @@
         "links": [
           {
             "text": "Portal",
-            "href": "undefined"
+            "href": "#mapFullscreen"
           }
         ],
         "areas": [

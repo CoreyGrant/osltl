@@ -581,7 +581,7 @@ function getMatcher(){
         // acievement diaries have the icon followed by the name of the diary
         // can also pull out other areas
         var fourthCell = row.find("td:nth(3)");
-        var fourthCellText = getText(fourthCell);
+        var fourthCellText = " AREA " + area + " " + getText(fourthCell);
         var normalizedFourthCellText = fourthCellText.toLowerCase();
         if(normalizedFourthCellText.indexOf(" or ") > -1 || normalizedFourthCellText.indexOf(" either ") > -1){
             panic("Found either/or in text");
