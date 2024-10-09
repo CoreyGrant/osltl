@@ -2,7 +2,7 @@
 # Old School Leagues Task List
 
 A task list for the Old School Runescape Leagues limited time gamemode.
-The in-game list of tasks is quite bad in terms of quality of life, the points of this app is to remedy that.
+The in-game list of tasks is quite bad in terms of quality of life, the point of this app is to remedy that.
 ---
 Features:
 
