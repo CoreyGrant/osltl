@@ -184,7 +184,7 @@ const questNames = [
 ].sort((x, y) => x < y ? -1 : 1);
 const diaries = ["Fremennik", "Lumbridge & Draynor", "Kourend & Kerbos", "Western Provinces", "Ardougne", "Desert", "Falador", "Kandarin", "Karamja", "Morytania", "Varrock", "Wilderness"].sort((x, y) => x < y ? -1 : 1).flatMap(x => ["Easy", "Medium", "Hard", "Elite"].map(y => x + " " + y));
 const kourends = ["Arceuus", "Hosidius", "Piscarilius", "Lovakengj", "Shayzien"].sort((x, y) => x < y ? -1 : 1);
-const areaNames = ["Any", "Asgarnia", "Desert", "Fremennik", "Kandarin", "Karamja", "Kourend", "Misthalin", "Morytania", "Tirannwn", "Wilderness"].sort((x, y) => x < y ? -1 : 1);
+const areaNames = ["Any", "Asgarnia", "Desert", "Fremennik", "Kandarin", "Karamja", "Kourend", "Misthalin", "Morytania", "Tirannwn", "Wilderness","Varlamore"].sort((x, y) => x < y ? -1 : 1);
 const skillNames = ["Any", "Combat", "Base", "Total", "Attack", "Hitpoints", "Mining", "Strength", "Agility", "Smithing", "Defence", "Herblore", "Fishing", "Ranged", "Thieving", "Cooking", "Prayer", "Crafting", "Firemaking", "Magic", "Fletching", "Woodcutting", "Runecraft", "Slayer", "Farming", "Construction", "Hunter"].sort((x, y) => x < y ? -1 : 1);
 
 

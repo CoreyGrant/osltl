@@ -4,12 +4,14 @@ import {connect} from 'react-redux';
 import { addUser } from '../../store/appSlice';
 import { discordUrl } from '../../constants';
 import { RootState } from '../../store/store';
+import { closeModal } from '../../store/modalSlice';
 
 export type FirstLoadModalProps = {
     addUser: (pl) => void;
     loginClick: () => void;
     registerClick: () => void;
     tourModalClick: () => void;
+    closeModal: () => void;
     onClose: () => void;
 };
 export type FirstLoadModalState = {
@@ -23,7 +25,7 @@ export class FirstLoadModal extends React.Component<FirstLoadModalProps, FirstLo
         };
     }
     render(){
-        return <Modal onClose={() => this.props.onClose()} title="Welcome to OSLTL">
+        return <Modal title="Welcome to OSLTL">
             <div className="first-load-modal">
                 <h3>The old school leagues task list</h3>
                 <div className="first-load-modal-username">
@@ -65,6 +67,7 @@ export class FirstLoadModal extends React.Component<FirstLoadModalProps, FirstLo
         if(this.state.username && this.state.username.length){
             this.props.addUser(this.state.username)
         }
+        this.props.closeModal();
         this.props.onClose();
     }
     getStartedTour(){
@@ -78,5 +81,6 @@ export class FirstLoadModal extends React.Component<FirstLoadModalProps, FirstLo
 export default connect((state: RootState) => ({
 
 }), {
-    addUser
+    addUser,
+    closeModal
 })(FirstLoadModal)

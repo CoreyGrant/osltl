@@ -377,7 +377,7 @@ const questNames = [
     "Ribbiting Tale of a Lily Pad Labour Dispute",
     "While Guthix Sleeps"
 ];
-const areaNames = ["Asgarnia", "Desert", "Fremennik", "Kandarin", "Karamja", "Kourend", "Misthalin", "Morytania", "Tirannwn", "Wilderness"];
+const areaNames = ["Asgarnia", "Desert", "Fremennik", "Kandarin", "Karamja", "Kourend", "Misthalin", "Morytania", "Tirannwn", "Wilderness", "Varlamore"];
 const skillNames = ["Attack", "Hitpoints", "Mining", "Strength", "Agility", "Smithing", "Defence", "Herblore", "Fishing", "Ranged", "Thieving", "Cooking", "Prayer", "Crafting", "Firemaking", "Magic", "Fletching", "Woodcutting", "Runecraft", "Slayer", "Farming", "Construction", "Hunter"];
     
 function getMatcher(){

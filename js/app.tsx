@@ -161,7 +161,10 @@ export class App extends React.Component<AppProps, AppState>{
                 viewTour={() => this.props.openModal(AppModal.Tour)}/>
             {this.props.darkMode ? <link rel="stylesheet" href="css/darkMode.css"/> : null}
             <div className="app-top-bar">
+                <div className="d-flex flex-row">
                 <span className="app-top-bar-title">OSLTL</span>
+                <p className="app-top-bar-desc">Old School Leagues Task List</p>
+                </div>
                 <div className="app-top-bar-right">
                     <span className="app-top-bar-options">
                         {this.props.currentUser && <span onClick={() => this.props.openModal(AppModal.UserDetails)} style={{cursor: "pointer"}}><p>User: {this.props.currentUser}</p></span>}

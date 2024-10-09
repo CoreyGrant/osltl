@@ -11,10 +11,10 @@ export class AreaFilter extends React.Component<AreaFilterProps>{
     }
     render(): React.ReactNode {
         return <div className="area-filter">
-            {["Any", "Asgarnia", "Desert", "Fremennik", "Kandarin", "Karamja", "Kourend", "Misthalin", "Morytania", "Tirannwn", "Wilderness"].map(os => {
+            {["Any", "Asgarnia", "Desert", "Fremennik", "Kandarin", "Karamja", "Kourend", "Misthalin", "Morytania", "Tirannwn", "Wilderness", "Varlamore"].map(os => {
                 var selectedClass = this.props.value.indexOf(os) > -1 ? " selected" : "";
                 return <div className={"single-area-filter" + selectedClass} title={os} onClick={() => this.areaClick(os)}>
-                    <AppIcon name={os + "Area"} ext="webp" size="sm"/>
+                    <AppIcon name={os + "Area"} ext="webp" size="sm" props={{style: {width: "14px", height: "initial", marginTop: "2px"}}}/>
                 </div>
             })}
         </div>
