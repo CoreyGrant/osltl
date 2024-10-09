@@ -24,6 +24,8 @@ import {openModal} from './store/modalSlice';
 import { RootState } from './store/store';
 import AppIcon from './components/shared/appIcon';
 import InlineOptionsPanel from './components/inlineOptionsPanel';
+import {Countdown} from './components/countdown';
+
 export type AppProps = {
     personalTasks: {[username: string]: number[]};
     darkMode: boolean;
@@ -150,6 +152,7 @@ export class App extends React.Component<AppProps, AppState>{
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         const classAddition = (this.props.darkMode ? " dark-mode" : "") + (isMobile ? " mobile" : "")
         return <div className={"app-container" + classAddition}>
+            <Countdown></Countdown>
             <ToastNotification/>
             {modalManager.current()}
             <OptionsPanel
