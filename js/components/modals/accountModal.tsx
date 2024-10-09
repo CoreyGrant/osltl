@@ -129,6 +129,7 @@ export class AccountModal extends React.Component<AccountModalProps, AccountModa
                     <label htmlFor="acc-reg-cpas">Confirm password</label>
                     <input type="password" className="account-register-confirm-password" id="acc-reg-cpas" {...getInputProps("rConfirmPassword")}/>
                 </div>
+                <p>You should use a unique password for every website. Under no circumstances should you use your OSRS password.</p>
                 <button className="btn btn-primary" onClick={() => this.register()}>Register</button>
                 {this.state.registerError && <p className="error-message" dangerouslySetInnerHTML={{__html: this.state.registerError}}></p>}
                 <p className="account-register-already-text">Already have an account?</p>
