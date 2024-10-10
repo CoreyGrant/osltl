@@ -9,7 +9,8 @@ export enum AppModal{
     TaskDetails = 3,
     Tour = 4,
     UserDetails = 5,
-    UserSelect = 6
+    UserSelect = 6,
+    TaskLists = 7,
 }
 
 export type ModalProps = {

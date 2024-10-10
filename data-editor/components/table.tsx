@@ -16,6 +16,7 @@ type Manual = Reqs;
 export type Datum = {
     id: number;
     name: string;
+    diff: string;
     parsed: Parsed;
     panic: Panic;
     raw: Raw;
@@ -23,9 +24,10 @@ export type Datum = {
 }
 
 export type DataTableProps = {
-    selected: (a: any) => void;
+    dblClick: (a: any) => void;
     data: Datum[];
     selectedItem: any;
+    selectedForList: number[]
 };
 export type DataTableState = {
 }
@@ -60,13 +62,18 @@ export class DataTable extends React.Component<DataTableProps, DataTableState>{
                     } else if(x.panic){
                         rowColor = '#FF0000';
                     }
+                    if(this.props.selectedForList.length){
+                        if(this.props.selectedForList.indexOf(x.id) > -1){
+                            rowColor = '#00FF00';
+                        }
+                    }
                     if(rowColor){
                         props.style.backgroundColor = rowColor;
                     }
                     if(fontWeight){
                         props.style.fontWeight = fontWeight;
                     }
-                    return <tr onDoubleClick={() => this.props.selected(x)} key={x.id}>
+                    return <tr onDoubleClick={() => this.props.dblClick(x)} key={x.id}>
                         <td {...props}>{x.id}</td>
                         <td {...props}>{x.name}</td>
                         <td {...props}>{x.panic}</td>

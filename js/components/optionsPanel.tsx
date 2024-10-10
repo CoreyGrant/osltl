@@ -24,6 +24,7 @@ export type OptionsPanelProps = {
     refreshData: () => void;
     loginClick: () => void;
     viewTour: () => void;
+    viewTaskLists: () => void;
 };
 export class OptionsPanel extends React.Component<OptionsPanelProps>{
     mouseoutEvent;
@@ -74,6 +75,11 @@ export class OptionsPanel extends React.Component<OptionsPanelProps>{
                 icon: 'refresh',
                 text: 'Refresh data',
                 onClick: () => {this.props.onClose(); this.props.refreshData();}
+            },
+            {
+                icon: 'prebuilt',
+                text: 'Task lists',
+                onClick: () => {this.props.viewTaskLists();}
             },
             {
                 icon: 'chat',

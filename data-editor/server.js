@@ -9,6 +9,7 @@ const panicsPath = '../data/panicList.json';
 const parsedPath = '../data/parsedTasks.json';
 const manualPath = '../data/manualTasks.json';
 const rawPath = '../data/detailsRaw.json';
+const taskListPath = '../data/taskLists.json';
 
 function loadData(){
     const raw = JSON.parse(fs.readFileSync(rawPath, {encoding: 'utf8'}));
@@ -21,9 +22,16 @@ function loadData(){
         parsed: x.reqs,
         panic: panics.find(y => y.id === x.id)?.reason,
         raw: raw.find(y => y.id === x.id)?.details,
+        diff: x.diff,
         manual: manual[x.id.toString()]
     }));
 }
+
+function loadTaskLists(){
+    const tl = JSON.parse(fs.readFileSync(taskListPath, {encoding: 'utf8'}));
+    return tl;
+}
+
 const staticFolder = path.join(__dirname, './dist');
 
 app.use(express.static(staticFolder));
@@ -39,11 +47,22 @@ app.get('/data', function(req, res){
 
 app.put('/data', function(req, res){
     const item = req.body;
-    console.log(item);
     const manual = JSON.parse(fs.readFileSync(manualPath, {encoding: 'utf8'}));
     Object.assign(manual, item);
     const newManualString = JSON.stringify(manual, null, 2);
     fs.writeFileSync(manualPath, newManualString);
+    res.status(200).send({success: true});
+})
+
+app.get('/taskLists', function(req, res){
+    var tl = loadTaskLists();
+    res.status(200).send(tl);
+})
+
+app.put('/taskLists', function(req, res){
+    var newTl = req.body;
+    const newTlString = JSON.stringify(newTl, null, 2);
+    fs.writeFileSync(taskListPath, newTlString);
     res.status(200).send({success: true});
 })
 

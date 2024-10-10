@@ -1,4 +1,15 @@
 import { UserDetails } from "./types/user";
+const baseUrl = "https://sync.runescape.wiki/runelite/player/";
+const userTypeKey = "/STANDARD";
+
+function getCombatLevel(skills){
+    let cmbLvl = Math.floor(skills.Prayer/2);
+    cmbLvl = (cmbLvl + skills.Hitpoints + skills.Defence)/4;
+    const meleeLvl = (skills.Strength + skills.Attack) * 0.325;
+    const largestMageRange = Math.max(skills.Ranged, skills.Magic);
+    const mageRangeLvl = (Math.floor(largestMageRange/2) + largestMageRange) *0.325;
+    return cmbLvl + Math.max(meleeLvl, mageRangeLvl);
+  }
 
 export class UserDetailsService{
     counter: number = 0;
@@ -36,11 +47,13 @@ export class UserDetailsService{
         //         quests: {}
         //     }));
         // }
-        return fetch("https://sync.runescape.wiki/runelite/player/" + username + "/STANDARD")
+        return fetch(baseUrl + username + userTypeKey)
             .then(x => x.json())
             .then(x => {
                 if(x.code && x.code == "NO_USER_DATA"){return {} as any;}
                 delete x.levels["Overall"];
+                const combatLevel = getCombatLevel(x.levels);
+                x.levels["Combat"] = combatLevel;
                 return {
                     leagueTasks: x.league_tasks,
                     skills: x.levels,

@@ -1,0 +1,32 @@
+{
+  "Any": [
+    {
+      "name": "Starter",
+      "desc": "A basic starter task list to get you started",
+      "tasks": [
+        497,
+        498,
+        499,
+        500
+      ]
+    }
+  ],
+  "Kourend": [
+    {
+      "name": "Starter",
+      "desc": "A basic starter task list to get you started",
+      "tasks": []
+    }
+  ],
+  "Fremennik": [
+    {
+      "name": "Starter",
+      "desc": "A basic starter task list to get you started",
+      "tasks": [
+        947,
+        900,
+        1647
+      ]
+    }
+  ]
+}
