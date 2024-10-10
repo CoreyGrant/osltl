@@ -1,0 +1,4 @@
+We need the ability to select from a list of pre-built personal lists
+These, when selected, will add the tasks in it to the current user's personal task list
+Some for starter areas (Lum and Karam) then others for single areas
+They should include a name, description, and list of task ids
