@@ -2,7 +2,18 @@
 *{
     box-sizing: border-box;
 }
-
+.countdown{
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    padding: 4px;
+    background-color: var(--osrs-color);
+    color: var(--osrs-text-color);
+    z-index: 1;
+    border-radius: 4px;
+    border: 2px solid var(--osrs-text-color);
+}
+.countdown>p{margin: 0;}
 #app{
     height: 100vh;
     width: 100vw;
@@ -36,6 +47,13 @@ a{
     flex-direction: row;
     position: relative;
     justify-content: end;
+}
+.app-top-bar-desc{
+    font-size: 16px;
+    margin-top: 8px;
+    margin-left: 6px;
+    color: var(--osrs-semi-dark-color);
+    font-weight: bold;
 }
 .app-top-bar .app-top-bar-title{
     font-size: 28px;
@@ -119,6 +137,11 @@ input[type="password"]:focus-visible{
     background-color: var(--osrs-semi-dark-color);
     border-color: var(--osrs-semi-dark-color);
 }
+@media(max-width: 600px){
+    .app-top-bar-desc{
+        display: none;
+    }
+}
 /*Tablet*/
 @media(max-width: 1085px){
     /* .app-top-bar .app-top-bar-title{
@@ -155,20 +178,6 @@ input[type="password"]:focus-visible{
         margin-top: 0;
     } */
 }
-
-@media(max-width: 500px){
-    /* .app-top-bar{
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-    .app-top-bar-options p{
-        font-size: 12px;
-    } */
-    /* .app-top-bar .app-top-bar-title{
-        font-size: 14px;
-        font-weight: bolder;
-    } */
-    .app-top-bar-options > span > p{
-        font-size: 1rem;
-    }
+.app-top-bar-options > span > p{
+    font-size: 1rem;
 }

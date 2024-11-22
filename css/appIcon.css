@@ -32,3 +32,9 @@
     height: 40px;
     width: 40px;
 }
+
+@media(max-width: 768px){
+    .app-icon>img{
+        margin-top: 0;
+    }
+}

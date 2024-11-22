@@ -24,6 +24,9 @@ import {openModal} from './store/modalSlice';
 import { RootState } from './store/store';
 import AppIcon from './components/shared/appIcon';
 import InlineOptionsPanel from './components/inlineOptionsPanel';
+import {Countdown} from './components/countdown';
+import PrebuiltTaskLists from './components/modals/prebuiltTaskLists';
+
 export type AppProps = {
     personalTasks: {[username: string]: number[]};
     darkMode: boolean;
@@ -113,6 +116,7 @@ export class App extends React.Component<AppProps, AppState>{
         modalManager.register(AppModal.UserSelect, () => <UserSelectModal/>);
         modalManager.register(AppModal.Account, () => <AccountModal
             loginDefault={this.state.loginDefault} />);
+        modalManager.register(AppModal.TaskLists, () => <PrebuiltTaskLists/>);
         // check to see if user has used the app before
         const notFirstLoad = appLocalStorage.getNotFirstLoad();
         if(!notFirstLoad){
@@ -150,6 +154,7 @@ export class App extends React.Component<AppProps, AppState>{
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         const classAddition = (this.props.darkMode ? " dark-mode" : "") + (isMobile ? " mobile" : "")
         return <div className={"app-container" + classAddition}>
+            <Countdown></Countdown>
             <ToastNotification/>
             {modalManager.current()}
             <OptionsPanel
@@ -158,10 +163,14 @@ export class App extends React.Component<AppProps, AppState>{
                 manageUsers={() => this.props.openModal(AppModal.UserSelect)}
                 refreshData={() => this.loadUserDetails(Object.keys(this.props.personalTasks || {}))}
                 loginClick={() => {this.loginClick()}}
-                viewTour={() => this.props.openModal(AppModal.Tour)}/>
+                viewTour={() => this.props.openModal(AppModal.Tour)}
+                viewTaskLists={() => this.props.currentUser && this.props.openModal(AppModal.TaskLists)}/>
             {this.props.darkMode ? <link rel="stylesheet" href="css/darkMode.css"/> : null}
             <div className="app-top-bar">
+                <div className="d-flex flex-row">
                 <span className="app-top-bar-title">OSLTL</span>
+                <p className="app-top-bar-desc">Old School Leagues Task List</p>
+                </div>
                 <div className="app-top-bar-right">
                     <span className="app-top-bar-options">
                         {this.props.currentUser && <span onClick={() => this.props.openModal(AppModal.UserDetails)} style={{cursor: "pointer"}}><p>User: {this.props.currentUser}</p></span>}
@@ -170,7 +179,8 @@ export class App extends React.Component<AppProps, AppState>{
                             manageUsers={() => this.props.openModal(AppModal.UserSelect)}
                             refreshData={() => this.loadUserDetails(Object.keys(this.props.personalTasks || {}))}
                             loginClick={() => {this.loginClick()}}
-                            viewTour={() => this.props.openModal(AppModal.Tour)}/>
+                            viewTour={() => this.props.openModal(AppModal.Tour)}
+                            viewTaskLists={() => this.props.currentUser && this.props.openModal(AppModal.TaskLists)}/>
                         <AppIcon name={'settings'} ext="svg" size="lg" props={{onClick :() => this.setState({optionsPanelOpen: !this.state.optionsPanelOpen}), className:"app-options-icon"}}/>
                     </span>
                 </div>

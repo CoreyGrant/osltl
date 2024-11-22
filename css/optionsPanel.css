@@ -29,7 +29,7 @@
     cursor: pointer;
 }
 
-.options-panel-item:hover{
+.options-panel-item:hover, .inline-options-panel-item:hover{
     background-color: var(--osrs-dark-color);
 }
 .options-panel-item-icon{
@@ -82,7 +82,7 @@
 .inline-options-panel{
     display: flex;
 }
-@media (max-width: 1440px){
+@media (max-width: 1600px){
     .inline-options-panel{
         display: none;
     }

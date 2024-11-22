@@ -105,7 +105,7 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                             var showDivider = !(ari + 1 === a.areas.length);
                             return <div 
                                 className="row-detail-area">
-                                <AppIcon name={ar + "Area"} ext="webp" props={{style: {marginRight: "4px"}}} size="sm"/>
+                                <AppIcon name={ar + "Area"} ext="webp" props={{style: {marginRight: "4px", height: "initial", width: "16px", marginTop: "1px"}}} size="sm"/>
                                 {ar}
                                 {showDivider && <p className="row-detail-area-divider">/</p>}
                             </div>    
@@ -115,7 +115,7 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
                                 return <div 
                                     style={{display: "flex", flexDirection: 'row'}} 
                                     className="row-detail-area-and">
-                                <AppIcon name={subAr + "Area"} ext="webp" props={{style: {marginRight: "4px"}}} size="sm"/>
+                                <AppIcon name={subAr + "Area"} ext="webp" props={{style: {marginRight: "4px", height: "initial", width: "16px", marginTop: "1px"}}} size="sm"/>
                                 {subAr}
                                 {showSummer && <p className="row-detail-area-divider">+</p>}
                             </div>

@@ -1,0 +1,3 @@
+Need a good way to test the user details api for different completed tasks and skill sets
+Currently the league_tasks list is always empty, because there is no current leagues
+Need to be able to mock and test changes to the list of completed tasks, to check behavior around task completion removing from personal task list, prebuilt tasks etc.

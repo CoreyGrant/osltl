@@ -1,0 +1,4 @@
+Need to get the app ready for new leagues release.
+
+Run task parsing and manual updates
+Create new gifs for tour
