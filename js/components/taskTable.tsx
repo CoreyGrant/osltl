@@ -165,7 +165,7 @@ class TaskTable extends React.Component<TaskTableProps, TaskTableState>{
             //console.log("starting personal tasks", this.state.personalTaskList);
             for(var pt of this.props.personalList){
                 //console.log("checking if task is complete", pt)
-                if(!this.props.taskList.find(t => t.id == pt).completed){
+                if(!this.props.taskList.find(t => t.id == pt)?.completed){
                     //console.log("isnt complete, keeping");
                     updatedPersonalTasks.push(pt);
                 }

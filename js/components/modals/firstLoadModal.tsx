@@ -25,20 +25,20 @@ export class FirstLoadModal extends React.Component<FirstLoadModalProps, FirstLo
         super(props);
         this.state = {
             username: "",
-            useStarterTaskList: true
+            useStarterTaskList: false
         };
     }
     render(){
-        return <Modal title="Welcome to OSLTL">
+        return <Modal title="Welcome to OSLTL" onClose={() => this.props.onClose()}>
             <div className="first-load-modal">
                 <h3>The old school leagues task list</h3>
                 <div className="first-load-modal-username">
                     <p>To get started, please enter your OSRS username</p>
                     <input type="text" value={this.state.username} onChange={(e) => this.usernameChange(e.target.value)}/>
                 </div>
-                {this.state.username && this.state.username.length && <div className="d-flex flex-row">
+                {/* {this.state.username && this.state.username.length && <div className="d-flex flex-row">
                     <input type="checkbox" checked={this.state.useStarterTaskList} onChange={() => this.setState({useStarterTaskList: !this.state.useStarterTaskList})}/><label>Use starter task list</label>
-                </div>}
+                </div>} */}
                 <div className="first-load-modal-info">
                 <p>The app has a dark mode which can be toggled. A simple mode is also available, which works much better on small screens.</p>
                 <p>There is a <a href={discordUrl} target="_blank">discord</a> for feedback, bug reports and feature requests. Feel free to drop by and say hi!</p>
