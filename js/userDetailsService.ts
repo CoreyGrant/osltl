@@ -1,6 +1,6 @@
 import { UserDetails } from "./types/user";
 const baseUrl = "https://sync.runescape.wiki/runelite/player/";
-const userTypeKey = "/STANDARD";
+const userTypeKey = "/RAGING_ECHOES_LEAGUE";
 
 function getCombatLevel(skills){
     let cmbLvl = Math.floor(skills.Prayer/2);

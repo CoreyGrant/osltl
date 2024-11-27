@@ -41,11 +41,11 @@ export class InlineOptionsPanel extends React.Component<InlineOptionsPanelProps>
                 text: 'Refresh data',
                 onClick: () => {this.props.refreshData();}
             },
-            {
-                icon: 'prebuilt',
-                text: 'Task lists',
-                onClick: () => {this.props.viewTaskLists();}
-            },
+            // {
+            //     icon: 'prebuilt',
+            //     text: 'Task lists',
+            //     onClick: () => {this.props.viewTaskLists();}
+            // },
             {
                 icon: 'chat',
                 text: 'Discord',

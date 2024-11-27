@@ -76,11 +76,11 @@ export class OptionsPanel extends React.Component<OptionsPanelProps>{
                 text: 'Refresh data',
                 onClick: () => {this.props.onClose(); this.props.refreshData();}
             },
-            {
-                icon: 'prebuilt',
-                text: 'Task lists',
-                onClick: () => {this.props.viewTaskLists();}
-            },
+            // {
+            //     icon: 'prebuilt',
+            //     text: 'Task lists',
+            //     onClick: () => {this.props.viewTaskLists();}
+            // },
             {
                 icon: 'chat',
                 text: 'Discord',

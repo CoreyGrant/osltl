@@ -13,4 +13,4 @@ export type Task = {
     }[];
     completed?: boolean;
 }
-export const diffVals = {"Easy": 10, "Medium": 40, "Hard": 80, "Elite": 200, "Master": 400};
+export const diffVals = {"Easy": 10, "Medium": 30, "Hard": 80, "Elite": 200, "Master": 400};

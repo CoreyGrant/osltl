@@ -25,6 +25,7 @@
     "redis": "^4.7.0",
     "socket.io": "^4.8.0",
     "socket.io-client": "^4.8.0",
+    "uuid": "^11.0.3",
     "webpack-asset-manifest": "^1.0.0"
   },
   "devDependencies": {

@@ -599,7 +599,7 @@ function getMatcher(){
         var diff = "";
         switch(fifthCellPointValue){
             case 10: diff = "Easy"; break;
-            case 40: diff = "Medium"; break;
+            case 30: diff = "Medium"; break;
             case 80: diff = "Hard"; break;
             case 200: diff = "Elite"; break;
             case 400: diff = "Master"; break;

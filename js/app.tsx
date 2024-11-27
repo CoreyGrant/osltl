@@ -154,7 +154,7 @@ export class App extends React.Component<AppProps, AppState>{
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         const classAddition = (this.props.darkMode ? " dark-mode" : "") + (isMobile ? " mobile" : "")
         return <div className={"app-container" + classAddition}>
-            <Countdown></Countdown>
+            {/* <Countdown></Countdown> */}
             <ToastNotification/>
             {modalManager.current()}
             <OptionsPanel

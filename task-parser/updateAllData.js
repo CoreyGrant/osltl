@@ -12,7 +12,7 @@ const textMatcherText = fs.readFileSync(getPath('./textMatcher.js'), {encoding: 
 const browser = await puppeteer.launch({headless: true});
 const page = await browser.newPage();
 // load the wiki page
-await page.goto("https://oldschool.runescape.wiki/w/Trailblazer_Reloaded_League/Tasks");
+await page.goto("https://oldschool.runescape.wiki/w/Raging_Echoes_League/Tasks");
 
 // run the javascript to build up task list, raw and panics
 await page.evaluate(textMatcherText);

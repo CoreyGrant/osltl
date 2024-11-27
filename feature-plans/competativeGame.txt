@@ -1,0 +1,4 @@
+The ability to play a competative mode.
+
+Someone will select a list of tasks, and add several usernames. This will generate a unique url for this game session.
+That will open a screen which shows all the tasks listed down the table, with columns for the different people playing. These will tick as people complete the tasks, with a count/point total.
